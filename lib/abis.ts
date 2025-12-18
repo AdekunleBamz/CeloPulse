@@ -1,0 +1,18 @@
+export const celoPulseABI = [
+  { inputs: [], name: "register", outputs: [], stateMutability: "nonpayable", type: "function" },
+  { inputs: [], name: "checkIn", outputs: [], stateMutability: "nonpayable", type: "function" },
+  { inputs: [], name: "completeTask", outputs: [], stateMutability: "nonpayable", type: "function" },
+  { inputs: [], name: "claimRewards", outputs: [], stateMutability: "nonpayable", type: "function" },
+  { inputs: [], name: "compoundRewards", outputs: [], stateMutability: "nonpayable", type: "function" },
+  { inputs: [{ internalType: "uint256", name: "amount", type: "uint256" }], name: "stakeScore", outputs: [], stateMutability: "nonpayable", type: "function" },
+  { inputs: [{ internalType: "uint256", name: "amount", type: "uint256" }], name: "unstakeScore", outputs: [], stateMutability: "nonpayable", type: "function" },
+  { inputs: [], name: "activateBoost", outputs: [], stateMutability: "nonpayable", type: "function" },
+  { inputs: [{ internalType: "uint256", name: "questId", type: "uint256" }], name: "completeQuest", outputs: [], stateMutability: "nonpayable", type: "function" },
+  { inputs: [{ internalType: "address", name: "userAddress", type: "address" }], name: "getUser", outputs: [{ internalType: "uint256", name: "activityScore", type: "uint256" }, { internalType: "uint256", name: "totalActions", type: "uint256" }, { internalType: "uint256", name: "currentStreak", type: "uint256" }, { internalType: "uint256", name: "longestStreak", type: "uint256" }, { internalType: "uint256", name: "stakedScore", type: "uint256" }, { internalType: "uint256", name: "dailyActions", type: "uint256" }, { internalType: "uint256", name: "achievements", type: "uint256" }], stateMutability: "view", type: "function" },
+  { inputs: [{ internalType: "address", name: "userAddress", type: "address" }], name: "getPendingRewards", outputs: [{ internalType: "uint256", name: "", type: "uint256" }], stateMutability: "view", type: "function" },
+  { inputs: [{ internalType: "address", name: "userAddress", type: "address" }], name: "canClaim", outputs: [{ internalType: "bool", name: "", type: "bool" }], stateMutability: "view", type: "function" },
+  { inputs: [{ internalType: "address", name: "userAddress", type: "address" }], name: "canCompound", outputs: [{ internalType: "bool", name: "", type: "bool" }], stateMutability: "view", type: "function" },
+  { inputs: [], name: "getLeaderboard", outputs: [{ internalType: "address[10]", name: "addresses", type: "address[10]" }, { internalType: "uint256[10]", name: "scores", type: "uint256[10]" }], stateMutability: "view", type: "function" },
+  { inputs: [{ internalType: "uint256", name: "count", type: "uint256" }], name: "getRecentActions", outputs: [{ internalType: "address[]", name: "userAddresses", type: "address[]" }, { internalType: "uint256[]", name: "actionTypes", type: "uint256[]" }, { internalType: "uint256[]", name: "timestamps", type: "uint256[]" }, { internalType: "uint256[]", name: "scoresEarned", type: "uint256[]" }], stateMutability: "view", type: "function" },
+  { inputs: [{ internalType: "address", name: "", type: "address" }], name: "isRegistered", outputs: [{ internalType: "bool", name: "", type: "bool" }], stateMutability: "view", type: "function" },
+] as const
