@@ -6,7 +6,7 @@
 
 @layer base {
   * {
-    @apply border-border;
+    @apply border-gray-800;
   }
   body {
     @apply bg-gradient-to-br from-slate-950 via-teal-950 to-slate-950 text-white;
