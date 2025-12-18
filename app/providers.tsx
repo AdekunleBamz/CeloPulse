@@ -7,7 +7,7 @@ import { celo, celoAlfajores } from 'wagmi/chains'
 import { QueryClientProvider, QueryClient } from '@tanstack/react-query'
 
 const config = getDefaultConfig({
-  appName: process.env.NEXT_PUBLIC_APP_NAME || 'CeloSwap Mini',
+  appName: process.env.NEXT_PUBLIC_APP_NAME || 'CeloPulse',
   projectId: process.env.NEXT_PUBLIC_WALLETCONNECT_PROJECT_ID || '',
   chains: [
     process.env.NEXT_PUBLIC_CHAIN_ID === '42220' ? celo : celoAlfajores,
