@@ -1,6 +1,7 @@
 {
   "name": "celopulse",
   "version": "1.0.0",
+  "description": "Advanced on-chain activity tracker for Celo with auto-rewards",
   "private": true,
   "scripts": {
     "dev": "next dev",
