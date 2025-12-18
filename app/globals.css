@@ -41,6 +41,12 @@
     background: rgba(20, 184, 166, 0.05);
     backdrop-filter: blur(12px);
     border: 1px solid rgba(20, 184, 166, 0.2);
+    transition: all 0.3s ease;
+  }
+  
+  .glass-cyber:hover {
+    background: rgba(20, 184, 166, 0.08);
+    border-color: rgba(20, 184, 166, 0.3);
   }
   
   .pulse-ring {
