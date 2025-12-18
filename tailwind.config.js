@@ -11,6 +11,7 @@ module.exports = {
         'celo-green': '#35D07F',
         'celo-gold': '#FBCC5C',
         'celo-dark': '#2E3338',
+        border: 'rgba(20, 184, 166, 0.2)',
       },
       fontFamily: {
         'display': ['JetBrains Mono', 'monospace'],
