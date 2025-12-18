@@ -114,6 +114,9 @@ export default function Home() {
   useEffect(() => {
     if (isSuccess) {
       refetchUser()
+      // Reset form inputs after successful transaction
+      setSelectedStakeAmount('')
+      setSelectedUnstakeAmount('')
     }
   }, [isSuccess, refetchUser])
 
