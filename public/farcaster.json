@@ -2,7 +2,7 @@
   "name": "CeloPulse",
   "version": "1.0.0",
   "description": "Real-time blockchain activity tracker with auto-rewards",
-  "icon": "https://your-domain.com/icon.png",
-  "splash": "https://your-domain.com/splash.png",
-  "url": "https://your-domain.com"
+  "icon": "https://celopulse.vercel.app/icon.png",
+  "splash": "https://celopulse.vercel.app/splash.png",
+  "url": "https://celopulse.vercel.app"
 }
