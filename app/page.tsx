@@ -118,6 +118,7 @@ export default function Home() {
   }, [isSuccess, refetchUser])
 
   const handleAction = (action: string, args?: any[]) => {
+    if (!address) return
     writeContract({
       address: contractAddress,
       abi: celoPulseABI,
