@@ -1,3 +1,5 @@
+// CeloPulse Smart Contract ABI
+// Generated from contracts/CeloPulse.sol
 export const celoPulseABI = [
   { inputs: [], name: "register", outputs: [], stateMutability: "nonpayable", type: "function" },
   { inputs: [], name: "checkIn", outputs: [], stateMutability: "nonpayable", type: "function" },
