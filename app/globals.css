@@ -144,6 +144,7 @@
     linear-gradient(rgba(20, 184, 166, 0.1) 1px, transparent 1px),
     linear-gradient(90deg, rgba(20, 184, 166, 0.1) 1px, transparent 1px);
   background-size: 50px 50px;
+  position: relative;
 }
 
 /* Custom scrollbar */
