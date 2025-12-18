@@ -8,7 +8,8 @@ export const metadata: Metadata = {
   openGraph: {
     title: 'CeloPulse',
     description: 'Real-time blockchain activity tracker with auto-rewards',
-    images: ['/og-image.png'],
+    images: ['https://celopulse.vercel.app/og-image.png'],
+    url: 'https://celopulse.vercel.app',
   },
   twitter: {
     card: 'summary_large_image',
