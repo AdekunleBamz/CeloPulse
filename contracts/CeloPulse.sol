@@ -2,6 +2,11 @@
 pragma solidity ^0.8.20;
 
 /**
+ * @author Bamzz
+ * @notice CeloPulse - Advanced on-chain activity tracker
+ */
+
+/**
  * @title CeloPulse
  * @notice Advanced on-chain activity tracker with auto-rewards and event monitoring
  * @dev Designed for maximum transaction generation with multiple action types
