@@ -24,7 +24,16 @@ export default function Home() {
   const [selectedUnstakeAmount, setSelectedUnstakeAmount] = useState('')
   const [selectedQuestId, setSelectedQuestId] = useState(0)
   
-  const contractAddress = process.env.NEXT_PUBLIC_CELOPULSE_CONTRACT as `0x${string}`
+  const contractAddress = process.env.NEXT_PUBLIC_CELOPULSE_CONTRACT as `0x${string}` | undefined
+
+  // Debug: Log contract address (only in development)
+  useEffect(() => {
+    if (process.env.NODE_ENV === 'development') {
+      console.log('Contract Address:', contractAddress)
+      console.log('Wallet Address:', address)
+      console.log('Is Connected:', isConnected)
+    }
+  }, [contractAddress, address, isConnected])
 
   // Read user data
   const { data: userData, refetch: refetchUser } = useReadContract({
