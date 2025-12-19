@@ -42,7 +42,7 @@ export default function Home() {
     functionName: 'getUser',
     args: [address as `0x${string}`],
     query: {
-      enabled: !!address,
+      enabled: !!address && !!contractAddress,
       refetchInterval: 2000,
     },
   })
@@ -57,7 +57,7 @@ export default function Home() {
     functionName: 'getPendingRewards',
     args: [address as `0x${string}`],
     query: {
-      enabled: !!address,
+      enabled: !!address && !!contractAddress,
       refetchInterval: 1000,
     },
   })
@@ -69,7 +69,7 @@ export default function Home() {
     functionName: 'canClaim',
     args: [address as `0x${string}`],
     query: {
-      enabled: !!address,
+      enabled: !!address && !!contractAddress,
       refetchInterval: 1000,
     },
   })
@@ -80,7 +80,7 @@ export default function Home() {
     functionName: 'canCompound',
     args: [address as `0x${string}`],
     query: {
-      enabled: !!address,
+      enabled: !!address && !!contractAddress,
       refetchInterval: 1000,
     },
   })
@@ -92,6 +92,7 @@ export default function Home() {
     functionName: 'getRecentActions',
     args: [BigInt(20)],
     query: {
+      enabled: !!contractAddress,
       refetchInterval: 3000,
     },
   })
@@ -102,6 +103,7 @@ export default function Home() {
     abi: celoPulseABI,
     functionName: 'getLeaderboard',
     query: {
+      enabled: !!contractAddress,
       refetchInterval: 5000,
     },
   })
@@ -113,7 +115,7 @@ export default function Home() {
     functionName: 'isRegistered',
     args: [address as `0x${string}`],
     query: {
-      enabled: !!address,
+      enabled: !!address && !!contractAddress,
     },
   })
 
