@@ -137,7 +137,7 @@ export default function Home() {
     }
   }, [writeError, txError])
 
-  const handleAction = (action: string, args?: any[]) => {
+  const handleAction = (action: string, args?: readonly unknown[]) => {
     if (!address) {
       console.error('No wallet address')
       return
@@ -148,12 +148,13 @@ export default function Home() {
       return
     }
     try {
-      writeContract({
+      const contractCall: Parameters<typeof writeContract>[0] = {
         address: contractAddress,
         abi: celoPulseABI,
         functionName: action as any,
-        args: args || [],
-      })
+        ...(args && args.length > 0 ? { args: args as any } : {}),
+      } as any
+      writeContract(contractCall)
     } catch (error) {
       console.error('Error calling writeContract:', error)
     }
@@ -404,11 +405,11 @@ export default function Home() {
                 >
                   <h3 className="text-xl font-bold mb-4 text-teal-400">Event Stream</h3>
                   <div className="space-y-2 max-h-96 overflow-y-auto">
-                    {recentActions && (recentActions as any[])[0]?.length > 0 ? (
-                      (recentActions as any[])[0].map((addr: string, idx: number) => {
-                        const actionType = (recentActions as any[])[1][idx]
-                        const timestamp = (recentActions as any[])[2][idx]
-                        const score = (recentActions as any[])[3][idx]
+                    {recentActions && Array.isArray(recentActions) && recentActions[0]?.length > 0 ? (
+                      (recentActions[0] as readonly `0x${string}`[]).map((addr: string, idx: number) => {
+                        const actionType = (recentActions[1] as readonly bigint[])[idx]
+                        const timestamp = (recentActions[2] as readonly bigint[])[idx]
+                        const score = (recentActions[3] as readonly bigint[])[idx]
                         
                         return (
                           <div key={idx} className="flex items-center justify-between p-3 bg-black/20 rounded-lg border border-teal-500/20">
