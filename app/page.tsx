@@ -108,8 +108,8 @@ export default function Home() {
     },
   })
 
-  const { writeContract, data: hash, isPending } = useWriteContract()
-  const { isLoading: isConfirming, isSuccess } = useWaitForTransactionReceipt({ hash })
+  const { writeContract, data: hash, isPending, error: writeError } = useWriteContract()
+  const { isLoading: isConfirming, isSuccess, error: txError } = useWaitForTransactionReceipt({ hash })
 
   useEffect(() => {
     if (isSuccess) {
@@ -120,14 +120,32 @@ export default function Home() {
     }
   }, [isSuccess, refetchUser])
 
+  useEffect(() => {
+    if (writeError || txError) {
+      console.error('Transaction error:', writeError || txError)
+    }
+  }, [writeError, txError])
+
   const handleAction = (action: string, args?: any[]) => {
-    if (!address) return
-    writeContract({
-      address: contractAddress,
-      abi: celoPulseABI,
-      functionName: action as any,
-      args,
-    })
+    if (!address) {
+      console.error('No wallet address')
+      return
+    }
+    if (!contractAddress) {
+      console.error('Contract address not configured')
+      alert('Contract address not configured. Please set NEXT_PUBLIC_CELOPULSE_CONTRACT in your .env.local file')
+      return
+    }
+    try {
+      writeContract({
+        address: contractAddress,
+        abi: celoPulseABI,
+        functionName: action as any,
+        args: args || [],
+      })
+    } catch (error) {
+      console.error('Error calling writeContract:', error)
+    }
   }
 
   return (
@@ -180,13 +198,29 @@ export default function Home() {
           <div className="glass-cyber rounded-2xl p-12 text-center">
             <h2 className="text-3xl font-bold mb-4">Welcome to CeloPulse!</h2>
             <p className="text-gray-400 mb-6">Register to start tracking your on-chain activity</p>
+            {!contractAddress && (
+              <div className="mb-4 p-4 bg-red-500/20 border border-red-500/50 rounded-lg">
+                <p className="text-red-400 text-sm">⚠️ Contract address not configured. Please set NEXT_PUBLIC_CELOPULSE_CONTRACT in your .env.local file</p>
+              </div>
+            )}
+            {(writeError || txError) && (
+              <div className="mb-4 p-4 bg-red-500/20 border border-red-500/50 rounded-lg">
+                <p className="text-red-400 text-sm">Error: {(writeError || txError)?.message || 'Transaction failed'}</p>
+              </div>
+            )}
             <button
               onClick={() => handleAction('register')}
-              disabled={isPending || isConfirming}
-              className="px-8 py-4 bg-gradient-to-r from-teal-500 to-emerald-500 rounded-xl font-bold text-lg hover:scale-105 transition-transform glow-teal disabled:opacity-50"
+              disabled={isPending || isConfirming || !contractAddress}
+              className="px-8 py-4 bg-gradient-to-r from-teal-500 to-emerald-500 rounded-xl font-bold text-lg hover:scale-105 transition-transform glow-teal disabled:opacity-50 disabled:cursor-not-allowed"
             >
               {isPending || isConfirming ? 'Registering...' : 'Register Now'}
             </button>
+            {isPending && (
+              <p className="mt-4 text-sm text-gray-400">Please confirm the transaction in your wallet...</p>
+            )}
+            {isConfirming && (
+              <p className="mt-4 text-sm text-gray-400">Transaction confirmed! Waiting for block confirmation...</p>
+            )}
           </div>
         ) : (
           <div className="space-y-6">
@@ -467,6 +501,15 @@ export default function Home() {
                   <div className="spinner"></div>
                   <span className="font-bold mono-font">
                     {isPending ? 'Confirming in wallet...' : 'Processing transaction...'}
+                  </span>
+                </div>
+              </div>
+            )}
+            {(writeError || txError) && (
+              <div className="glass-cyber rounded-xl p-4 border-2 border-red-500">
+                <div className="flex items-center justify-center gap-3">
+                  <span className="text-red-400 font-bold mono-font">
+                    Error: {(writeError || txError)?.message || 'Transaction failed. Please try again.'}
                   </span>
                 </div>
               </div>
