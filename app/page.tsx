@@ -29,8 +29,11 @@ export default function Home() {
   const [selectedQuestId, setSelectedQuestId] = useState(0)
   const [isMiniPay, setIsMiniPay] = useState(false)
   const miniPayAutoConnectStarted = useRef(false)
-  
-  const contractAddress = process.env.NEXT_PUBLIC_CELOPULSE_CONTRACT as `0x${string}` | undefined
+
+  const configuredContractAddress = process.env.NEXT_PUBLIC_CELOPULSE_CONTRACT?.trim()
+  const contractAddress = configuredContractAddress
+    ? (configuredContractAddress as `0x${string}`)
+    : undefined
   const miniPayFeeCurrency = getMiniPayFeeCurrency()
 
   // Debug: Log contract address (only in development)
