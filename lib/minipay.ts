@@ -12,9 +12,12 @@ declare global {
 }
 
 export const minipayChains =
-  process.env.NEXT_PUBLIC_CHAIN_ID === `${celoSepolia.id}` ? ([celoSepolia] as const) : ([celo] as const)
+  Number(process.env.NEXT_PUBLIC_CHAIN_ID?.trim()) === celoSepolia.id
+    ? ([celoSepolia] as const)
+    : ([celo] as const)
 
 export const activeCeloChain = minipayChains[0]
+const ADDRESS_REGEX = /^0x[a-fA-F0-9]{40}$/
 
 export const USD_M_MAINNET_ADDRESS = '0x765DE816845861e75A25fCA122bb6898B8B1282a' as const
 
@@ -29,7 +32,7 @@ export function isMiniPayWallet() {
 export function getMiniPayFeeCurrency() {
   const feeCurrency = process.env.NEXT_PUBLIC_MINIPAY_FEE_CURRENCY?.trim()
 
-  if (feeCurrency?.startsWith('0x')) {
+  if (feeCurrency && ADDRESS_REGEX.test(feeCurrency)) {
     return feeCurrency as `0x${string}`
   }
 
