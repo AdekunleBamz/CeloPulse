@@ -152,6 +152,16 @@ npm run dev
 ### 4. Execute Strategy (20 hours)
 Follow the Maximum Transaction Playbook above!
 
+## MiniPay Support
+
+CeloPulse now detects MiniPay's injected wallet, auto-connects with Wagmi, hides the RainbowKit connect button inside MiniPay, and sends MiniPay transactions as legacy transactions. On Celo mainnet it defaults fee currency to USDm; for Celo Sepolia, set `NEXT_PUBLIC_MINIPAY_FEE_CURRENCY` if you want to test fee abstraction with a specific stablecoin contract.
+
+MiniPay supports Celo mainnet and Celo Sepolia, so testnet builds should use `NEXT_PUBLIC_CHAIN_ID=11142220` instead of Alfajores. To test on a phone, run the app locally, expose it with a tunnel such as `ngrok http 3000`, then load the public URL from MiniPay Developer Settings.
+
+### Celo Composer Fit
+
+Celo Composer can be used for this project as a reference or migration target because it has a MiniPay template with Next.js, TypeScript, Wagmi, Viem, and Tailwind. This repo already uses that same core stack, so the lighter path is the in-place MiniPay integration above instead of replacing the existing app with a generated Composer monorepo.
+
 ## 🏆 Why This Gets You to Top 5
 
 ### Your Current Position

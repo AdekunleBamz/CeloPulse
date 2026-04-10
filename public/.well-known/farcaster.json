@@ -2,8 +2,8 @@
   "frame": {
     "version": "1",
     "name": "CeloPulse",
-    "homeUrl": "https://celopulse.vercel.app",
-    "iconUrl": "https://celopulse.vercel.app/icon.png",
-    "splashImageUrl": "https://celopulse.vercel.app/splash.png"
+    "homeUrl": "https://celopulse-v2.vercel.app",
+    "iconUrl": "https://celopulse-v2.vercel.app/icon.png",
+    "splashImageUrl": "https://celopulse-v2.vercel.app/splash.png"
   }
 }

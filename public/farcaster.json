@@ -1,8 +1,8 @@
 {
   "name": "CeloPulse",
   "version": "1.0.0",
-  "description": "Real-time blockchain activity tracker with auto-rewards",
-  "icon": "https://celopulse.vercel.app/icon.png",
-  "splash": "https://celopulse.vercel.app/splash.png",
-  "url": "https://celopulse.vercel.app"
+  "description": "MiniPay-ready Celo activity tracker.",
+  "icon": "https://celopulse-v2.vercel.app/icon.png",
+  "splash": "https://celopulse-v2.vercel.app/splash.png",
+  "url": "https://celopulse-v2.vercel.app"
 }

@@ -1,10 +1,13 @@
 'use client'
 
-import { useState, useEffect } from 'react'
-import { useAccount, useReadContract, useWriteContract, useWaitForTransactionReceipt } from 'wagmi'
+import Image from 'next/image'
+import { useState, useEffect, useRef } from 'react'
+import { useAccount, useConnect, useReadContract, useWriteContract, useWaitForTransactionReceipt } from 'wagmi'
+import { injected } from 'wagmi/connectors'
 import { ConnectButton } from '@rainbow-me/rainbowkit'
 import { motion, AnimatePresence } from 'framer-motion'
 import { celoPulseABI } from '@/lib/abis'
+import { getMiniPayFeeCurrency, isMiniPayWallet } from '@/lib/minipay'
 
 const ACTION_NAMES: Record<number, string> = {
   1: 'Check-In',
@@ -19,12 +22,16 @@ const ACTION_NAMES: Record<number, string> = {
 
 export default function Home() {
   const { address, isConnected } = useAccount()
+  const { connect, isPending: isConnectingWallet, error: connectError } = useConnect()
   const [activeTab, setActiveTab] = useState<'actions' | 'events' | 'quests'>('actions')
   const [selectedStakeAmount, setSelectedStakeAmount] = useState('')
   const [selectedUnstakeAmount, setSelectedUnstakeAmount] = useState('')
   const [selectedQuestId, setSelectedQuestId] = useState(0)
+  const [isMiniPay, setIsMiniPay] = useState(false)
+  const miniPayAutoConnectStarted = useRef(false)
   
   const contractAddress = process.env.NEXT_PUBLIC_CELOPULSE_CONTRACT as `0x${string}` | undefined
+  const miniPayFeeCurrency = getMiniPayFeeCurrency()
 
   // Debug: Log contract address (only in development)
   useEffect(() => {
@@ -32,8 +39,21 @@ export default function Home() {
       console.log('Contract Address:', contractAddress)
       console.log('Wallet Address:', address)
       console.log('Is Connected:', isConnected)
+      console.log('MiniPay Detected:', isMiniPay)
     }
-  }, [contractAddress, address, isConnected])
+  }, [contractAddress, address, isConnected, isMiniPay])
+
+  useEffect(() => {
+    const detectedMiniPay = isMiniPayWallet()
+    setIsMiniPay(detectedMiniPay)
+
+    if (!detectedMiniPay || isConnected || miniPayAutoConnectStarted.current) {
+      return
+    }
+
+    miniPayAutoConnectStarted.current = true
+    connect({ connector: injected() })
+  }, [connect, isConnected])
 
   // Read user data
   const { data: userData, refetch: refetchUser } = useReadContract({
@@ -153,6 +173,8 @@ export default function Home() {
         abi: celoPulseABI,
         functionName: action as any,
         ...(args && args.length > 0 ? { args: args as any } : {}),
+        ...(isMiniPay ? { type: 'legacy' } : {}),
+        ...(isMiniPay && miniPayFeeCurrency ? { feeCurrency: miniPayFeeCurrency } : {}),
       } as any
       writeContract(contractCall)
     } catch (error) {
@@ -171,11 +193,21 @@ export default function Home() {
       <div className="max-w-7xl mx-auto relative z-10">
         {/* Header */}
         <div className="flex justify-between items-center mb-8">
-          <div>
-            <h1 className="text-5xl font-bold mb-2 bg-gradient-to-r from-teal-400 to-emerald-400 bg-clip-text text-transparent">
-              CeloPulse
-            </h1>
-            <p className="text-gray-400 mono-font text-sm">Real-time Activity Tracker</p>
+          <div className="flex items-center gap-4">
+            <Image
+              src="/icon.png"
+              alt="CeloPulse logo"
+              width={56}
+              height={56}
+              className="h-14 w-14 rounded-lg shadow-[0_0_24px_rgba(20,184,166,0.25)]"
+              priority
+            />
+            <div>
+              <h1 className="text-5xl font-bold mb-2 bg-gradient-to-r from-teal-400 to-emerald-400 bg-clip-text text-transparent">
+                CeloPulse
+              </h1>
+              <p className="text-gray-400 mono-font text-sm">Real-time Activity Tracker</p>
+            </div>
           </div>
           <div className="flex items-center gap-4">
             <div className="flex items-center gap-2 glass-cyber px-4 py-2 rounded-lg">
@@ -183,7 +215,13 @@ export default function Home() {
               <span className="text-sm mono-font">LIVE</span>
             </div>
             {isConnected && (
-              <ConnectButton />
+              isMiniPay ? (
+                <div className="glass-cyber px-4 py-2 rounded-lg text-sm font-bold text-emerald-300">
+                  MiniPay
+                </div>
+              ) : (
+                <ConnectButton />
+              )
             )}
           </div>
         </div>
@@ -192,19 +230,45 @@ export default function Home() {
           <div className="glass-cyber rounded-2xl p-12 text-center">
             <div className="mb-6">
               <div className="text-6xl mb-4">📊</div>
-              <h2 className="text-3xl font-bold mb-2">Connect to Start Tracking</h2>
-              <p className="text-gray-400">Monitor your on-chain activity and earn automated rewards</p>
+              <h2 className="text-3xl font-bold mb-2">
+                {isMiniPay ? 'MiniPay Detected' : 'Connect to Start Tracking'}
+              </h2>
+              <p className="text-gray-400">
+                {isMiniPay ? 'Confirm the MiniPay prompt to continue.' : 'Monitor your on-chain activity and earn automated rewards'}
+              </p>
             </div>
-            <ConnectButton.Custom>
-              {({ openConnectModal }) => (
-                <button
-                  onClick={openConnectModal}
-                  className="px-8 py-4 bg-gradient-to-r from-teal-500 to-emerald-500 rounded-xl font-bold text-lg hover:scale-105 transition-transform glow-teal"
-                >
-                  Connect Wallet
-                </button>
-              )}
-            </ConnectButton.Custom>
+            {isMiniPay ? (
+              <div className="space-y-4">
+                <div className="inline-flex items-center gap-3 glass-cyber px-5 py-3 rounded-lg">
+                  <div className="w-2 h-2 bg-emerald-500 rounded-full event-indicator"></div>
+                  <span className="mono-font text-sm">
+                    {isConnectingWallet ? 'Waiting for MiniPay' : 'MiniPay ready'}
+                  </span>
+                </div>
+                {connectError && (
+                  <div className="space-y-3">
+                    <p className="text-red-400 text-sm">MiniPay connection failed. Please try again.</p>
+                    <button
+                      onClick={() => connect({ connector: injected() })}
+                      className="px-8 py-4 bg-gradient-to-r from-teal-500 to-emerald-500 rounded-lg font-bold text-lg hover:scale-105 transition-transform glow-teal"
+                    >
+                      Retry MiniPay
+                    </button>
+                  </div>
+                )}
+              </div>
+            ) : (
+              <ConnectButton.Custom>
+                {({ openConnectModal }) => (
+                  <button
+                    onClick={openConnectModal}
+                    className="px-8 py-4 bg-gradient-to-r from-teal-500 to-emerald-500 rounded-lg font-bold text-lg hover:scale-105 transition-transform glow-teal"
+                  >
+                    Connect Wallet
+                  </button>
+                )}
+              </ConnectButton.Custom>
+            )}
           </div>
         ) : !isRegistered ? (
           <div className="glass-cyber rounded-2xl p-12 text-center">

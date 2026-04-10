@@ -2,7 +2,7 @@
 const nextConfig = {
   reactStrictMode: true,
   images: {
-    domains: ['celopulse.vercel.app'],
+    domains: ['celopulse-v2.vercel.app'],
     unoptimized: false,
   },
 }
