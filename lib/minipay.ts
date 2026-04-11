@@ -11,8 +11,10 @@ declare global {
   }
 }
 
+const configuredChainId = Number.parseInt(process.env.NEXT_PUBLIC_CHAIN_ID?.trim() || '', 10)
+
 export const minipayChains =
-  Number(process.env.NEXT_PUBLIC_CHAIN_ID?.trim()) === celoSepolia.id
+  configuredChainId === celoSepolia.id
     ? ([celoSepolia] as const)
     : ([celo] as const)
 
