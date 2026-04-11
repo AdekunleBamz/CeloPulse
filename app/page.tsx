@@ -39,6 +39,7 @@ export default function Home() {
   const [selectedQuestId, setSelectedQuestId] = useState(0)
   const [logoSrc, setLogoSrc] = useState('/icon.png')
   const [isMiniPay, setIsMiniPay] = useState(false)
+  const [txNotice, setTxNotice] = useState<string | null>(null)
   const miniPayAutoConnectStarted = useRef(false)
 
   const configuredContractAddress = process.env.NEXT_PUBLIC_CELOPULSE_CONTRACT?.trim()
@@ -161,6 +162,7 @@ export default function Home() {
   useEffect(() => {
     if (isSuccess) {
       refetchUser()
+      setTxNotice(null)
       // Reset form inputs after successful transaction
       setSelectedStakeAmount('')
       setSelectedUnstakeAmount('')
@@ -176,14 +178,18 @@ export default function Home() {
   const handleAction = (action: string, args?: readonly unknown[]) => {
     if (!address) {
       console.error('No wallet address')
+      setTxNotice('Connect a wallet before submitting a transaction.')
       return
     }
     if (!contractAddress) {
       console.error('Contract address not configured')
-      alert('Contract address not configured. Please set NEXT_PUBLIC_CELOPULSE_CONTRACT in your .env.local file')
+      setTxNotice(
+        'Contract address not configured. Please set NEXT_PUBLIC_CELOPULSE_CONTRACT in your .env.local file.',
+      )
       return
     }
     try {
+      setTxNotice(null)
       const contractCall: Parameters<typeof writeContract>[0] = {
         address: contractAddress,
         abi: celoPulseABI,
@@ -195,6 +201,7 @@ export default function Home() {
       writeContract(contractCall)
     } catch (error) {
       console.error('Error calling writeContract:', error)
+      setTxNotice('Unable to send this transaction. Please verify your inputs and try again.')
     }
   }
 
@@ -243,6 +250,11 @@ export default function Home() {
             )}
           </div>
         </div>
+        {txNotice && (
+          <div className="mb-6 p-4 bg-amber-500/10 border border-amber-500/40 rounded-lg">
+            <p className="text-amber-300 text-sm">{txNotice}</p>
+          </div>
+        )}
 
         {!isConnected ? (
           <div className="glass-cyber rounded-2xl p-12 text-center">
