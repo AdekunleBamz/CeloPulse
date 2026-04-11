@@ -69,7 +69,7 @@ Jump from #22 to Top 5 with maximum on-chain activity!
 # Deploy CeloPulse.sol on Remix (Celo Mainnet)
 # Copy contract address
 # Update .env.local
-# npm install && npm run dev
+# npm ci && npm run dev
 ```
 
 ### Launch Hour (40+ transactions)
@@ -144,7 +144,7 @@ cp .env.example .env.local
 
 ### 3. Launch (3 min)
 ```bash
-npm install
+npm ci
 npm run dev
 # Open http://localhost:3000
 ```
