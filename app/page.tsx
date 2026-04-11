@@ -36,7 +36,6 @@ export default function Home() {
   const [activeTab, setActiveTab] = useState<'actions' | 'events' | 'quests'>('actions')
   const [selectedStakeAmount, setSelectedStakeAmount] = useState('')
   const [selectedUnstakeAmount, setSelectedUnstakeAmount] = useState('')
-  const [selectedQuestId, setSelectedQuestId] = useState(0)
   const [logoSrc, setLogoSrc] = useState('/icon.png')
   const [isMiniPay, setIsMiniPay] = useState(false)
   const [txNotice, setTxNotice] = useState<string | null>(null)
