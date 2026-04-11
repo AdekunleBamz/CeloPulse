@@ -442,6 +442,9 @@ export default function Home() {
                             value={selectedStakeAmount}
                             onChange={(e) => setSelectedStakeAmount(e.target.value)}
                             placeholder="Amount"
+                            min={1}
+                            step={1}
+                            inputMode="numeric"
                             className="flex-1 bg-black/30 border border-teal-500/30 rounded-lg px-4 py-3 outline-none focus:border-teal-500"
                           />
                           <button
@@ -461,6 +464,9 @@ export default function Home() {
                             value={selectedUnstakeAmount}
                             onChange={(e) => setSelectedUnstakeAmount(e.target.value)}
                             placeholder="Amount"
+                            min={1}
+                            step={1}
+                            inputMode="numeric"
                             className="flex-1 bg-black/30 border border-teal-500/30 rounded-lg px-4 py-3 outline-none focus:border-teal-500"
                           />
                           <button
