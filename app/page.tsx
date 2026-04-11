@@ -47,6 +47,7 @@ export default function Home() {
     : undefined
   const miniPayFeeCurrency = getMiniPayFeeCurrency()
   const parsedStakeAmount = parsePositiveWholeNumber(selectedStakeAmount)
+  const parsedUnstakeAmount = parsePositiveWholeNumber(selectedUnstakeAmount)
 
   // Debug: Log contract address (only in development)
   useEffect(() => {
@@ -463,8 +464,8 @@ export default function Home() {
                             className="flex-1 bg-black/30 border border-teal-500/30 rounded-lg px-4 py-3 outline-none focus:border-teal-500"
                           />
                           <button
-                            onClick={() => handleAction('unstakeScore', [BigInt(selectedUnstakeAmount || '0')])}
-                            disabled={!selectedUnstakeAmount || isPending || isConfirming}
+                            onClick={() => parsedUnstakeAmount && handleAction('unstakeScore', [parsedUnstakeAmount])}
+                            disabled={!parsedUnstakeAmount || isPending || isConfirming}
                             className="px-6 bg-teal-500 hover:bg-teal-600 rounded-lg font-bold transition-colors disabled:opacity-50"
                           >
                             Unstake
