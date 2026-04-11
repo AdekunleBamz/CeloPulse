@@ -27,6 +27,7 @@ export default function Home() {
   const [selectedStakeAmount, setSelectedStakeAmount] = useState('')
   const [selectedUnstakeAmount, setSelectedUnstakeAmount] = useState('')
   const [selectedQuestId, setSelectedQuestId] = useState(0)
+  const [logoSrc, setLogoSrc] = useState('/icon.png')
   const [isMiniPay, setIsMiniPay] = useState(false)
   const miniPayAutoConnectStarted = useRef(false)
 
@@ -198,12 +199,14 @@ export default function Home() {
         <div className="flex justify-between items-center mb-8">
           <div className="flex items-center gap-4">
             <Image
-              src="/icon.png"
+              src={logoSrc}
               alt="CeloPulse logo"
               width={56}
               height={56}
               className="h-14 w-14 rounded-lg shadow-[0_0_24px_rgba(20,184,166,0.25)]"
               priority
+              unoptimized
+              onError={() => setLogoSrc('/favicon.png')}
             />
             <div>
               <h1 className="text-5xl font-bold mb-2 bg-gradient-to-r from-teal-400 to-emerald-400 bg-clip-text text-transparent">
