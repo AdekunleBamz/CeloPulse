@@ -20,6 +20,16 @@ const ACTION_NAMES: Record<number, string> = {
   8: 'Quest',
 }
 
+function parsePositiveWholeNumber(value: string): bigint | null {
+  const normalized = value.trim()
+  if (!/^\d+$/.test(normalized)) {
+    return null
+  }
+
+  const parsedValue = BigInt(normalized)
+  return parsedValue > 0n ? parsedValue : null
+}
+
 export default function Home() {
   const { address, isConnected } = useAccount()
   const { connect, isPending: isConnectingWallet, error: connectError } = useConnect()
@@ -36,6 +46,7 @@ export default function Home() {
     ? (configuredContractAddress as `0x${string}`)
     : undefined
   const miniPayFeeCurrency = getMiniPayFeeCurrency()
+  const parsedStakeAmount = parsePositiveWholeNumber(selectedStakeAmount)
 
   // Debug: Log contract address (only in development)
   useEffect(() => {
@@ -433,8 +444,8 @@ export default function Home() {
                             className="flex-1 bg-black/30 border border-teal-500/30 rounded-lg px-4 py-3 outline-none focus:border-teal-500"
                           />
                           <button
-                            onClick={() => handleAction('stakeScore', [BigInt(selectedStakeAmount || '0')])}
-                            disabled={!selectedStakeAmount || isPending || isConfirming}
+                            onClick={() => parsedStakeAmount && handleAction('stakeScore', [parsedStakeAmount])}
+                            disabled={!parsedStakeAmount || isPending || isConfirming}
                             className="px-6 bg-emerald-500 hover:bg-emerald-600 rounded-lg font-bold transition-colors disabled:opacity-50"
                           >
                             Stake
