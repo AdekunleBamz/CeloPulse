@@ -14,6 +14,7 @@ export const metadata: Metadata = {
   metadataBase: new URL(appUrl),
   title: 'CeloPulse | Activity Tracker & Auto-Rewards',
   description: shortDescription,
+  manifest: '/site.webmanifest',
   icons: {
     icon: [
       { url: '/favicon.ico' },
@@ -46,17 +47,10 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <head>
-        <meta
-          name="talentapp:project_verification"
-          content={talentVerificationToken}
-        />
-        <link rel="icon" href="/favicon.png" />
-        <link rel="apple-touch-icon" href="/icon.png" />
-      </head>
       <body>
         <Providers>{children}</Providers>
       </body>
     </html>
   )
 }
+

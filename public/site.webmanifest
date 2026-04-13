@@ -1,0 +1,22 @@
+{
+  "name": "CeloPulse",
+  "short_name": "CeloPulse",
+  "description": "Real-time Blockchain Activity & Insights Tracker for Celo",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#000000",
+  "theme_color": "#14b8a6",
+  "icons": [
+    {
+      "src": "/icon.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    },
+    {
+      "src": "/favicon.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "maskable"
+    }
+  ]
+}

@@ -1,6 +1,7 @@
 'use client'
 
 import Image from 'next/image'
+import Link from 'next/link'
 import { useState, useEffect, useRef } from 'react'
 import { useAccount, useConnect, useReadContract, useWriteContract, useWaitForTransactionReceipt } from 'wagmi'
 import { injected } from 'wagmi/connectors'
@@ -625,9 +626,24 @@ export default function Home() {
                 </div>
               </div>
             )}
+            {/* Footer */}
+            <footer className="mt-12 py-8 border-t border-teal-500/20 text-center">
+              <div className="flex justify-center gap-6 mb-4">
+                <Link href="/privacy" className="text-sm text-gray-500 hover:text-teal-400 transition-colors mono-font">
+                  Privacy Policy
+                </Link>
+                <Link href="/terms" className="text-sm text-gray-500 hover:text-teal-400 transition-colors mono-font">
+                  Terms of Service
+                </Link>
+              </div>
+              <p className="text-[10px] text-gray-600 mono-font">
+                © 2026 CeloPulse. Decentralized Activity Engine.
+              </p>
+            </footer>
           </div>
         )}
       </div>
     </main>
   )
 }
+
