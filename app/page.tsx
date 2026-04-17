@@ -2,13 +2,26 @@
 
 import Image from 'next/image'
 import Link from 'next/link'
-import { useState, useEffect, useRef } from 'react'
+import { useState, useEffect, useRef, useCallback } from 'react'
 import { useAccount, useConnect, useReadContract, useWriteContract, useWaitForTransactionReceipt } from 'wagmi'
 import { injected } from 'wagmi/connectors'
 import { ConnectButton } from '@rainbow-me/rainbowkit'
 import { motion, AnimatePresence } from 'framer-motion'
-import { celoPulseABI } from '@/lib/abis'
-import { getMiniPayFeeCurrency, isMiniPayWallet } from '@/lib/minipay'
+import { celoPulseABI, erc20ABI } from '@/lib/abis'
+import { getMiniPayFeeCurrency, getCUSDAddress, isMiniPayWallet } from '@/lib/minipay'
+import { formatUnits, parseUnits } from 'viem'
+
+/** How often to refetch user stats (ms) */
+const USER_REFETCH_INTERVAL = 2000
+
+/** How often to refetch rewards / claim eligibility (ms) */
+const REWARDS_REFETCH_INTERVAL = 1000
+
+/** Delay before retrying MiniPay auto-connect if provider wasn't ready (ms) */
+const MINIPAY_RETRY_DELAY_MS = 500
+
+/** How long to show the "Copied!" feedback before resetting (ms) */
+const COPY_ADDRESS_TIMEOUT_MS = 2000
 
 const ACTION_NAMES: Record<number, string> = {
   1: 'Check-In',
@@ -21,6 +34,9 @@ const ACTION_NAMES: Record<number, string> = {
   8: 'Quest',
 }
 
+/** Maximum token amount (uint256 max) to reject absurdly large inputs early */
+const MAX_TOKEN_INPUT = BigInt('0xffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff')
+
 function parsePositiveWholeNumber(value: string): bigint | null {
   const normalized = value.trim()
   if (!/^\d+$/.test(normalized)) {
@@ -28,25 +44,31 @@ function parsePositiveWholeNumber(value: string): bigint | null {
   }
 
   const parsedValue = BigInt(normalized)
+  if (parsedValue > MAX_TOKEN_INPUT) return null
   return parsedValue > 0n ? parsedValue : null
 }
 
 export default function Home() {
   const { address, isConnected } = useAccount()
   const { connect, isPending: isConnectingWallet, error: connectError } = useConnect()
-  const [activeTab, setActiveTab] = useState<'actions' | 'events' | 'quests'>('actions')
+  const [activeTab, setActiveTab] = useState<'actions' | 'events' | 'quests' | 'wallet'>('actions')
   const [selectedStakeAmount, setSelectedStakeAmount] = useState('')
   const [selectedUnstakeAmount, setSelectedUnstakeAmount] = useState('')
   const [logoSrc, setLogoSrc] = useState('/icon.png')
   const [isMiniPay, setIsMiniPay] = useState(false)
   const [txNotice, setTxNotice] = useState<string | null>(null)
   const miniPayAutoConnectStarted = useRef(false)
+  const [sendTo, setSendTo] = useState('')
+  const [sendAmount, setSendAmount] = useState('')
+  const [copySuccess, setCopySuccess] = useState(false)
+  const [isLoadingApp, setIsLoadingApp] = useState(true)
 
   const configuredContractAddress = process.env.NEXT_PUBLIC_CELOPULSE_CONTRACT?.trim()
   const contractAddress = configuredContractAddress
     ? (configuredContractAddress as `0x${string}`)
     : undefined
   const miniPayFeeCurrency = getMiniPayFeeCurrency()
+  const cusdAddress = getCUSDAddress()
   const parsedStakeAmount = parsePositiveWholeNumber(selectedStakeAmount)
   const parsedUnstakeAmount = parsePositiveWholeNumber(selectedUnstakeAmount)
 
@@ -60,17 +82,26 @@ export default function Home() {
     }
   }, [contractAddress, address, isConnected, isMiniPay])
 
+  const attemptMiniPayConnect = useCallback(() => {
+    if (isConnected || miniPayAutoConnectStarted.current) return
+    miniPayAutoConnectStarted.current = true
+    connect({ connector: injected() })
+  }, [connect, isConnected])
+
   useEffect(() => {
     const detectedMiniPay = isMiniPayWallet()
     setIsMiniPay(detectedMiniPay)
 
-    if (!detectedMiniPay || isConnected || miniPayAutoConnectStarted.current) {
-      return
-    }
+    if (!detectedMiniPay) return
 
-    miniPayAutoConnectStarted.current = true
-    connect({ connector: injected() })
-  }, [connect, isConnected])
+    // MiniPay auto-connect: attempt immediately, then retry once
+    // after a short delay in case the provider isn't ready yet.
+    attemptMiniPayConnect()
+    const retryTimer = setTimeout(() => {
+      if (!miniPayAutoConnectStarted.current) attemptMiniPayConnect()
+    }, MINIPAY_RETRY_DELAY_MS)
+    return () => clearTimeout(retryTimer)
+  }, [attemptMiniPayConnect])
 
   // Read user data
   const { data: userData, refetch: refetchUser } = useReadContract({
@@ -80,7 +111,7 @@ export default function Home() {
     args: [address as `0x${string}`],
     query: {
       enabled: !!address && !!contractAddress,
-      refetchInterval: 2000,
+      refetchInterval: USER_REFETCH_INTERVAL,
     },
   })
 
@@ -95,7 +126,7 @@ export default function Home() {
     args: [address as `0x${string}`],
     query: {
       enabled: !!address && !!contractAddress,
-      refetchInterval: 1000,
+      refetchInterval: REWARDS_REFETCH_INTERVAL,
     },
   })
 
@@ -107,7 +138,7 @@ export default function Home() {
     args: [address as `0x${string}`],
     query: {
       enabled: !!address && !!contractAddress,
-      refetchInterval: 1000,
+      refetchInterval: REWARDS_REFETCH_INTERVAL,
     },
   })
 
@@ -118,7 +149,7 @@ export default function Home() {
     args: [address as `0x${string}`],
     query: {
       enabled: !!address && !!contractAddress,
-      refetchInterval: 1000,
+      refetchInterval: REWARDS_REFETCH_INTERVAL,
     },
   })
 
@@ -159,15 +190,36 @@ export default function Home() {
   const { writeContract, data: hash, isPending, error: writeError } = useWriteContract()
   const { isLoading: isConfirming, isSuccess, error: txError } = useWaitForTransactionReceipt({ hash })
 
+  // cUSD balance
+  const { data: cusdRawBalance, refetch: refetchCUSD } = useReadContract({
+    address: cusdAddress,
+    abi: erc20ABI,
+    functionName: 'balanceOf',
+    args: [address as `0x${string}`],
+    query: {
+      enabled: !!address,
+      refetchInterval: 5000,
+    },
+  })
+  const formattedCUSD = cusdRawBalance != null ? parseFloat(formatUnits(cusdRawBalance, 18)).toFixed(4) : '0.0000'
+
   useEffect(() => {
     if (isSuccess) {
       refetchUser()
+      refetchCUSD()
       setTxNotice(null)
+      setSendTo('')
+      setSendAmount('')
       // Reset form inputs after successful transaction
       setSelectedStakeAmount('')
       setSelectedUnstakeAmount('')
     }
-  }, [isSuccess, refetchUser])
+  }, [isSuccess, refetchUser, refetchCUSD])
+
+  useEffect(() => {
+    const t = setTimeout(() => setIsLoadingApp(false), 1200)
+    return () => clearTimeout(t)
+  }, [])
 
   useEffect(() => {
     if (writeError || txError) {
@@ -205,15 +257,56 @@ export default function Home() {
     }
   }
 
+  const handleSendCUSD = () => {
+    if (!address) { setTxNotice('Connect wallet first.'); return }
+    const trimmedTo = sendTo.trim()
+    if (!/^0x[a-fA-F0-9]{40}$/.test(trimmedTo)) { setTxNotice('Invalid recipient address.'); return }
+    const amount = parseFloat(sendAmount)
+    if (isNaN(amount) || amount <= 0) { setTxNotice('Enter a valid amount greater than 0.'); return }
+    if (parseFloat(formattedCUSD) < amount) { setTxNotice('Insufficient cUSD balance.'); return }
+    try {
+      setTxNotice(null)
+      writeContract({
+        address: cusdAddress,
+        abi: erc20ABI,
+        functionName: 'transfer',
+        args: [trimmedTo as `0x${string}`, parseUnits(sendAmount, 18)],
+        ...(isMiniPay ? { type: 'legacy' } : {}),
+        ...(isMiniPay && miniPayFeeCurrency ? { feeCurrency: miniPayFeeCurrency } : {}),
+      } as any)
+    } catch {
+      setTxNotice('Failed to send cUSD. Please try again.')
+    }
+  }
+
+  const copyAddress = async () => {
+    if (!address) return
+    try {
+      await navigator.clipboard.writeText(address)
+      setCopySuccess(true)
+      setTimeout(() => setCopySuccess(false), COPY_ADDRESS_TIMEOUT_MS)
+    } catch {
+      setTxNotice('Could not copy address to clipboard.')
+    }
+  }
+
   return (
-    <main className="min-h-screen p-4 md:p-8 grid-bg relative overflow-hidden">
+    <main className="min-h-screen p-4 md:p-6 grid-bg relative overflow-hidden">
+      {/* MiniPay loading splash */}
+      {isLoadingApp && (
+        <div className="fixed inset-0 z-[200] bg-slate-950 flex flex-col items-center justify-center">
+          <div className="text-6xl mb-6 animate-bounce">📊</div>
+          <h2 className="text-2xl font-bold text-teal-400 mb-3">CeloPulse</h2>
+          <div className="w-12 h-1 bg-teal-500 rounded-full animate-pulse" />
+        </div>
+      )}
       {/* Animated background */}
       <div className="fixed inset-0 pointer-events-none opacity-30">
         <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-teal-500/20 rounded-full blur-3xl pulse-ring"></div>
         <div className="absolute bottom-1/4 right-1/4 w-96 h-96 bg-emerald-500/20 rounded-full blur-3xl pulse-ring"></div>
       </div>
 
-      <div className="max-w-7xl mx-auto relative z-10">
+      <div className="max-w-xl mx-auto relative z-10">
         {/* Header */}
         <div className="flex justify-between items-center mb-8">
           <div className="flex items-center gap-4">
@@ -235,14 +328,14 @@ export default function Home() {
             </div>
           </div>
           <div className="flex items-center gap-4">
-            <div className="flex items-center gap-2 glass-cyber px-4 py-2 rounded-lg">
+            <div id="status-indicator" className="flex items-center gap-2 glass-cyber px-4 py-2 rounded-lg">
               <div className="w-2 h-2 bg-emerald-500 rounded-full event-indicator"></div>
               <span className="text-sm mono-font">LIVE</span>
             </div>
             {isConnected && (
               isMiniPay ? (
-                <div className="glass-cyber px-4 py-2 rounded-lg text-sm font-bold text-emerald-300">
-                  MiniPay
+                <div id="minipay-badge" className="glass-cyber px-4 py-2 rounded-lg text-sm font-bold text-emerald-300">
+                  ✓ MiniPay
                 </div>
               ) : (
                 <ConnectButton />
@@ -257,33 +350,43 @@ export default function Home() {
         )}
 
         {!isConnected ? (
-          <div className="glass-cyber rounded-2xl p-12 text-center">
+          <div id="connect-screen" className="glass-cyber rounded-2xl p-8 md:p-12 text-center">
             <div className="mb-6">
               <div className="text-6xl mb-4">📊</div>
-              <h2 className="text-3xl font-bold mb-2">
-                {isMiniPay ? 'MiniPay Detected' : 'Connect to Start Tracking'}
+              <h2 className="text-2xl md:text-3xl font-bold mb-2">
+                {isMiniPay ? 'Connecting to MiniPay…' : 'Connect to Start Tracking'}
               </h2>
-              <p className="text-gray-400">
-                {isMiniPay ? 'Confirm the MiniPay prompt to continue.' : 'Monitor your on-chain activity and earn automated rewards'}
+              <p className="text-gray-400 text-sm md:text-base">
+                {isMiniPay
+                  ? 'Auto-connecting your MiniPay wallet.'
+                  : 'Monitor your on-chain activity and earn automated rewards'}
               </p>
             </div>
             {isMiniPay ? (
               <div className="space-y-4">
-                <div className="inline-flex items-center gap-3 glass-cyber px-5 py-3 rounded-lg">
-                  <div className="w-2 h-2 bg-emerald-500 rounded-full event-indicator"></div>
-                  <span className="mono-font text-sm">
-                    {isConnectingWallet ? 'Waiting for MiniPay' : 'MiniPay ready'}
-                  </span>
-                </div>
-                {connectError && (
+                {isConnectingWallet ? (
+                  <div className="flex flex-col items-center gap-3">
+                    <div className="spinner"></div>
+                    <span className="mono-font text-sm text-gray-400">Connecting…</span>
+                  </div>
+                ) : connectError ? (
                   <div className="space-y-3">
-                    <p className="text-red-400 text-sm">MiniPay connection failed. Please try again.</p>
+                    <p className="text-red-400 text-sm">Connection failed. Please try again.</p>
                     <button
-                      onClick={() => connect({ connector: injected() })}
+                      id="retry-minipay-btn"
+                      onClick={() => {
+                        miniPayAutoConnectStarted.current = false
+                        attemptMiniPayConnect()
+                      }}
                       className="px-8 py-4 bg-gradient-to-r from-teal-500 to-emerald-500 rounded-lg font-bold text-lg hover:scale-105 transition-transform glow-teal"
                     >
                       Retry MiniPay
                     </button>
+                  </div>
+                ) : (
+                  <div className="inline-flex items-center gap-3 glass-cyber px-5 py-3 rounded-lg">
+                    <div className="w-2 h-2 bg-emerald-500 rounded-full event-indicator"></div>
+                    <span className="mono-font text-sm">MiniPay ready</span>
                   </div>
                 )}
               </div>
@@ -291,6 +394,7 @@ export default function Home() {
               <ConnectButton.Custom>
                 {({ openConnectModal }) => (
                   <button
+                    id="connect-wallet-btn"
                     onClick={openConnectModal}
                     className="px-8 py-4 bg-gradient-to-r from-teal-500 to-emerald-500 rounded-lg font-bold text-lg hover:scale-105 transition-transform glow-teal"
                   >
@@ -315,6 +419,7 @@ export default function Home() {
               </div>
             )}
             <button
+              id="register-btn"
               onClick={() => handleAction('register')}
               disabled={isPending || isConfirming || !contractAddress}
               className="px-8 py-4 bg-gradient-to-r from-teal-500 to-emerald-500 rounded-xl font-bold text-lg hover:scale-105 transition-transform glow-teal disabled:opacity-50 disabled:cursor-not-allowed"
@@ -336,9 +441,9 @@ export default function Home() {
                 <div className="text-gray-400 text-sm mb-1 mono-font">Activity Score</div>
                 <div className="text-3xl font-bold text-teal-400">{Number(activityScore).toLocaleString()}</div>
               </div>
-              <div className="glass-cyber rounded-xl p-4">
-                <div className="text-gray-400 text-sm mb-1 mono-font">Staked</div>
-                <div className="text-3xl font-bold text-emerald-400">{Number(stakedScore).toLocaleString()}</div>
+              <div className="glass-cyber rounded-xl p-4 cursor-pointer" onClick={() => setActiveTab('wallet')}>
+                <div className="text-gray-400 text-sm mb-1 mono-font">cUSD Balance</div>
+                <div className="text-2xl font-bold text-yellow-400">{formattedCUSD}</div>
               </div>
               <div className="glass-cyber rounded-xl p-4">
                 <div className="text-gray-400 text-sm mb-1 mono-font">Streak</div>
@@ -382,18 +487,18 @@ export default function Home() {
             )}
 
             {/* Tab Navigation */}
-            <div className="flex gap-2 glass-cyber rounded-xl p-2">
-              {(['actions', 'events', 'quests'] as const).map((tab) => (
+            <div className="flex gap-2 glass-cyber rounded-xl p-2 overflow-x-auto">
+              {(['actions', 'events', 'quests', 'wallet'] as const).map((tab) => (
                 <button
                   key={tab}
                   onClick={() => setActiveTab(tab)}
-                  className={`flex-1 py-3 px-6 rounded-lg font-bold transition-all ${
+                  className={`flex-1 min-w-fit py-3 px-3 rounded-lg font-bold transition-all text-sm whitespace-nowrap ${
                     activeTab === tab
                       ? 'bg-gradient-to-r from-teal-500 to-emerald-500 text-white'
                       : 'hover:bg-white/5'
                   }`}
                 >
-                  {tab.charAt(0).toUpperCase() + tab.slice(1)}
+                  {tab === 'wallet' ? '💳 Wallet' : tab.charAt(0).toUpperCase() + tab.slice(1)}
                 </button>
               ))}
             </div>
@@ -413,6 +518,7 @@ export default function Home() {
                     <h3 className="text-xl font-bold mb-4 text-teal-400">Quick Actions</h3>
                     <div className="grid grid-cols-2 gap-3">
                       <button
+                        id="checkin-btn"
                         onClick={() => handleAction('checkIn')}
                         disabled={isPending || isConfirming}
                         className="p-4 bg-gradient-to-br from-teal-500/20 to-teal-500/10 hover:from-teal-500/30 hover:to-teal-500/20 rounded-lg font-bold border border-teal-500/30 transition-all disabled:opacity-50"
@@ -599,6 +705,99 @@ export default function Home() {
                           </div>
                           <div className="text-2xl">{Number(achievements) & 4 ? '🏆' : '🔒'}</div>
                         </div>
+                      </div>
+                    </div>
+                  </div>
+                </motion.div>
+              )}
+
+              {activeTab === 'wallet' && (
+                <motion.div
+                  key="wallet"
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  exit={{ opacity: 0, y: -20 }}
+                  className="space-y-4"
+                >
+                  {/* cUSD Balance Card */}
+                  <div className="glass-cyber rounded-xl p-6 border-2 border-yellow-500/40">
+                    <div className="flex justify-between items-center mb-2">
+                      <span className="text-gray-400 mono-font text-sm">cUSD Balance</span>
+                      <span className="text-xs text-yellow-400 font-bold bg-yellow-500/10 px-2 py-1 rounded">Celo Stablecoin</span>
+                    </div>
+                    <div className="text-4xl font-bold text-yellow-400 mb-1">{formattedCUSD} <span className="text-lg text-gray-400">cUSD</span></div>
+                    <div className="text-sm text-gray-500 mono-font">≈ ${formattedCUSD} USD</div>
+                  </div>
+
+                  {/* Wallet Address */}
+                  <div className="glass-cyber rounded-xl p-6">
+                    <div className="text-gray-400 text-sm mb-3 mono-font">Your Wallet Address</div>
+                    <div className="flex items-center gap-3">
+                      <div className="flex-1 bg-black/30 rounded-lg px-3 py-2 mono-font text-xs text-gray-300 break-all">
+                        {address}
+                      </div>
+                      <button
+                        onClick={copyAddress}
+                        className={`shrink-0 px-4 py-2 rounded-lg font-bold text-sm transition-all ${
+                          copySuccess
+                            ? 'bg-emerald-500 text-white'
+                            : 'bg-teal-500/20 hover:bg-teal-500/30 text-teal-300 border border-teal-500/30'
+                        }`}
+                      >
+                        {copySuccess ? '✓ Copied' : 'Copy'}
+                      </button>
+                    </div>
+                    <p className="text-xs text-gray-500 mt-2">Share this address to receive cUSD on Celo</p>
+                  </div>
+
+                  {/* Send cUSD */}
+                  <div className="glass-cyber rounded-xl p-6">
+                    <h3 className="text-lg font-bold mb-4 text-teal-400">Send cUSD</h3>
+                    <div className="space-y-3">
+                      <div>
+                        <label className="text-sm text-gray-400 mono-font mb-1 block">Recipient Address</label>
+                        <input
+                          type="text"
+                          value={sendTo}
+                          onChange={(e) => setSendTo(e.target.value)}
+                          placeholder="0x..."
+                          className="w-full bg-black/30 border border-teal-500/30 rounded-lg px-4 py-3 outline-none focus:border-teal-500 mono-font text-sm"
+                        />
+                      </div>
+                      <div>
+                        <label className="text-sm text-gray-400 mono-font mb-1 block">Amount (cUSD)</label>
+                        <input
+                          type="number"
+                          value={sendAmount}
+                          onChange={(e) => setSendAmount(e.target.value)}
+                          placeholder="0.00"
+                          min="0"
+                          step="0.01"
+                          inputMode="decimal"
+                          className="w-full bg-black/30 border border-teal-500/30 rounded-lg px-4 py-3 outline-none focus:border-teal-500 text-lg"
+                        />
+                        <p className="text-xs text-gray-500 mt-1">Available: {formattedCUSD} cUSD</p>
+                      </div>
+                      <button
+                        onClick={handleSendCUSD}
+                        disabled={isPending || isConfirming || !sendTo || !sendAmount}
+                        className="w-full py-4 bg-gradient-to-r from-teal-500 to-emerald-500 rounded-xl font-bold text-lg hover:opacity-90 transition-opacity disabled:opacity-40 disabled:cursor-not-allowed glow-teal"
+                      >
+                        {isPending || isConfirming ? 'Sending...' : 'Send cUSD'}
+                      </button>
+                    </div>
+                  </div>
+
+                  {/* Staked score info */}
+                  <div className="glass-cyber rounded-xl p-4">
+                    <div className="grid grid-cols-2 gap-4">
+                      <div>
+                        <div className="text-gray-400 text-xs mb-1 mono-font">Staked Score</div>
+                        <div className="text-2xl font-bold text-emerald-400">{Number(stakedScore).toLocaleString()}</div>
+                      </div>
+                      <div>
+                        <div className="text-gray-400 text-xs mb-1 mono-font">Longest Streak</div>
+                        <div className="text-2xl font-bold text-orange-400">{Number(longestStreak)} 🏆</div>
                       </div>
                     </div>
                   </div>
