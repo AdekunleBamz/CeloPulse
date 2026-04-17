@@ -1,0 +1,52 @@
+import { http, createConfig, cookieStorage, createStorage } from 'wagmi'
+import { celo, celoSepolia } from 'wagmi/chains'
+import { injected } from 'wagmi/connectors'
+
+/** Chain ID for Celo Sepolia (Alfajores) testnet */
+const CELO_SEPOLIA_CHAIN_ID = celoSepolia.id
+
+/**
+ * Dedicated wagmi config for CeloPulse.
+ *
+ * Key differences from the old RainbowKit getDefaultConfig():
+ *  1. Uses createConfig() directly — avoids RainbowKit overhead inside MiniPay.
+ *  2. Enables SSR hydration via cookieStorage — prevents blank-screen
+ *     hydration mismatches that cause MiniPay webview failures.
+ *  3. Injects the `injected()` connector explicitly so MiniPay's
+ *     built-in provider is always discovered.
+ */
+
+const configuredChainId = Number.parseInt(
+  process.env.NEXT_PUBLIC_CHAIN_ID?.trim() || '',
+  10,
+)
+
+export const activeChains =
+  configuredChainId === CELO_SEPOLIA_CHAIN_ID
+    ? ([celoSepolia] as const)
+    : ([celo] as const)
+
+export function getConfig() {
+  return createConfig({
+    chains: activeChains,
+    connectors: [injected()],
+    storage: createStorage({ storage: cookieStorage }),
+    ssr: true,
+    transports: {
+      [celo.id]: http(),
+      [celoSepolia.id]: http(),
+    },
+  })
+}
+
+/** Singleton for use outside of React context (e.g. in layout.tsx). */
+let _config: ReturnType<typeof getConfig> | undefined
+export function getOrCreateConfig() {
+  if (!_config) _config = getConfig()
+  return _config
+}
+
+/** Reset the singleton — useful in tests or when chain changes at runtime. */
+export function resetConfig() {
+  _config = undefined
+}
