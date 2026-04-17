@@ -26,8 +26,23 @@ export const CUSD_SEPOLIA_ADDRESS = '0x874069Fa1Eb16D44d622F2e0Ca25eeA172369bC1'
 /** Regex that matches a valid EVM hex address */
 export const EVM_ADDRESS_REGEX = /^0x[a-fA-F0-9]{40}$/
 
+/** Returns true when the string looks like a valid EVM address */
+export function isValidEvmAddress(value: string): value is `0x${string}` {
+  return EVM_ADDRESS_REGEX.test(value)
+}
+
+/** Returns true if chainId is one of the supported Celo networks */
+export function isSupportedChain(chainId: number): boolean {
+  return minipayChains.some((chain) => chain.id === chainId)
+}
+
 export function getCUSDAddress(): `0x${string}` {
   return (activeCeloChain.id === celo.id ? USD_M_MAINNET_ADDRESS : CUSD_SEPOLIA_ADDRESS) as `0x${string}`
+}
+
+/** Human-readable symbol for the active cUSD token */
+export function getCUSDSymbol(): string {
+  return activeCeloChain.id === celo.id ? 'cUSD' : 'cUSD (Sepolia)'
 }
 
 export function isMiniPayProvider(provider?: MiniPayEthereumProvider | null) {
