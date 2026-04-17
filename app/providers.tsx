@@ -1,28 +1,52 @@
 'use client'
 
 import '@rainbow-me/rainbowkit/styles.css'
-import { getDefaultConfig, RainbowKitProvider } from '@rainbow-me/rainbowkit'
-import { WagmiProvider } from 'wagmi'
+import { RainbowKitProvider } from '@rainbow-me/rainbowkit'
+import { WagmiProvider, type State } from 'wagmi'
 import { QueryClientProvider, QueryClient } from '@tanstack/react-query'
-import { minipayChains } from '@/lib/minipay'
-
-const appName = process.env.NEXT_PUBLIC_APP_NAME?.trim() || 'CeloPulse'
-const walletConnectProjectId = process.env.NEXT_PUBLIC_WALLETCONNECT_PROJECT_ID?.trim() || ''
-
-const config = getDefaultConfig({
-  appName,
-  projectId: walletConnectProjectId,
-  chains: minipayChains,
-  ssr: true,
-})
+import { useState, useEffect, useRef } from 'react'
+import { getOrCreateConfig } from '@/lib/wagmi'
+import { isMiniPayWallet } from '@/lib/minipay'
 
 const queryClient = new QueryClient()
 
-export function Providers({ children }: { children: React.ReactNode }) {
+/**
+ * App-wide providers.
+ *
+ * Critical changes vs. old implementation:
+ *  - Accepts `initialState` from server-side cookies so wagmi can
+ *    hydrate without a mismatch (the #1 cause of MiniPay blank screens).
+ *  - Only renders RainbowKitProvider when NOT inside MiniPay, since
+ *    MiniPay uses its own injected provider and RainbowKit's modal
+ *    is useless / confusing in that context.
+ */
+export function Providers({
+  children,
+  initialState,
+}: {
+  children: React.ReactNode
+  initialState?: State
+}) {
+  const config = getOrCreateConfig()
+  const detectedRef = useRef(false)
+  const [isMiniPay, setIsMiniPay] = useState(false)
+
+  useEffect(() => {
+    if (detectedRef.current) return
+    detectedRef.current = true
+    setIsMiniPay(isMiniPayWallet())
+  }, [])
+
   return (
-    <WagmiProvider config={config}>
+    <WagmiProvider config={config} initialState={initialState}>
       <QueryClientProvider client={queryClient}>
-        <RainbowKitProvider>{children}</RainbowKitProvider>
+        {isMiniPay ? (
+          /* Inside MiniPay — skip RainbowKit entirely to avoid
+             unnecessary modals, bundle weight, and provider conflicts. */
+          children
+        ) : (
+          <RainbowKitProvider>{children}</RainbowKitProvider>
+        )}
       </QueryClientProvider>
     </WagmiProvider>
   )
