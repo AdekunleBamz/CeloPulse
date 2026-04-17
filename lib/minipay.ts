@@ -19,9 +19,16 @@ export const minipayChains =
     : ([celo] as const)
 
 export const activeCeloChain = minipayChains[0]
-const ADDRESS_REGEX = /^0x[a-fA-F0-9]{40}$/
 
 export const USD_M_MAINNET_ADDRESS = '0x765DE816845861e75A25fCA122bb6898B8B1282a' as const
+export const CUSD_SEPOLIA_ADDRESS = '0x874069Fa1Eb16D44d622F2e0Ca25eeA172369bC1' as const
+
+/** Regex that matches a valid EVM hex address */
+export const EVM_ADDRESS_REGEX = /^0x[a-fA-F0-9]{40}$/
+
+export function getCUSDAddress(): `0x${string}` {
+  return (activeCeloChain.id === celo.id ? USD_M_MAINNET_ADDRESS : CUSD_SEPOLIA_ADDRESS) as `0x${string}`
+}
 
 export function isMiniPayProvider(provider?: MiniPayEthereumProvider | null) {
   return Boolean(provider?.isMiniPay)
@@ -34,7 +41,7 @@ export function isMiniPayWallet() {
 export function getMiniPayFeeCurrency() {
   const feeCurrency = process.env.NEXT_PUBLIC_MINIPAY_FEE_CURRENCY?.trim()
 
-  if (feeCurrency && ADDRESS_REGEX.test(feeCurrency)) {
+  if (feeCurrency && EVM_ADDRESS_REGEX.test(feeCurrency)) {
     return feeCurrency as `0x${string}`
   }
 
