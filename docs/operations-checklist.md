@@ -13,3 +13,7 @@ Use this checklist for safer releases and runtime checks.
 
 - [ ] Verify `.env.local` is ignored and not staged for commit.
 - [ ] Sanitize screenshots/logs before sharing so WalletConnect IDs are never exposed.
+
+## Runtime Checks
+
+- [ ] Confirm MiniPay fee currency resolves to a valid address for the active chain.
