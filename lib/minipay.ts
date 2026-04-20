@@ -53,6 +53,11 @@ export function isMiniPayWallet() {
   return typeof window !== 'undefined' && isMiniPayProvider(window.ethereum)
 }
 
+/** Returns the full display label for the active chain, e.g. "Celo" or "Celo Sepolia" */
+export function getActiveChainLabel(): string {
+  return activeCeloChain.name
+}
+
 export function getMiniPayFeeCurrency() {
   const feeCurrency = process.env.NEXT_PUBLIC_MINIPAY_FEE_CURRENCY?.trim()
 
