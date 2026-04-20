@@ -51,6 +51,8 @@ export function resetConfig() {
   _config = undefined
 }
 
+export { CELO_SEPOLIA_CHAIN_ID }
+
 /** Returns the chain ID of the currently active chain */
 export function getActiveChainId(): number {
   return activeChains[0].id
