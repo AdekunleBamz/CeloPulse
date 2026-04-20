@@ -557,6 +557,7 @@ export default function Home() {
                         <div className="flex gap-2">
                           <input
                             type="number"
+                            aria-label="Stake score amount"
                             value={selectedStakeAmount}
                             onChange={(e) => setSelectedStakeAmount(e.target.value)}
                             placeholder="Amount"
@@ -845,4 +846,3 @@ export default function Home() {
     </main>
   )
 }
-
