@@ -115,3 +115,8 @@ export function getNativeTokenSymbol(): string {
 export function getAddressExplorerUrl(address: string): string {
   return `${getExplorerUrl()}/address/${address.trim()}`
 }
+
+/** Returns a link to a tx hash on the active chain's block explorer */
+export function getTxExplorerUrl(hash: string): string {
+  return `${getExplorerUrl()}/tx/${hash.trim()}`
+}
