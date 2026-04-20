@@ -41,6 +41,11 @@ export function isZeroAddress(address: string): boolean {
   return address.trim().toLowerCase() === ('0x' + '0'.repeat(40))
 }
 
+/** Returns a lowercase, trimmed copy of address */
+export function normalizeAddress(value: string): string {
+  return value.trim().toLowerCase()
+}
+
 /** Returns true when the two addresses refer to the same wallet (case-insensitive) */
 export function isSameAddress(a: string, b: string): boolean {
   if (!a || !b) return false
