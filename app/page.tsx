@@ -344,7 +344,11 @@ export default function Home() {
           </div>
         </div>
         {txNotice && (
-          <div className="mb-6 p-4 bg-amber-500/10 border border-amber-500/40 rounded-lg">
+          <div
+            className="mb-6 p-4 bg-amber-500/10 border border-amber-500/40 rounded-lg"
+            role="status"
+            aria-live="polite"
+          >
             <p className="text-amber-300 text-sm">{txNotice}</p>
           </div>
         )}
@@ -845,4 +849,3 @@ export default function Home() {
     </main>
   )
 }
-
