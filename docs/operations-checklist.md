@@ -18,3 +18,4 @@ Use this checklist for safer releases and runtime checks.
 
 - [ ] Confirm MiniPay fee currency resolves to a valid address for the active chain.
 - [ ] Validate `getUser` and `getPendingRewards` calls return data for at least one known wallet.
+- [ ] Confirm leaderboard data refreshes without wallet disconnect loops.
