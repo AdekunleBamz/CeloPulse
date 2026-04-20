@@ -768,6 +768,7 @@ export default function Home() {
                         <label className="text-sm text-gray-400 mono-font mb-1 block">Amount (cUSD)</label>
                         <input
                           type="number"
+                          aria-label="cUSD amount to send"
                           value={sendAmount}
                           onChange={(e) => setSendAmount(e.target.value)}
                           placeholder="0.00"
@@ -845,4 +846,3 @@ export default function Home() {
     </main>
   )
 }
-
