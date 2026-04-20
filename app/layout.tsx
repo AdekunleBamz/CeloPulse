@@ -14,6 +14,7 @@ export const metadata: Metadata = {
   metadataBase: new URL(appUrl),
   title: 'CeloPulse | Activity Tracker & Auto-Rewards',
   description: shortDescription,
+  themeColor: '#020617',
   manifest: '/site.webmanifest',
   icons: {
     icon: [
@@ -53,4 +54,3 @@ export default function RootLayout({
     </html>
   )
 }
-
