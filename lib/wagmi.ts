@@ -65,3 +65,8 @@ export function getActiveChainName(): string {
 export function isConfigured(): boolean {
   return _config !== undefined
 }
+
+/** Returns the block explorer base URL for the currently active chain */
+export function getActiveChainBlockExplorer(): string {
+  return activeChains[0].blockExplorers?.default?.url ?? 'https://celoscan.io'
+}
