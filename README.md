@@ -18,6 +18,7 @@ Optimized for **MiniPay**, CeloPulse delivers a premium mobile experience with i
 -   **Web3 Integration**: Wagmi, Viem, RainbowKit.
 -   **Blockchain**: Celo (Mainnet/Alfajores).
 -   **Contracts**: Solidity-based Activity Engines with automated reward distribution.
+-   **Testing**: Vitest for unit and integration tests.
 
 ## 🚀 Getting Started
 
