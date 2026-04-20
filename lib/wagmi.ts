@@ -50,3 +50,8 @@ export function getOrCreateConfig() {
 export function resetConfig() {
   _config = undefined
 }
+
+/** Returns the chain ID of the currently active chain */
+export function getActiveChainId(): number {
+  return activeChains[0].id
+}
