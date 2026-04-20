@@ -24,7 +24,7 @@ Optimized for **MiniPay**, CeloPulse delivers a premium mobile experience with i
 
 ### Prerequisites
 
--   Node.js 18+
+-   Node.js 18.18+ (or Node.js 20+)
 -   A Celo-compatible wallet (MiniPay recommended)
 
 ### Installation
