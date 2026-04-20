@@ -130,3 +130,8 @@ export function getAddressExplorerUrl(address: string): string {
 export function getTxExplorerUrl(hash: string): string {
   return `${getExplorerUrl()}/tx/${hash.trim()}`
 }
+
+/** Returns 'mainnet' or 'testnet' label for the active chain */
+export function getNetworkType(): 'mainnet' | 'testnet' {
+  return activeCeloChain.id === celo.id ? 'mainnet' : 'testnet'
+}
