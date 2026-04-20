@@ -38,3 +38,4 @@ Use this checklist for safer releases and runtime checks.
 - [ ] If `NEXT_PUBLIC_MINIPAY_FEE_CURRENCY` is set, verify it is a valid 42-char EVM address.
 - [ ] On Celo Sepolia, verify fee-currency fallback resolves to the Sepolia cUSD token address.
 - [ ] Execute one check-in flow and confirm streak counters increment on-chain and in UI.
+- [ ] Validate recent action feed labels map correctly to action IDs after refresh.
