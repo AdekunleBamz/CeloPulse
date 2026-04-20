@@ -19,6 +19,10 @@ module.exports = {
         'body': ['Inter', 'sans-serif'],
         'mono': ['IBM Plex Mono', 'monospace'],
       },
+      borderRadius: {
+        'xl': '1rem',
+        '2xl': '1.5rem',
+      },
     },
   },
   plugins: [],
