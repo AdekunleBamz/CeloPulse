@@ -8,7 +8,14 @@ import { useState, useEffect, useRef } from 'react'
 import { getOrCreateConfig } from '@/lib/wagmi'
 import { isMiniPayWallet } from '@/lib/minipay'
 
-const queryClient = new QueryClient()
+const queryClient = new QueryClient({
+  defaultOptions: {
+    queries: {
+      refetchOnWindowFocus: false,
+      retry: 1,
+    },
+  },
+})
 
 /**
  * App-wide providers.
