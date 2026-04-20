@@ -51,6 +51,7 @@ Optimized for **MiniPay**, CeloPulse delivers a premium mobile experience with i
 4.  **Run Development Server**:
     ```bash
     npm run dev
+    npm run lint
     ```
 
 ## 🏗 Smart Contract logic
