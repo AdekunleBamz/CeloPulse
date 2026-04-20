@@ -60,3 +60,9 @@ export type GetRecentActionsResult = {
   scoresEarned: readonly bigint[]
 }
 
+/** Tuple return type for the getLeaderboard view function */
+export type GetLeaderboardResult = {
+  addresses: readonly `0x${string}`[]
+  scores: readonly bigint[]
+}
+
