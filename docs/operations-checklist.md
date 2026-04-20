@@ -31,3 +31,4 @@ Use this checklist for safer releases and runtime checks.
 - [ ] Capture one successful action transaction hash for release notes and support debugging.
 - [ ] Confirm non-MiniPay browsers still connect through the standard injected-wallet path.
 - [ ] Confirm `/privacy` and `/terms` routes render without hydration or navigation errors.
+- [ ] Validate favicon/OG assets load successfully in production responses.
