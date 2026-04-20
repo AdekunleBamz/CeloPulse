@@ -64,5 +64,9 @@ export function getMiniPayFeeCurrency() {
     return USD_M_MAINNET_ADDRESS
   }
 
+  if (activeCeloChain.id === celoSepolia.id) {
+    return CUSD_SEPOLIA_ADDRESS
+  }
+
   return undefined
 }
