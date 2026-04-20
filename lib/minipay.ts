@@ -36,6 +36,11 @@ export function isSupportedChain(chainId: number): boolean {
   return minipayChains.some((chain) => chain.id === chainId)
 }
 
+/** Returns true when the address is the EVM zero address */
+export function isZeroAddress(address: string): boolean {
+  return address.trim().toLowerCase() === ('0x' + '0'.repeat(40))
+}
+
 /** Returns true when the two addresses refer to the same wallet (case-insensitive) */
 export function isSameAddress(a: string, b: string): boolean {
   if (!a || !b) return false
