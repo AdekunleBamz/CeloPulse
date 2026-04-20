@@ -32,3 +32,4 @@ Use this checklist for safer releases and runtime checks.
 - [ ] Confirm non-MiniPay browsers still connect through the standard injected-wallet path.
 - [ ] Confirm `/privacy` and `/terms` routes render without hydration or navigation errors.
 - [ ] Validate favicon/OG assets load successfully in production responses.
+- [ ] Confirm wallet address copy and truncated display formats remain readable on mobile widths.
