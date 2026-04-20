@@ -135,3 +135,8 @@ export function getTxExplorerUrl(hash: string): string {
 export function getNetworkType(): 'mainnet' | 'testnet' {
   return activeCeloChain.id === celo.id ? 'mainnet' : 'testnet'
 }
+
+/** Returns true when the address passes the EVM regex and is not the zero address */
+export function isUsableAddress(address: string): boolean {
+  return isValidEvmAddress(address) && !isZeroAddress(address)
+}
