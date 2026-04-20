@@ -39,3 +39,4 @@ Use this checklist for safer releases and runtime checks.
 - [ ] On Celo Sepolia, verify fee-currency fallback resolves to the Sepolia cUSD token address.
 - [ ] Execute one check-in flow and confirm streak counters increment on-chain and in UI.
 - [ ] Validate recent action feed labels map correctly to action IDs after refresh.
+- [ ] Switch wallet networks once and verify the app recovers to the configured active chain.
