@@ -269,6 +269,8 @@ export default function Home() {
     if (!/^0x[a-fA-F0-9]{40}$/.test(trimmedTo)) { setTxNotice('Invalid recipient address.'); return }
     const amount = parseFloat(trimmedAmount)
     if (isNaN(amount) || amount <= 0) { setTxNotice('Enter a valid amount greater than 0.'); return }
+    const decimals = trimmedAmount.includes('.') ? trimmedAmount.split('.')[1].length : 0
+    if (decimals > 18) { setTxNotice('Amount supports up to 18 decimal places.'); return }
     if (parseFloat(formattedCUSD) < amount) { setTxNotice('Insufficient cUSD balance.'); return }
     try {
       setTxNotice(null)
