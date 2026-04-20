@@ -62,6 +62,10 @@ CeloPulse utilizes a custom Activity Engine that handles:
 -   **Staking Mechanics**: Allowing users to commit to their activity scores for boosted visibility.
 -   **Reward Compounding**: Automated calculations of engagement-based incentives.
 
+## 🧩 Troubleshooting
+
+-   **Contract reads fail**: Confirm `NEXT_PUBLIC_CELOPULSE_CONTRACT` is a full 42-character EVM address.
+
 ## 📜 Licensing & Terms
 
 CeloPulse is open-source. Please refer to the `/privacy` and `/terms` routes within the application for standard decentralized usage policies.
