@@ -21,3 +21,4 @@ Use this checklist for safer releases and runtime checks.
 - [ ] Confirm leaderboard data refreshes without wallet disconnect loops.
 - [ ] Verify `canClaim` and `canCompound` states update after each successful transaction.
 - [ ] Send a small cUSD transfer and confirm balance refresh logic updates in the UI.
+- [ ] Temporarily remove contract env var and verify the configuration warning is user-readable.
