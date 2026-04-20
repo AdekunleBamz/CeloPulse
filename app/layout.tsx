@@ -15,10 +15,7 @@ export const metadata: Metadata = {
   applicationName: 'CeloPulse',
   title: 'CeloPulse | Activity Tracker & Auto-Rewards',
   description: shortDescription,
-  robots: {
-    index: true,
-    follow: true,
-  },
+  themeColor: '#020617',
   manifest: '/site.webmanifest',
   icons: {
     icon: [
