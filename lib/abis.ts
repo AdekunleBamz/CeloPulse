@@ -41,3 +41,14 @@ export const ABI_FUNCTION_NAMES = [
 
 export type AbiFunctionName = (typeof ABI_FUNCTION_NAMES)[number]
 
+/** Tuple return type for the getUser view function */
+export type GetUserResult = {
+  activityScore: bigint
+  totalActions: bigint
+  currentStreak: bigint
+  longestStreak: bigint
+  stakedScore: bigint
+  dailyActions: bigint
+  achievements: bigint
+}
+
