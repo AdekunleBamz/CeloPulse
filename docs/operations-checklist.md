@@ -51,3 +51,4 @@ Use this checklist for safer releases and runtime checks.
 ## Recovery
 
 - [ ] Keep a rollback commit reference ready before each production deployment.
+- [ ] Verify `.env.example` still reflects all required runtime variables after changes.
