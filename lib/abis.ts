@@ -52,3 +52,11 @@ export type GetUserResult = {
   achievements: bigint
 }
 
+/** Tuple return type for the getRecentActions view function */
+export type GetRecentActionsResult = {
+  userAddresses: readonly `0x${string}`[]
+  actionTypes: readonly bigint[]
+  timestamps: readonly bigint[]
+  scoresEarned: readonly bigint[]
+}
+
