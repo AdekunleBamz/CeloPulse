@@ -51,6 +51,13 @@ export function getCUSDSymbol(): string {
   return activeCeloChain.id === celo.id ? 'cUSD' : 'cUSD (Sepolia)'
 }
 
+/** Returns a shortened display version of an address (e.g. "0x1234...5678") */
+export function formatAddress(address: string, start = 6, end = 4): string {
+  const trimmedAddress = address.trim()
+  if (trimmedAddress.length <= start + end) return trimmedAddress
+  return `${trimmedAddress.slice(0, start)}...${trimmedAddress.slice(-end)}`
+}
+
 export function isMiniPayProvider(provider?: MiniPayEthereumProvider | null) {
   return Boolean(provider?.isMiniPay)
 }
