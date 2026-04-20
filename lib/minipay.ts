@@ -105,3 +105,13 @@ export function getMiniPayFeeCurrency() {
 
   return undefined
 }
+
+/** Returns the native token symbol for the active chain */
+export function getNativeTokenSymbol(): string {
+  return 'CELO'
+}
+
+/** Returns a link to an address on the active chain's block explorer */
+export function getAddressExplorerUrl(address: string): string {
+  return `${getExplorerUrl()}/address/${address.trim()}`
+}
