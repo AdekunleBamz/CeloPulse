@@ -36,6 +36,12 @@ export function isSupportedChain(chainId: number): boolean {
   return minipayChains.some((chain) => chain.id === chainId)
 }
 
+/** Returns true when the two addresses refer to the same wallet (case-insensitive) */
+export function isSameAddress(a: string, b: string): boolean {
+  if (!a || !b) return false
+  return a.trim().toLowerCase() === b.trim().toLowerCase()
+}
+
 export function getCUSDAddress(): `0x${string}` {
   return (activeCeloChain.id === celo.id ? USD_M_MAINNET_ADDRESS : CUSD_SEPOLIA_ADDRESS) as `0x${string}`
 }
