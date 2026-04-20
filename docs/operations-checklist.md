@@ -52,3 +52,4 @@ Use this checklist for safer releases and runtime checks.
 
 - [ ] Keep a rollback commit reference ready before each production deployment.
 - [ ] Verify `.env.example` still reflects all required runtime variables after changes.
+- [ ] After push, verify new commits show as `Verified` in GitHub before release announcement.
