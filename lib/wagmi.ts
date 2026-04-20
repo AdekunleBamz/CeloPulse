@@ -53,6 +53,11 @@ export function resetConfig() {
 
 export { CELO_SEPOLIA_CHAIN_ID }
 
+/** Returns the active chain's native currency decimals (always 18 for Celo) */
+export function getActiveChainDecimals(): number {
+  return activeChains[0].nativeCurrency.decimals
+}
+
 /** Returns the chain ID of the currently active chain */
 export function getActiveChainId(): number {
   return activeChains[0].id
