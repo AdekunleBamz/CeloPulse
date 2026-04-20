@@ -265,8 +265,9 @@ export default function Home() {
   const handleSendCUSD = () => {
     if (!address) { setTxNotice('Connect wallet first.'); return }
     const trimmedTo = sendTo.trim()
+    const trimmedAmount = sendAmount.trim()
     if (!/^0x[a-fA-F0-9]{40}$/.test(trimmedTo)) { setTxNotice('Invalid recipient address.'); return }
-    const amount = parseFloat(sendAmount)
+    const amount = parseFloat(trimmedAmount)
     if (isNaN(amount) || amount <= 0) { setTxNotice('Enter a valid amount greater than 0.'); return }
     if (parseFloat(formattedCUSD) < amount) { setTxNotice('Insufficient cUSD balance.'); return }
     try {
@@ -276,9 +277,9 @@ export default function Home() {
         address: cusdAddress,
         abi: erc20ABI,
         functionName: 'transfer',
-        args: [trimmedTo as `0x${string}`, parseUnits(sendAmount, 18)],
-        ...(_isMiniPay ? { type: 'legacy' } : {}),
-        ...(_isMiniPay && miniPayFeeCurrency ? { feeCurrency: miniPayFeeCurrency } : {}),
+        args: [trimmedTo as `0x${string}`, parseUnits(trimmedAmount, 18)],
+        ...(isMiniPay ? { type: 'legacy' } : {}),
+        ...(isMiniPay && miniPayFeeCurrency ? { feeCurrency: miniPayFeeCurrency } : {}),
       } as any)
     } catch {
       setTxNotice('Failed to send cUSD. Please try again.')
