@@ -60,3 +60,8 @@ export function getActiveChainId(): number {
 export function getActiveChainName(): string {
   return activeChains[0].name
 }
+
+/** Returns true if the wagmi config singleton has been initialised */
+export function isConfigured(): boolean {
+  return _config !== undefined
+}
