@@ -101,7 +101,7 @@ export function isTestnet(): boolean {
 export function getMiniPayFeeCurrency() {
   const feeCurrency = process.env.NEXT_PUBLIC_MINIPAY_FEE_CURRENCY?.trim()
 
-  if (feeCurrency && EVM_ADDRESS_REGEX.test(feeCurrency)) {
+  if (feeCurrency && isUsableAddress(feeCurrency)) {
     return feeCurrency as `0x${string}`
   }
 
