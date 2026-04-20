@@ -30,3 +30,4 @@ Use this checklist for safer releases and runtime checks.
 - [ ] Verify the production domain matches `NEXT_PUBLIC_APP_URL`.
 - [ ] Capture one successful action transaction hash for release notes and support debugging.
 - [ ] Confirm non-MiniPay browsers still connect through the standard injected-wallet path.
+- [ ] Confirm `/privacy` and `/terms` routes render without hydration or navigation errors.
