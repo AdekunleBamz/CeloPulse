@@ -46,3 +46,4 @@ Use this checklist for safer releases and runtime checks.
 - [ ] Store at least one successful tx hash and one failed tx hash for support playbooks.
 - [ ] Record MiniPay auto-connect success/failure frequency during smoke sessions.
 - [ ] Measure claim-to-confirmation latency at least once per target chain.
+- [ ] Verify MiniPay auto-connect retry runs once and does not create duplicate prompts.
