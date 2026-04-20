@@ -260,9 +260,12 @@ export default function Home() {
   const handleSendCUSD = () => {
     if (!address) { setTxNotice('Connect wallet first.'); return }
     const trimmedTo = sendTo.trim()
+    const trimmedAmount = sendAmount.trim()
     if (!/^0x[a-fA-F0-9]{40}$/.test(trimmedTo)) { setTxNotice('Invalid recipient address.'); return }
-    const amount = parseFloat(sendAmount)
+    const amount = parseFloat(trimmedAmount)
     if (isNaN(amount) || amount <= 0) { setTxNotice('Enter a valid amount greater than 0.'); return }
+    const decimals = trimmedAmount.includes('.') ? trimmedAmount.split('.')[1].length : 0
+    if (decimals > 18) { setTxNotice('Amount supports up to 18 decimal places.'); return }
     if (parseFloat(formattedCUSD) < amount) { setTxNotice('Insufficient cUSD balance.'); return }
     try {
       setTxNotice(null)
@@ -270,7 +273,7 @@ export default function Home() {
         address: cusdAddress,
         abi: erc20ABI,
         functionName: 'transfer',
-        args: [trimmedTo as `0x${string}`, parseUnits(sendAmount, 18)],
+        args: [trimmedTo as `0x${string}`, parseUnits(trimmedAmount, 18)],
         ...(isMiniPay ? { type: 'legacy' } : {}),
         ...(isMiniPay && miniPayFeeCurrency ? { feeCurrency: miniPayFeeCurrency } : {}),
       } as any)
@@ -845,4 +848,3 @@ export default function Home() {
     </main>
   )
 }
-
