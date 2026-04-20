@@ -58,6 +58,16 @@ export function getActiveChainLabel(): string {
   return activeCeloChain.name
 }
 
+/** Returns true when the app is running against the Celo mainnet */
+export function isMainnet(): boolean {
+  return activeCeloChain.id === celo.id
+}
+
+/** Returns true when the app is running against Celo Sepolia (testnet) */
+export function isTestnet(): boolean {
+  return activeCeloChain.id === celoSepolia.id
+}
+
 export function getMiniPayFeeCurrency() {
   const feeCurrency = process.env.NEXT_PUBLIC_MINIPAY_FEE_CURRENCY?.trim()
 
