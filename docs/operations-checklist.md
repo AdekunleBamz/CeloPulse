@@ -12,3 +12,4 @@ Use this checklist for safer releases and runtime checks.
 ## Security
 
 - [ ] Verify `.env.local` is ignored and not staged for commit.
+- [ ] Sanitize screenshots/logs before sharing so WalletConnect IDs are never exposed.
