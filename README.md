@@ -1,6 +1,6 @@
 # CeloPulse
 
-**CeloPulse** is a real-time blockchain activity dashboard designed for the Celo ecosystem. It provides users with a clean, high-performance interface to track their on-chain interactions, monitor ecosystem engagement, and visualized progress through a dynamic achievement system.
+**CeloPulse** is a real-time blockchain activity dashboard designed for the Celo ecosystem. It provides users with a clean, high-performance interface to track their on-chain interactions, monitor ecosystem engagement, and visualize progress through a dynamic achievement system.
 
 Optimized for **MiniPay**, CeloPulse delivers a premium mobile experience with implicit wallet connection and fee-abstracted transactions.
 
