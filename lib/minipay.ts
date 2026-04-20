@@ -66,6 +66,13 @@ export function isMiniPayWallet() {
   return typeof window !== 'undefined' && isMiniPayProvider(window.ethereum)
 }
 
+/** Returns the block explorer base URL for the active chain */
+export function getExplorerUrl(): string {
+  return activeCeloChain.id === celo.id
+    ? 'https://celoscan.io'
+    : 'https://sepolia.celoscan.io'
+}
+
 /** Returns the full display label for the active chain, e.g. "Celo" or "Celo Sepolia" */
 export function getActiveChainLabel(): string {
   return activeCeloChain.name
