@@ -140,3 +140,10 @@ export function getNetworkType(): 'mainnet' | 'testnet' {
 export function isUsableAddress(address: string): boolean {
   return isValidEvmAddress(address) && !isZeroAddress(address)
 }
+
+/** Returns the display label to show for the connected environment */
+export function getWalletEnvLabel(): string {
+  return typeof window !== 'undefined' && isMiniPayProvider(window.ethereum)
+    ? 'MiniPay'
+    : 'Browser Wallet'
+}
