@@ -70,3 +70,8 @@ export function isConfigured(): boolean {
 export function getActiveChainBlockExplorer(): string {
   return activeChains[0].blockExplorers?.default?.url ?? 'https://celoscan.io'
 }
+
+/** Returns the RPC URL for the currently active chain */
+export function getCeloRpcUrl(): string {
+  return activeChains[0].rpcUrls.default.http[0]
+}
