@@ -769,6 +769,7 @@ export default function Home() {
                         <label className="text-sm text-gray-400 mono-font mb-1 block">Recipient Address</label>
                         <input
                           type="text"
+                          aria-label="Recipient wallet address"
                           value={sendTo}
                           onChange={(e) => setSendTo(e.target.value)}
                           placeholder="0x..."
