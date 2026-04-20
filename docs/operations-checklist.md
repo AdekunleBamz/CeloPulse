@@ -44,3 +44,4 @@ Use this checklist for safer releases and runtime checks.
 ## Observability
 
 - [ ] Store at least one successful tx hash and one failed tx hash for support playbooks.
+- [ ] Record MiniPay auto-connect success/failure frequency during smoke sessions.
