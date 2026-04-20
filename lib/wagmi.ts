@@ -55,3 +55,8 @@ export function resetConfig() {
 export function getActiveChainId(): number {
   return activeChains[0].id
 }
+
+/** Returns the human-readable name of the currently active chain */
+export function getActiveChainName(): string {
+  return activeChains[0].name
+}
