@@ -65,6 +65,7 @@ CeloPulse utilizes a custom Activity Engine that handles:
 ## 🧩 Troubleshooting
 
 -   **Contract reads fail**: Confirm `NEXT_PUBLIC_CELOPULSE_CONTRACT` is a full 42-character EVM address.
+-   **MiniPay tx stuck**: Make sure `NEXT_PUBLIC_CHAIN_ID` matches the wallet network inside MiniPay.
 
 ## 📜 Licensing & Terms
 
