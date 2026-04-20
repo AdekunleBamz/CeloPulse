@@ -589,6 +589,7 @@ export default function Home() {
                         <div className="flex gap-2">
                           <input
                             type="number"
+                            aria-label="Unstake score amount"
                             value={selectedUnstakeAmount}
                             onChange={(e) => setSelectedUnstakeAmount(e.target.value)}
                             placeholder="Amount"
