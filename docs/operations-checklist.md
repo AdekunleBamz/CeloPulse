@@ -40,3 +40,7 @@ Use this checklist for safer releases and runtime checks.
 - [ ] Execute one check-in flow and confirm streak counters increment on-chain and in UI.
 - [ ] Validate recent action feed labels map correctly to action IDs after refresh.
 - [ ] Switch wallet networks once and verify the app recovers to the configured active chain.
+
+## Observability
+
+- [ ] Store at least one successful tx hash and one failed tx hash for support playbooks.
