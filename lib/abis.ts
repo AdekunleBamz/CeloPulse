@@ -18,3 +18,26 @@ export const celoPulseABI = [
   { inputs: [{ internalType: "uint256", name: "count", type: "uint256" }], name: "getRecentActions", outputs: [{ internalType: "address[]", name: "userAddresses", type: "address[]" }, { internalType: "uint256[]", name: "actionTypes", type: "uint256[]" }, { internalType: "uint256[]", name: "timestamps", type: "uint256[]" }, { internalType: "uint256[]", name: "scoresEarned", type: "uint256[]" }], stateMutability: "view", type: "function" },
   { inputs: [{ internalType: "address", name: "", type: "address" }], name: "isRegistered", outputs: [{ internalType: "bool", name: "", type: "bool" }], stateMutability: "view", type: "function" },
 ] as const
+
+/** All function names available on the CeloPulse contract */
+export const ABI_FUNCTION_NAMES = [
+  'register',
+  'checkIn',
+  'completeTask',
+  'claimRewards',
+  'compoundRewards',
+  'stakeScore',
+  'unstakeScore',
+  'activateBoost',
+  'completeQuest',
+  'getUser',
+  'getPendingRewards',
+  'canClaim',
+  'canCompound',
+  'getLeaderboard',
+  'getRecentActions',
+  'isRegistered',
+] as const
+
+export type AbiFunctionName = (typeof ABI_FUNCTION_NAMES)[number]
+
