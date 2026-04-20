@@ -20,3 +20,4 @@ Use this checklist for safer releases and runtime checks.
 - [ ] Validate `getUser` and `getPendingRewards` calls return data for at least one known wallet.
 - [ ] Confirm leaderboard data refreshes without wallet disconnect loops.
 - [ ] Verify `canClaim` and `canCompound` states update after each successful transaction.
+- [ ] Send a small cUSD transfer and confirm balance refresh logic updates in the UI.
