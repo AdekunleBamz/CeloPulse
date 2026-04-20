@@ -47,3 +47,7 @@ Use this checklist for safer releases and runtime checks.
 - [ ] Record MiniPay auto-connect success/failure frequency during smoke sessions.
 - [ ] Measure claim-to-confirmation latency at least once per target chain.
 - [ ] Verify MiniPay auto-connect retry runs once and does not create duplicate prompts.
+
+## Recovery
+
+- [ ] Keep a rollback commit reference ready before each production deployment.
