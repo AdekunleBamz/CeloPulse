@@ -12,6 +12,7 @@ const talentVerificationToken =
 
 export const metadata: Metadata = {
   metadataBase: new URL(appUrl),
+  applicationName: 'CeloPulse',
   title: 'CeloPulse | Activity Tracker & Auto-Rewards',
   description: shortDescription,
   manifest: '/site.webmanifest',
@@ -53,4 +54,3 @@ export default function RootLayout({
     </html>
   )
 }
-
