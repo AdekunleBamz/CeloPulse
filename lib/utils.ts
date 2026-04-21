@@ -70,3 +70,16 @@ export function isValidAddress(addr: string): boolean {
 export function pluralize(count: number, singular: string, plural = `${singular}s`): string {
   return count === 1 ? singular : plural
 }
+
+/**
+ * Debounces a function call by delay milliseconds.
+ * @param fn - The function to debounce.
+ * @param delay - Delay in ms.
+ */
+export function debounce<T extends (...args: unknown[]) => void>(fn: T, delay: number): (...args: Parameters<T>) => void {
+  let timer: ReturnType<typeof setTimeout> | null = null
+  return (...args: Parameters<T>) => {
+    if (timer) clearTimeout(timer)
+    timer = setTimeout(() => fn(...args), delay)
+  }
+}
