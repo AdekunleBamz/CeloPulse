@@ -196,3 +196,10 @@ export function capitalize(s: string): string {
 export function computeStreakBonus(streak: number, bps: number): number {
   return Math.floor(streak * bps / 10_000)
 }
+
+export function getBadgeLabel(score: number): string {
+  if (score >= 8000) return 'Gold'
+  if (score >= 4000) return 'Silver'
+  if (score >= 1000) return 'Bronze'
+  return 'Newcomer'
+}
