@@ -77,3 +77,5 @@ export const erc20ABI = [
 export const WRITE_FUNCTION_NAMES = ['registerActivity', 'claimRewards', 'compoundRewards', 'activateBoost'] as const
 
 export const READ_FUNCTION_NAMES = ['getUser', 'getRecentActions', 'getLeaderboard'] as const
+
+export type AbiWriteFunctionName = typeof WRITE_FUNCTION_NAMES[number]
