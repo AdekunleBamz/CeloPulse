@@ -75,3 +75,6 @@ export const COMPOUND_COOLDOWN_MS = 86_400_000
 
 /** Cooldown (ms) before a user can claim rewards again. */
 export const CLAIM_COOLDOWN_MS = 86_400_000
+
+/** Maximum number of actions a user can take per day. */
+export const DAILY_ACTION_LIMIT = 10
