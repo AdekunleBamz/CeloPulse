@@ -102,3 +102,6 @@ export const DEFAULT_REFETCH_INTERVAL_MS = 60_000
 
 /** CSS transition/animation duration in milliseconds. */
 export const ANIMATION_DURATION_MS = 300
+
+/** Mobile viewport breakpoint in pixels. */
+export const MOBILE_BREAKPOINT_PX = 768
