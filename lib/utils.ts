@@ -7,8 +7,9 @@
  * @param addr - Full address string.
  */
 export function shortAddress(addr: string): string {
-  if (addr.length < 10) return addr
-  return `${addr.slice(0, 6)}...${addr.slice(-4)}`
+  const normalizedAddress = typeof addr === 'string' ? addr.trim() : ''
+  if (normalizedAddress.length < 10) return normalizedAddress
+  return `${normalizedAddress.slice(0, 6)}...${normalizedAddress.slice(-4)}`
 }
 
 /**
