@@ -127,3 +127,12 @@ export function hasSufficientBalance(balanceWei: bigint, amountWei: bigint): boo
 export function sleep(ms: number): Promise<void> {
   return new Promise((resolve) => setTimeout(resolve, ms))
 }
+
+/**
+ * Formats a bigint wei amount as a compact CELO string.
+ * @param wei - Amount in wei.
+ * @param decimals - Decimal places to show (default 4).
+ */
+export function formatWei(wei: bigint, decimals = 4): string {
+  return weiToCelo(wei).toFixed(decimals)
+}
