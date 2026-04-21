@@ -167,9 +167,9 @@ export function truncate(s: string, max: number): string {
 }
 
 export function parseWei(amount: string): bigint {
-  const normalized = amount.trim()
-  if (!/^(?:\d+\.?\d*|\.\d+)$/.test(normalized)) return 0n
-  const n = parseFloat(normalized)
+  const normalizedAmount = amount.trim()
+  if (!/^(\d+(\.\d*)?|\.\d+)$/.test(normalizedAmount)) return 0n
+  const n = Number(normalizedAmount)
   if (!Number.isFinite(n) || n < 0) return 0n
   return BigInt(Math.round(n * Number(WEI_PER_CELO)))
 }
