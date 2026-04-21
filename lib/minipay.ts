@@ -163,11 +163,6 @@ export function getActiveFeeTokenAddress(): `0x${string}` {
   return activeCeloChain.id === celoSepolia.id ? CUSD_SEPOLIA_ADDRESS : USD_M_MAINNET_ADDRESS
 }
 
-/** Returns true if the active chain is Celo mainnet. */
-export function isMainnet(): boolean {
-  return activeCeloChain.id === celo.id
-}
-
 /** Returns the block explorer URL for the active chain. */
 export function getExplorerUrl(txHash: string): string {
   const base = isMainnet()
