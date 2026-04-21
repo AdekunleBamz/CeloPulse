@@ -164,7 +164,7 @@ export function getActiveFeeTokenAddress(): `0x${string}` {
 }
 
 /** Returns the block explorer URL for the active chain. */
-export function getExplorerUrl(txHash: string): string {
+export function getLegacyTxExplorerUrl(txHash: string): string {
   const base = isMainnet()
     ? 'https://explorer.celo.org/mainnet/tx/'
     : 'https://explorer.celo.org/alfajores/tx/'
