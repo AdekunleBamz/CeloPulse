@@ -245,3 +245,8 @@ export function maxBigInt(a: bigint, b: bigint): bigint {
 export function minBigInt(a: bigint, b: bigint): bigint {
   return a < b ? a : b
 }
+
+export function parseChainId(id: unknown): number | null {
+  const n = Number(id)
+  return Number.isInteger(n) && n > 0 ? n : null
+}
