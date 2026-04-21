@@ -81,3 +81,7 @@ export const READ_FUNCTION_NAMES = ['getUser', 'getRecentActions', 'getLeaderboa
 export type AbiWriteFunctionName = typeof WRITE_FUNCTION_NAMES[number]
 
 export type AbiReadFunctionName = typeof READ_FUNCTION_NAMES[number]
+
+export function isWriteFunction(name: string): boolean {
+  return (WRITE_FUNCTION_NAMES as readonly string[]).includes(name)
+}
