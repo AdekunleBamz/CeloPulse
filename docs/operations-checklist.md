@@ -9,6 +9,7 @@ Use this checklist for safer releases and runtime checks.
 - [ ] Confirm `NEXT_PUBLIC_CHAIN_ID` matches wallet/network settings in the target environment.
 - [ ] Ensure WalletConnect project id is not a placeholder value before shipping.
 - [ ] Run `npm run lint` and resolve all errors before deployment.
+- [ ] Run `npm run build` once in the target branch before deployment.
 
 ## Security
 
