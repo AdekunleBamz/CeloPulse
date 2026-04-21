@@ -140,3 +140,12 @@ export function formatWei(wei: bigint, decimals = 4): string {
 export function formatScore(score: number): string {
   return score.toLocaleString()
 }
+
+export function formatDuration(ms: number): string {
+  const s = Math.floor(ms / 1000)
+  const m = Math.floor(s / 60)
+  const h = Math.floor(m / 60)
+  if (h > 0) return `${h}h ${m % 60}m`
+  if (m > 0) return `${m}m ${s % 60}s`
+  return `${s}s`
+}
