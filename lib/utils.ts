@@ -257,5 +257,5 @@ export function formatShortDate(ts: number): string {
 }
 
 export function isEmptyAddress(addr: string): boolean {
-  return !addr || addr === '0x0000000000000000000000000000000000000000'
+  return !addr || addr.trim().toLowerCase() === '0x0000000000000000000000000000000000000000'
 }
