@@ -15,6 +15,7 @@ export function getScoreTier(score: number): string {
 }
 
 export function formatRank(rank: number): string {
+  if (rank <= 0) return '-'
   if (rank === 1) return '#1'
   return `#${rank}`
 }
