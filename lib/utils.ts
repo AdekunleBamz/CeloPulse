@@ -149,3 +149,7 @@ export function formatDuration(ms: number): string {
   if (m > 0) return `${m}m ${s % 60}s`
   return `${s}s`
 }
+
+export function isPositiveNumber(n: number): boolean {
+  return Number.isFinite(n) && n > 0
+}
