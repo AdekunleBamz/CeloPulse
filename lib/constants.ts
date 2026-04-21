@@ -81,3 +81,6 @@ export const DAILY_ACTION_LIMIT = 10
 
 /** Minimum score units a user must have to initiate a stake. */
 export const MIN_STAKE_AMOUNT = 100
+
+/** Number of slots on the on-chain leaderboard. */
+export const LEADERBOARD_SIZE = 10
