@@ -88,3 +88,7 @@ export function isTestnet(): boolean {
   const id = Number.parseInt(process.env.NEXT_PUBLIC_CHAIN_ID?.trim() || '', 10)
   return id === 44787
 }
+
+export function getActiveChainNativeCurrency(chainId: number): string {
+  return chainId === 42220 || chainId === 44787 ? 'CELO' : 'ETH'
+}
