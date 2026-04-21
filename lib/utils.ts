@@ -136,3 +136,7 @@ export function sleep(ms: number): Promise<void> {
 export function formatWei(wei: bigint, decimals = 4): string {
   return weiToCelo(wei).toFixed(decimals)
 }
+
+export function formatScore(score: number): string {
+  return score.toLocaleString()
+}
