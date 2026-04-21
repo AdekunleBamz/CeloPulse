@@ -90,3 +90,6 @@ export const BOOST_DURATION_MS = 3_600_000
 
 /** Total number of quests available in the app. */
 export const QUEST_COUNT = 10
+
+/** Default EVM token decimals (18 for CELO and cUSD). */
+export const DEFAULT_CHAIN_DECIMALS = 18
