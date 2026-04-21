@@ -82,8 +82,9 @@ export default function Home() {
     }
   }, [contractAddress, address, isConnected, isMiniPay])
 
-  const attemptMiniPayConnect = useCallback(() => {
-    if (isConnected || miniPayAutoConnectStarted.current) return
+  const attemptMiniPayConnect = useCallback((forceRetry = false) => {
+    if (isConnected) return
+    if (miniPayAutoConnectStarted.current && !forceRetry) return
     miniPayAutoConnectStarted.current = true
     connect({ connector: injected() })
   }, [connect, isConnected])
@@ -98,7 +99,7 @@ export default function Home() {
     // after a short delay in case the provider isn't ready yet.
     attemptMiniPayConnect()
     const retryTimer = setTimeout(() => {
-      if (!miniPayAutoConnectStarted.current) attemptMiniPayConnect()
+      attemptMiniPayConnect(true)
     }, MINIPAY_RETRY_DELAY_MS)
     return () => clearTimeout(retryTimer)
   }, [attemptMiniPayConnect])
@@ -845,4 +846,3 @@ export default function Home() {
     </main>
   )
 }
-
