@@ -162,7 +162,9 @@ export function truncate(s: string, max: number): string {
 }
 
 export function parseWei(amount: string): bigint {
-  const n = parseFloat(amount)
+  const normalized = amount.trim()
+  if (!/^(?:\d+\.?\d*|\.\d+)$/.test(normalized)) return 0n
+  const n = parseFloat(normalized)
   if (!Number.isFinite(n) || n < 0) return 0n
   return BigInt(Math.round(n * 1e18))
 }
