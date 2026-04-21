@@ -66,3 +66,9 @@ export const MAX_ACTIVITY_SCORE = 10_000
 
 /** Streak bonus in basis points (500 = 5%). */
 export const STREAK_BONUS_BPS = 500
+
+/** Cooldown (ms) before a user can compound rewards again. */
+export const COMPOUND_COOLDOWN_MS = 86_400_000
+
+/** Cooldown (ms) before a user can compound rewards again. */
+export const COMPOUND_COOLDOWN_MS = 86_400_000
