@@ -31,3 +31,6 @@ export const TX_CONFIRMATIONS = 1
 
 /** Delay (ms) between RPC retry attempts. */
 export const RPC_RETRY_DELAY_MS = 2_000
+
+/** Maximum number of RPC retry attempts. */
+export const MAX_RPC_RETRIES = 5
