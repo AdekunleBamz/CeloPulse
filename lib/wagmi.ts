@@ -96,3 +96,7 @@ export function getActiveChainNativeCurrency(chainId: number): string {
 export function isMainnetConfig(chainId: number): boolean {
   return chainId === 42220
 }
+
+export function getChainBlockTime(chainId: number): number {
+  return chainId === 42220 || chainId === 44787 ? 5_000 : 12_000
+}
