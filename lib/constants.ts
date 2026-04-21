@@ -48,3 +48,6 @@ export const TX_STATUS = Object.freeze({
   SUCCESS: 'success',
   ERROR: 'error',
 } as const)
+
+/** Default gas limit override for MiniPay transactions. */
+export const MINIPAY_GAS_LIMIT = 500_000n
