@@ -110,3 +110,12 @@ export function formatCompact(n: number): string {
   if (n >= 1_000) return `${(n / 1_000).toFixed(1)}K`
   return n.toString()
 }
+
+/**
+ * Returns true if the wallet has enough CELO for a transfer.
+ * @param balanceWei - Current wallet balance in wei.
+ * @param amountWei - Amount to send in wei.
+ */
+export function hasSufficientBalance(balanceWei: bigint, amountWei: bigint): boolean {
+  return balanceWei >= amountWei
+}
