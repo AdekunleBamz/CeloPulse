@@ -83,3 +83,11 @@ export function debounce<T extends (...args: unknown[]) => void>(fn: T, delay: n
     timer = setTimeout(() => fn(...args), delay)
   }
 }
+
+/**
+ * Converts a CELO amount to wei (bigint).
+ * @param celo - Amount in CELO.
+ */
+export function celoToWei(celo: number): bigint {
+  return BigInt(Math.round(celo * 1e18))
+}
