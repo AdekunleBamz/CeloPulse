@@ -111,3 +111,6 @@ export const MAX_QUEST_ID = 9
 
 /** Native token symbol for the Celo network. */
 export const NATIVE_TOKEN_SYMBOL = 'CELO'
+
+/** Minimum transfer amount in CELO (floating-point). */
+export const MIN_TRANSFER_CELO = 0.001
