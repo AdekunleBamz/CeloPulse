@@ -171,3 +171,7 @@ export function safeDiv(a: number, b: number): number {
 export function isBigIntZero(v: bigint): boolean {
   return v === 0n
 }
+
+export function addWei(a: bigint, b: bigint): bigint {
+  return a + b
+}
