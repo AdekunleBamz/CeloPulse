@@ -57,3 +57,6 @@ export const CELO_MAINNET_CHAIN_ID = 42220
 
 /** Celo Sepolia (Alfajores) testnet chain ID. */
 export const CELO_SEPOLIA_CHAIN_ID = 44787
+
+/** Default number of displayed decimals for CELO amounts in the UI. */
+export const DISPLAY_DECIMALS = 4
