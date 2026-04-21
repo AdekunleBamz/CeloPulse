@@ -28,7 +28,7 @@ export const EVM_ADDRESS_REGEX = /^0x[a-fA-F0-9]{40}$/
 
 /** Returns true when the string looks like a valid EVM address */
 export function isValidEvmAddress(value: string): value is `0x${string}` {
-  return EVM_ADDRESS_REGEX.test(value)
+  return EVM_ADDRESS_REGEX.test(value.trim())
 }
 
 /** Returns true if chainId is one of the supported Celo networks */
