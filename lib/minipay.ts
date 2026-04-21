@@ -189,3 +189,9 @@ export function formatNetworkBadge(chainId: number): string {
   if (chainId === 44787) return 'Alfajores'
   return 'Unknown'
 }
+
+export function getChainShortName(chainId: number): string {
+  if (chainId === 42220) return 'CELO'
+  if (chainId === 44787) return 'ALF'
+  return '???'
+}
