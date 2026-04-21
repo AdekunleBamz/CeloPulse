@@ -105,3 +105,6 @@ export const ANIMATION_DURATION_MS = 300
 
 /** Mobile viewport breakpoint in pixels. */
 export const MOBILE_BREAKPOINT_PX = 768
+
+/** Maximum quest ID (zero-indexed). */
+export const MAX_QUEST_ID = 9
