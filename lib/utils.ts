@@ -66,7 +66,8 @@ export function formatTimestamp(ts: number): string {
  */
 export function isValidAddress(addr: string): boolean {
   const normalizedAddress = addr.trim()
-  return /^0x[a-fA-F0-9]{40}$/.test(normalizedAddress) && normalizedAddress.toLowerCase() !== '0x0000000000000000000000000000000000000000'
+  return /^0x[a-fA-F0-9]{40}$/.test(normalizedAddress)
+    && normalizedAddress.toLowerCase() !== '0x0000000000000000000000000000000000000000'
 }
 
 /**
