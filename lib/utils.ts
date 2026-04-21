@@ -7,8 +7,10 @@
  * @param addr - Full address string.
  */
 export function shortAddress(addr: string): string {
-  if (addr.length < 10) return addr
-  return `${addr.slice(0, 6)}...${addr.slice(-4)}`
+  const value = addr.trim()
+  if (!value) return ''
+  if (value.length < 10) return value
+  return `${value.slice(0, 6)}...${value.slice(-4)}`
 }
 
 /**
