@@ -26,3 +26,11 @@ export function formatCelo(amount: number): string {
 export function weiToCelo(wei: bigint): number {
   return Number(wei) / 1e18
 }
+
+/**
+ * Returns true if the given address is the EVM zero address.
+ * @param addr - Address string to check.
+ */
+export function isZeroAddress(addr: string): boolean {
+  return addr === '0x0000000000000000000000000000000000000000'
+}
