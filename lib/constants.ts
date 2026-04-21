@@ -60,3 +60,6 @@ export const CELO_SEPOLIA_CHAIN_ID = 44787
 
 /** Default number of displayed decimals for CELO amounts in the UI. */
 export const DISPLAY_DECIMALS = 4
+
+/** Maximum achievable activity score for a user. */
+export const MAX_ACTIVITY_SCORE = 10_000
