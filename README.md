@@ -45,7 +45,7 @@ Optimized for **MiniPay**, CeloPulse delivers a premium mobile experience with i
     ```env
     NEXT_PUBLIC_CELOPULSE_CONTRACT=0x... # Your deployed contract address
     NEXT_PUBLIC_APP_URL=https://celopulse-v2.vercel.app
-    NEXT_PUBLIC_CHAIN_ID=42220 # Use 42220 for mainnet or 11142220 for Celo Sepolia
+    NEXT_PUBLIC_CHAIN_ID=42220 # Use 42220 for mainnet or 44787 for Celo Sepolia
     NEXT_PUBLIC_MINIPAY_FEE_CURRENCY=0x... # Optional override for MiniPay fee token
     ```
 
