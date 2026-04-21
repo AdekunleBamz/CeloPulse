@@ -179,3 +179,7 @@ export function getExplorerUrl(txHash: string): string {
 export function isCeloMainnet(chainId: number): boolean {
   return chainId === 42220
 }
+
+export function isCeloSepolia(chainId: number): boolean {
+  return chainId === 44787
+}
