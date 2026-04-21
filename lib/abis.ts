@@ -85,3 +85,7 @@ export type AbiReadFunctionName = typeof READ_FUNCTION_NAMES[number]
 export function isWriteFunction(name: string): boolean {
   return (WRITE_FUNCTION_NAMES as readonly string[]).includes(name)
 }
+
+export function isReadFunction(name: string): boolean {
+  return (READ_FUNCTION_NAMES as readonly string[]).includes(name)
+}
