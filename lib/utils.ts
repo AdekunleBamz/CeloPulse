@@ -219,3 +219,9 @@ export function formatCountdown(ms: number): string {
   if (m > 0) return `${m}m ${s % 60}s`
   return `${s}s`
 }
+
+export function isSameDay(a: number, b: number): boolean {
+  const da = new Date(a)
+  const db = new Date(b)
+  return da.getFullYear() === db.getFullYear() && da.getMonth() === db.getMonth() && da.getDate() === db.getDate()
+}
