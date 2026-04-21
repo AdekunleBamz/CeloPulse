@@ -30,3 +30,10 @@ export function scoreToPercent(score: number, max: number): number {
   if (max <= 0) return 0
   return Math.min(100, Math.round((score / max) * 100))
 }
+
+export function nextTierThreshold(score: number): number | null {
+  if (score < 1_000) return 1_000
+  if (score < 4_000) return 4_000
+  if (score < 8_000) return 8_000
+  return null
+}
