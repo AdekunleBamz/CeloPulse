@@ -100,3 +100,13 @@ export function celoToWei(celo: number): bigint {
 export function formatPercent(ratio: number, decimals = 1): string {
   return `${(ratio * 100).toFixed(decimals)}%`
 }
+
+/**
+ * Formats a large number with K/M suffix for compact display.
+ * @param n - Number to format.
+ */
+export function formatCompact(n: number): string {
+  if (n >= 1_000_000) return `${(n / 1_000_000).toFixed(1)}M`
+  if (n >= 1_000) return `${(n / 1_000).toFixed(1)}K`
+  return n.toString()
+}
