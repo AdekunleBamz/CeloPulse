@@ -34,3 +34,6 @@ export const RPC_RETRY_DELAY_MS = 2_000
 
 /** Maximum number of RPC retry attempts. */
 export const MAX_RPC_RETRIES = 5
+
+/** Debounce delay in ms for search/input handlers. */
+export const INPUT_DEBOUNCE_MS = 300
