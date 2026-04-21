@@ -163,3 +163,7 @@ export function parseWei(amount: string): bigint {
   if (!Number.isFinite(n) || n < 0) return 0n
   return BigInt(Math.round(n * 1e18))
 }
+
+export function safeDiv(a: number, b: number): number {
+  return b === 0 ? 0 : a / b
+}
