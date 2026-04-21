@@ -209,12 +209,6 @@ export function formatCountdown(ms: number): string {
   const s = Math.ceil(ms / 1000)
   const m = Math.floor(s / 60)
   const h = Math.floor(m / 60)
-  if (h > 0) return `${h}h ${m 
-export function formatCountdown(ms: number): string {
-  if (ms <= 0) return 'Ready'
-  const s = Math.ceil(ms / 1000)
-  const m = Math.floor(s / 60)
-  const h = Math.floor(m / 60)
   if (h > 0) return `${h}h ${m % 60}m`
   if (m > 0) return `${m}m ${s % 60}s`
   return `${s}s`
