@@ -108,3 +108,6 @@ export const MOBILE_BREAKPOINT_PX = 768
 
 /** Maximum quest ID (zero-indexed). */
 export const MAX_QUEST_ID = 9
+
+/** Native token symbol for the Celo network. */
+export const NATIVE_TOKEN_SYMBOL = 'CELO'
