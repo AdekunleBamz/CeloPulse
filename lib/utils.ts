@@ -119,3 +119,11 @@ export function formatCompact(n: number): string {
 export function hasSufficientBalance(balanceWei: bigint, amountWei: bigint): boolean {
   return balanceWei >= amountWei
 }
+
+/**
+ * Sleeps for the given number of milliseconds.
+ * @param ms - Duration to sleep.
+ */
+export function sleep(ms: number): Promise<void> {
+  return new Promise((resolve) => setTimeout(resolve, ms))
+}
