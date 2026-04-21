@@ -28,3 +28,6 @@ export const ZERO_ADDRESS = '0x0000000000000000000000000000000000000000' as cons
 
 /** Number of block confirmations before a transaction is considered final. */
 export const TX_CONFIRMATIONS = 1
+
+/** Delay (ms) between RPC retry attempts. */
+export const RPC_RETRY_DELAY_MS = 2_000
