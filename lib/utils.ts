@@ -34,3 +34,13 @@ export function weiToCelo(wei: bigint): number {
 export function isZeroAddress(addr: string): boolean {
   return addr === '0x0000000000000000000000000000000000000000'
 }
+
+/**
+ * Clamps a number between min and max values.
+ * @param value - The number to clamp.
+ * @param min - Lower bound.
+ * @param max - Upper bound.
+ */
+export function clamp(value: number, min: number, max: number): number {
+  return Math.min(max, Math.max(min, value))
+}
