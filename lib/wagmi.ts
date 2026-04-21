@@ -92,3 +92,7 @@ export function isTestnet(): boolean {
 export function getActiveChainNativeCurrency(chainId: number): string {
   return chainId === 42220 || chainId === 44787 ? 'CELO' : 'ETH'
 }
+
+export function isMainnetConfig(chainId: number): boolean {
+  return chainId === 42220
+}
