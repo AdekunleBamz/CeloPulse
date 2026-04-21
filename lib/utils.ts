@@ -227,6 +227,7 @@ export function isSameDay(a: number, b: number): boolean {
 }
 
 export function truncateMiddle(s: string, max: number): string {
+  if (max <= 3) return s.slice(0, Math.max(0, max))
   if (s.length <= max) return s
   const half = Math.floor(max / 2)
   return s.slice(0, half) + '...' + s.slice(-half)
