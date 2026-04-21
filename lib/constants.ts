@@ -51,3 +51,9 @@ export const TX_STATUS = Object.freeze({
 
 /** Default gas limit override for MiniPay transactions. */
 export const MINIPAY_GAS_LIMIT = 500_000n
+
+/** Celo mainnet chain ID. */
+export const CELO_MAINNET_CHAIN_ID = 42220
+
+/** Celo Sepolia (Alfajores) testnet chain ID. */
+export const CELO_SEPOLIA_CHAIN_ID = 44787
