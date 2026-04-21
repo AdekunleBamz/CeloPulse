@@ -147,3 +147,8 @@ export function getWalletEnvLabel(): string {
     ? 'MiniPay'
     : 'Browser Wallet'
 }
+
+/** Returns true when the MiniPay window.ethereum provider is available. */
+export function isMiniPayAvailable(): boolean {
+  return typeof window !== 'undefined' && window.ethereum?.isMiniPay === true
+}
