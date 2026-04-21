@@ -84,3 +84,6 @@ export const MIN_STAKE_AMOUNT = 100
 
 /** Number of slots on the on-chain leaderboard. */
 export const LEADERBOARD_SIZE = 10
+
+/** Duration (ms) that an activated boost remains active. */
+export const BOOST_DURATION_MS = 3_600_000
