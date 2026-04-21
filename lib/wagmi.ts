@@ -82,3 +82,9 @@ export function getActiveChainBlockExplorer(): string {
 export function getCeloRpcUrl(): string {
   return activeChains[0].rpcUrls.default.http[0]
 }
+
+/** Returns true when the app is configured to use Celo Sepolia testnet. */
+export function isTestnet(): boolean {
+  const id = Number.parseInt(process.env.NEXT_PUBLIC_CHAIN_ID?.trim() || '', 10)
+  return id === 44787
+}
