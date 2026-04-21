@@ -250,3 +250,8 @@ export function parseChainId(id: unknown): number | null {
   const n = Number(id)
   return Number.isInteger(n) && n > 0 ? n : null
 }
+
+export function formatShortDate(ts: number): string {
+  const d = new Date(ts)
+  return `${d.getMonth() + 1}/${d.getDate()}`
+}
