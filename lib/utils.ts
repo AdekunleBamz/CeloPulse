@@ -9,10 +9,9 @@ import { WEI_PER_CELO } from './constants'
  * @param addr - Full address string.
  */
 export function shortAddress(addr: string): string {
-  const value = addr.trim()
-  if (!value) return ''
-  if (value.length < 10) return value
-  return `${value.slice(0, 6)}...${value.slice(-4)}`
+  const normalizedAddress = typeof addr === 'string' ? addr.trim() : ''
+  if (normalizedAddress.length < 10) return normalizedAddress
+  return `${normalizedAddress.slice(0, 6)}...${normalizedAddress.slice(-4)}`
 }
 
 /**
