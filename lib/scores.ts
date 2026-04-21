@@ -16,3 +16,8 @@ export function formatRank(rank: number): string {
   if (rank === 1) return '#1'
   return `#${rank}`
 }
+
+export function computeActivityRank(score: number, max: number): number {
+  if (max <= 0) return 0
+  return Math.round((score / max) * 100)
+}
