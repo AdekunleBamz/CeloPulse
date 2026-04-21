@@ -157,3 +157,8 @@ export function isMiniPayAvailable(): boolean {
 export function getActiveChainSymbol(): string {
   return activeCeloChain.nativeCurrency.symbol
 }
+
+/** Returns the active fee currency address based on the configured chain. */
+export function getActiveFeeTokenAddress(): `0x${string}` {
+  return activeCeloChain.id === celoSepolia.id ? CUSD_SEPOLIA_ADDRESS : USD_M_MAINNET_ADDRESS
+}
