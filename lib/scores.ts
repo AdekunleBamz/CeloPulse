@@ -28,7 +28,7 @@ export function isMaxScore(score: number): boolean {
 
 export function scoreToPercent(score: number, max: number): number {
   if (max <= 0) return 0
-  return Math.min(100, Math.round((score / max) * 100))
+  return Math.max(0, Math.min(100, Math.round((score / max) * 100)))
 }
 
 export function nextTierThreshold(score: number): number | null {
