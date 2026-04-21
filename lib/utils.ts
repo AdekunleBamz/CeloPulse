@@ -183,3 +183,8 @@ export function subWeiSafe(a: bigint, b: bigint): bigint {
 export function formatDate(ts: number): string {
   return new Date(ts).toLocaleDateString()
 }
+
+export function roundToDecimals(n: number, d: number): number {
+  const f = Math.pow(10, d)
+  return Math.round(n * f) / f
+}
