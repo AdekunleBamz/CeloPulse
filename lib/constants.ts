@@ -99,3 +99,6 @@ export const APP_VERSION = '1.0.0'
 
 /** Default interval (ms) for react-query data refetching. */
 export const DEFAULT_REFETCH_INTERVAL_MS = 60_000
+
+/** CSS transition/animation duration in milliseconds. */
+export const ANIMATION_DURATION_MS = 300
