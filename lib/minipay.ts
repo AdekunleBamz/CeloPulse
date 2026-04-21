@@ -152,3 +152,8 @@ export function getWalletEnvLabel(): string {
 export function isMiniPayAvailable(): boolean {
   return typeof window !== 'undefined' && window.ethereum?.isMiniPay === true
 }
+
+/** Returns the active chain's native currency symbol. */
+export function getActiveChainSymbol(): string {
+  return activeCeloChain.nativeCurrency.symbol
+}
