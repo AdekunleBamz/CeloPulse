@@ -21,3 +21,7 @@ export function computeActivityRank(score: number, max: number): number {
   if (max <= 0) return 0
   return Math.round((score / max) * 100)
 }
+
+export function isMaxScore(score: number): boolean {
+  return score >= 10_000
+}
