@@ -167,3 +167,7 @@ export function parseWei(amount: string): bigint {
 export function safeDiv(a: number, b: number): number {
   return b === 0 ? 0 : a / b
 }
+
+export function isBigIntZero(v: bigint): boolean {
+  return v === 0n
+}
