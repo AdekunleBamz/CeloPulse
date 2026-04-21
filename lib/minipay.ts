@@ -163,8 +163,8 @@ export function getActiveFeeTokenAddress(): `0x${string}` {
   return activeCeloChain.id === celoSepolia.id ? CUSD_SEPOLIA_ADDRESS : USD_M_MAINNET_ADDRESS
 }
 
-/** Returns the block explorer URL for the active chain. */
-export function getExplorerUrl(txHash: string): string {
+/** Returns a full transaction URL in explorer.celo.org format for compatibility. */
+export function getLegacyTxExplorerUrl(txHash: string): string {
   const base = isMainnet()
     ? 'https://explorer.celo.org/mainnet/tx/'
     : 'https://explorer.celo.org/alfajores/tx/'
