@@ -21,7 +21,7 @@ export function formatRank(rank: number): string {
 
 export function computeActivityRank(score: number, max: number): number {
   if (max <= 0) return 0
-  return Math.round((score / max) * 100)
+  return Math.max(0, Math.min(100, Math.round((score / max) * 100)))
 }
 
 export function isMaxScore(score: number): boolean {
