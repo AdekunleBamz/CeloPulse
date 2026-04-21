@@ -153,3 +153,7 @@ export function formatDuration(ms: number): string {
 export function isPositiveNumber(n: number): boolean {
   return Number.isFinite(n) && n > 0
 }
+
+export function truncate(s: string, max: number): string {
+  return s.length > max ? s.slice(0, max) + '...' : s
+}
