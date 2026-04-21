@@ -91,3 +91,12 @@ export function debounce<T extends (...args: unknown[]) => void>(fn: T, delay: n
 export function celoToWei(celo: number): bigint {
   return BigInt(Math.round(celo * 1e18))
 }
+
+/**
+ * Returns a formatted percentage string from a ratio (0-1).
+ * @param ratio - Ratio between 0 and 1.
+ * @param decimals - Number of decimal places.
+ */
+export function formatPercent(ratio: number, decimals = 1): string {
+  return `${(ratio * 100).toFixed(decimals)}%`
+}
