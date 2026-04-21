@@ -225,3 +225,9 @@ export function isSameDay(a: number, b: number): boolean {
   const db = new Date(b)
   return da.getFullYear() === db.getFullYear() && da.getMonth() === db.getMonth() && da.getDate() === db.getDate()
 }
+
+export function truncateMiddle(s: string, max: number): string {
+  if (s.length <= max) return s
+  const half = Math.floor(max / 2)
+  return s.slice(0, half) + '...' + s.slice(-half)
+}
