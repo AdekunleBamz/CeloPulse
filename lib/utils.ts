@@ -52,3 +52,11 @@ export function clamp(value: number, min: number, max: number): number {
 export function formatTimestamp(ts: number): string {
   return new Date(ts * 1000).toLocaleString()
 }
+
+/**
+ * Returns true if the address is a valid non-zero EVM address.
+ * @param addr - Address string to validate.
+ */
+export function isValidAddress(addr: string): boolean {
+  return /^0x[a-fA-F0-9]{40}$/.test(addr) && addr !== '0x0000000000000000000000000000000000000000'
+}
