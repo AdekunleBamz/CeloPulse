@@ -37,3 +37,6 @@ export const MAX_RPC_RETRIES = 5
 
 /** Debounce delay in ms for search/input handlers. */
 export const INPUT_DEBOUNCE_MS = 300
+
+/** App name as displayed in the UI header. */
+export const APP_DISPLAY_NAME = 'CeloPulse'
