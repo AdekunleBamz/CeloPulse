@@ -63,3 +63,6 @@ export const DISPLAY_DECIMALS = 4
 
 /** Maximum achievable activity score for a user. */
 export const MAX_ACTIVITY_SCORE = 10_000
+
+/** Streak bonus in basis points (500 = 5%). */
+export const STREAK_BONUS_BPS = 500
