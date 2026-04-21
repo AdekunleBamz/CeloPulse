@@ -87,3 +87,6 @@ export const LEADERBOARD_SIZE = 10
 
 /** Duration (ms) that an activated boost remains active. */
 export const BOOST_DURATION_MS = 3_600_000
+
+/** Total number of quests available in the app. */
+export const QUEST_COUNT = 10
