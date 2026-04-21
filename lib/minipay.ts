@@ -167,3 +167,11 @@ export function getActiveFeeTokenAddress(): `0x${string}` {
 export function isMainnet(): boolean {
   return activeCeloChain.id === celo.id
 }
+
+/** Returns the block explorer URL for the active chain. */
+export function getExplorerUrl(txHash: string): string {
+  const base = isMainnet()
+    ? 'https://explorer.celo.org/mainnet/tx/'
+    : 'https://explorer.celo.org/alfajores/tx/'
+  return `${base}${txHash}`
+}
