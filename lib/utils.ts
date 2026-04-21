@@ -175,3 +175,7 @@ export function isBigIntZero(v: bigint): boolean {
 export function addWei(a: bigint, b: bigint): bigint {
   return a + b
 }
+
+export function subWeiSafe(a: bigint, b: bigint): bigint {
+  return a > b ? a - b : 0n
+}
