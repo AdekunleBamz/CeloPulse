@@ -157,3 +157,9 @@ export function isPositiveNumber(n: number): boolean {
 export function truncate(s: string, max: number): string {
   return s.length > max ? s.slice(0, max) + '...' : s
 }
+
+export function parseWei(amount: string): bigint {
+  const n = parseFloat(amount)
+  if (!Number.isFinite(n) || n < 0) return 0n
+  return BigInt(Math.round(n * 1e18))
+}
