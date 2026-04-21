@@ -6,9 +6,7 @@
     "url": "git+https://github.com/AdekunleBamz/CeloPulse.git"
   },
   "private": true,
-  "bugs": {
-    "url": "https://github.com/AdekunleBamz/CeloPulse/issues"
-  },
+  "homepage": "https://celopulse-v2.vercel.app",
   "scripts": {
     "dev": "next dev",
     "build": "next build",
