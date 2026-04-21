@@ -179,3 +179,7 @@ export function addWei(a: bigint, b: bigint): bigint {
 export function subWeiSafe(a: bigint, b: bigint): bigint {
   return a > b ? a - b : 0n
 }
+
+export function formatDate(ts: number): string {
+  return new Date(ts).toLocaleDateString()
+}
