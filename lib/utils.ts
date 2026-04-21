@@ -237,3 +237,7 @@ export function clampBigInt(v: bigint, lo: bigint, hi: bigint): bigint {
   if (v > hi) return hi
   return v
 }
+
+export function maxBigInt(a: bigint, b: bigint): bigint {
+  return a > b ? a : b
+}
