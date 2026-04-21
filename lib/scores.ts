@@ -11,3 +11,8 @@ export function getScoreTier(score: number): string {
   if (score >= 1_000) return 'Bronze'
   return 'Newcomer'
 }
+
+export function formatRank(rank: number): string {
+  if (rank === 1) return '#1'
+  return `#${rank}`
+}
