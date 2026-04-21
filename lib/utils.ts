@@ -18,3 +18,11 @@ export function shortAddress(addr: string): string {
 export function formatCelo(amount: number): string {
   return amount.toFixed(4)
 }
+
+/**
+ * Converts wei (bigint) to CELO as a number (divides by 1e18).
+ * @param wei - Amount in wei.
+ */
+export function weiToCelo(wei: bigint): number {
+  return Number(wei) / 1e18
+}
