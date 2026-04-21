@@ -78,3 +78,6 @@ export const CLAIM_COOLDOWN_MS = 86_400_000
 
 /** Maximum number of actions a user can take per day. */
 export const DAILY_ACTION_LIMIT = 10
+
+/** Minimum score units a user must have to initiate a stake. */
+export const MIN_STAKE_AMOUNT = 100
