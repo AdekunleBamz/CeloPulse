@@ -175,3 +175,7 @@ export function getExplorerUrl(txHash: string): string {
     : 'https://explorer.celo.org/alfajores/tx/'
   return `${base}${txHash}`
 }
+
+export function isCeloMainnet(chainId: number): boolean {
+  return chainId === 42220
+}
