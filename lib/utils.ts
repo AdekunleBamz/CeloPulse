@@ -44,3 +44,11 @@ export function isZeroAddress(addr: string): boolean {
 export function clamp(value: number, min: number, max: number): number {
   return Math.min(max, Math.max(min, value))
 }
+
+/**
+ * Formats a Unix timestamp (seconds) as a locale date string.
+ * @param ts - Unix timestamp in seconds.
+ */
+export function formatTimestamp(ts: number): string {
+  return new Date(ts * 1000).toLocaleString()
+}
