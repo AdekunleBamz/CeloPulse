@@ -64,7 +64,7 @@ export function getCUSDSymbol(): string {
 /** Returns a shortened display version of an address (e.g. "0x1234...5678") */
 export function formatAddress(address: string, start = 6, end = 4): string {
   const trimmedAddress = address.trim()
-  if (trimmedAddress.length <= start + end) return trimmedAddress
+  if (trimmedAddress.length <= start + end + 3) return trimmedAddress
   return `${trimmedAddress.slice(0, start)}...${trimmedAddress.slice(-end)}`
 }
 
