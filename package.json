@@ -12,7 +12,7 @@
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
-    "lint:fix": "next lint --fix"
+    "typecheck": "tsc --noEmit"
   },
   "dependencies": {
     "@rainbow-me/rainbowkit": "^2.0.0",
