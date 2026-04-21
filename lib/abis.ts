@@ -79,3 +79,5 @@ export const WRITE_FUNCTION_NAMES = ['registerActivity', 'claimRewards', 'compou
 export const READ_FUNCTION_NAMES = ['getUser', 'getRecentActions', 'getLeaderboard'] as const
 
 export type AbiWriteFunctionName = typeof WRITE_FUNCTION_NAMES[number]
+
+export type AbiReadFunctionName = typeof READ_FUNCTION_NAMES[number]
