@@ -40,3 +40,11 @@ export const INPUT_DEBOUNCE_MS = 300
 
 /** App name as displayed in the UI header. */
 export const APP_DISPLAY_NAME = 'CeloPulse'
+
+/** Transaction status values used to drive UI state. */
+export const TX_STATUS = Object.freeze({
+  IDLE: 'idle',
+  PENDING: 'pending',
+  SUCCESS: 'success',
+  ERROR: 'error',
+} as const)
