@@ -6,8 +6,8 @@
     "url": "git+https://github.com/AdekunleBamz/CeloPulse.git"
   },
   "private": true,
-  "engines": {
-    "node": ">=18"
+  "bugs": {
+    "url": "https://github.com/AdekunleBamz/CeloPulse/issues"
   },
   "scripts": {
     "dev": "next dev",
