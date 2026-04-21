@@ -192,3 +192,7 @@ export function roundToDecimals(n: number, d: number): number {
 export function capitalize(s: string): string {
   return s.charAt(0).toUpperCase() + s.slice(1)
 }
+
+export function computeStreakBonus(streak: number, bps: number): number {
+  return Math.floor(streak * bps / 10_000)
+}
