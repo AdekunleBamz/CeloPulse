@@ -188,3 +188,7 @@ export function roundToDecimals(n: number, d: number): number {
   const f = Math.pow(10, d)
   return Math.round(n * f) / f
 }
+
+export function capitalize(s: string): string {
+  return s.charAt(0).toUpperCase() + s.slice(1)
+}
