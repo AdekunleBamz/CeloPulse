@@ -255,3 +255,7 @@ export function formatShortDate(ts: number): string {
   const d = new Date(ts)
   return `${d.getMonth() + 1}/${d.getDate()}`
 }
+
+export function isEmptyAddress(addr: string): boolean {
+  return !addr || addr === '0x0000000000000000000000000000000000000000'
+}
