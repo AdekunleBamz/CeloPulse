@@ -184,6 +184,7 @@ export function subWeiSafe(a: bigint, b: bigint): bigint {
 }
 
 export function formatDate(ts: number): string {
+  if (!Number.isFinite(ts) || ts <= 0) return ''
   return new Date(ts).toLocaleDateString()
 }
 
