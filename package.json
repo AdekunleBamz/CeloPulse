@@ -1,6 +1,10 @@
 {
   "name": "celopulse",
   "version": "1.0.0",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/AdekunleBamz/CeloPulse.git"
+  },
   "private": true,
   "scripts": {
     "dev": "next dev",
