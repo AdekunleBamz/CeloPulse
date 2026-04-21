@@ -52,6 +52,7 @@ export function clamp(value: number, min: number, max: number): number {
  * @param ts - Unix timestamp in seconds.
  */
 export function formatTimestamp(ts: number): string {
+  if (!Number.isFinite(ts) || ts <= 0) return ''
   return new Date(ts * 1000).toLocaleString()
 }
 
