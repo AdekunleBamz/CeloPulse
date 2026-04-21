@@ -231,3 +231,9 @@ export function truncateMiddle(s: string, max: number): string {
   const half = Math.floor(max / 2)
   return s.slice(0, half) + '...' + s.slice(-half)
 }
+
+export function clampBigInt(v: bigint, lo: bigint, hi: bigint): bigint {
+  if (v < lo) return lo
+  if (v > hi) return hi
+  return v
+}
