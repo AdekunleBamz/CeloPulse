@@ -183,3 +183,9 @@ export function isCeloMainnet(chainId: number): boolean {
 export function isCeloSepolia(chainId: number): boolean {
   return chainId === 44787
 }
+
+export function formatNetworkBadge(chainId: number): string {
+  if (chainId === 42220) return 'Celo'
+  if (chainId === 44787) return 'Alfajores'
+  return 'Unknown'
+}
