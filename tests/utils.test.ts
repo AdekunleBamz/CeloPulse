@@ -164,3 +164,9 @@ describe('lib/utils hasSufficientBalance', () => {
     expect(hasSufficientBalance(9n, 10n)).toBe(false)
   })
 })
+
+describe('lib/utils formatWei', () => {
+  it('formats wei with four decimals by default', () => {
+    expect(formatWei(1_234_567_000_000_000_000n)).toBe('1.2346')
+  })
+})
