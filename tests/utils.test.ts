@@ -264,3 +264,9 @@ describe('lib/utils subWeiSafe', () => {
     expect(subWeiSafe(3n, 5n)).toBe(0n)
   })
 })
+
+describe('lib/utils formatDate', () => {
+  it('returns an empty string for invalid dates', () => {
+    expect(formatDate(0)).toBe('')
+  })
+})
