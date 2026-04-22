@@ -214,3 +214,9 @@ describe('lib/utils truncate', () => {
     expect(truncate('celopulse', 4)).toBe('celo...')
   })
 })
+
+describe('lib/utils parseWei', () => {
+  it('parses whole CELO strings to wei', () => {
+    expect(parseWei('2')).toBe(2_000_000_000_000_000_000n)
+  })
+})
