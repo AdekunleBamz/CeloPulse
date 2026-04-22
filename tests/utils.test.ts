@@ -298,3 +298,9 @@ describe('lib/utils getBadgeLabel', () => {
     expect(getBadgeLabel(999)).toBe('Newcomer')
   })
 })
+
+describe('lib/utils formatCountdown', () => {
+  it('returns ready for elapsed countdowns', () => {
+    expect(formatCountdown(0)).toBe('Ready')
+  })
+})
