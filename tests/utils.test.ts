@@ -194,3 +194,9 @@ describe('lib/utils formatDuration', () => {
     expect(formatDuration(7_500_000)).toBe('2h 5m')
   })
 })
+
+describe('lib/utils isPositiveNumber', () => {
+  it('accepts finite positive numbers', () => {
+    expect(isPositiveNumber(1)).toBe(true)
+  })
+})
