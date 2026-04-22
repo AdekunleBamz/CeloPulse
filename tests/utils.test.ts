@@ -61,4 +61,8 @@ describe('lib/utils weiToCelo', () => {
   it('converts whole CELO values from wei', () => {
     expect(weiToCelo(2_000_000_000_000_000_000n)).toBe(2)
   })
+
+  it('converts fractional CELO values from wei', () => {
+    expect(weiToCelo(1_250_000_000_000_000_000n)).toBe(1.25)
+  })
 })
