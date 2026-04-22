@@ -115,4 +115,8 @@ describe('lib/utils pluralize', () => {
   it('uses singular labels for one item', () => {
     expect(pluralize(1, 'quest')).toBe('quest')
   })
+
+  it('uses default plural labels for other counts', () => {
+    expect(pluralize(2, 'quest')).toBe('quests')
+  })
 })
