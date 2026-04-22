@@ -154,3 +154,9 @@ describe('lib/utils formatCompact', () => {
     expect(formatCompact(2_500)).toBe('2.5K')
   })
 })
+
+describe('lib/utils hasSufficientBalance', () => {
+  it('accepts balances equal to the requested amount', () => {
+    expect(hasSufficientBalance(10n, 10n)).toBe(true)
+  })
+})
