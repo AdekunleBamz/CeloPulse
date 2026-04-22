@@ -209,4 +209,8 @@ describe('lib/utils truncate', () => {
   it('leaves short strings unchanged', () => {
     expect(truncate('pulse', 10)).toBe('pulse')
   })
+
+  it('adds ellipses to long strings', () => {
+    expect(truncate('celopulse', 4)).toBe('celo...')
+  })
 })
