@@ -180,3 +180,9 @@ describe('lib/utils formatScore', () => {
     expect(formatScore(1234567)).toBe('1,234,567')
   })
 })
+
+describe('lib/utils formatDuration', () => {
+  it('formats sub-minute durations in seconds', () => {
+    expect(formatDuration(45_000)).toBe('45s')
+  })
+})
