@@ -223,4 +223,8 @@ describe('lib/utils parseWei', () => {
   it('parses fractional CELO strings to wei', () => {
     expect(parseWei('1.25')).toBe(1_250_000_000_000_000_000n)
   })
+
+  it('parses leading decimal CELO strings to wei', () => {
+    expect(parseWei('.5')).toBe(500_000_000_000_000_000n)
+  })
 })
