@@ -45,4 +45,8 @@ describe('lib/utils shortAddress', () => {
   it('returns an empty string for blank addresses', () => {
     expect(shortAddress('   ')).toBe('')
   })
+
+  it('leaves short addresses unchanged', () => {
+    expect(shortAddress('0x1234')).toBe('0x1234')
+  })
 })
