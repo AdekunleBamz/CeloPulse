@@ -293,4 +293,8 @@ describe('lib/utils getBadgeLabel', () => {
   it('returns gold labels for high scores', () => {
     expect(getBadgeLabel(8000)).toBe('Gold')
   })
+
+  it('returns newcomer labels for low scores', () => {
+    expect(getBadgeLabel(999)).toBe('Newcomer')
+  })
 })
