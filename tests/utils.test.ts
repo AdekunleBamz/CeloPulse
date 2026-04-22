@@ -124,3 +124,9 @@ describe('lib/utils pluralize', () => {
     expect(pluralize(0, 'entry', 'entries')).toBe('entries')
   })
 })
+
+describe('lib/utils celoToWei', () => {
+  it('converts one CELO to wei', () => {
+    expect(celoToWei(1)).toBe(1_000_000_000_000_000_000n)
+  })
+})
