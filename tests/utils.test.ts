@@ -66,3 +66,9 @@ describe('lib/utils weiToCelo', () => {
     expect(weiToCelo(1_250_000_000_000_000_000n)).toBe(1.25)
   })
 })
+
+describe('lib/utils isZeroAddress', () => {
+  it('detects zero addresses with whitespace and casing', () => {
+    expect(isZeroAddress('  0X0000000000000000000000000000000000000000  ')).toBe(true)
+  })
+})
