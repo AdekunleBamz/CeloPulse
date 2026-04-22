@@ -204,3 +204,9 @@ describe('lib/utils isPositiveNumber', () => {
     expect(isPositiveNumber(Number.POSITIVE_INFINITY)).toBe(false)
   })
 })
+
+describe('lib/utils truncate', () => {
+  it('leaves short strings unchanged', () => {
+    expect(truncate('pulse', 10)).toBe('pulse')
+  })
+})
