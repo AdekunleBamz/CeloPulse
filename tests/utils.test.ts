@@ -276,3 +276,9 @@ describe('lib/utils roundToDecimals', () => {
     expect(roundToDecimals(1.234, 2)).toBe(1.23)
   })
 })
+
+describe('lib/utils capitalize', () => {
+  it('capitalizes the first letter', () => {
+    expect(capitalize('pulse')).toBe('Pulse')
+  })
+})
