@@ -50,3 +50,9 @@ describe('lib/utils shortAddress', () => {
     expect(shortAddress('0x1234')).toBe('0x1234')
   })
 })
+
+describe('lib/utils formatCelo', () => {
+  it('formats CELO values to four decimals', () => {
+    expect(formatCelo(1.23456)).toBe('1.2346')
+  })
+})
