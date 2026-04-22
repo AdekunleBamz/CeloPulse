@@ -159,4 +159,8 @@ describe('lib/utils hasSufficientBalance', () => {
   it('accepts balances equal to the requested amount', () => {
     expect(hasSufficientBalance(10n, 10n)).toBe(true)
   })
+
+  it('rejects balances below the requested amount', () => {
+    expect(hasSufficientBalance(9n, 10n)).toBe(false)
+  })
 })
