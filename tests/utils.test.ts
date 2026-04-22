@@ -139,4 +139,8 @@ describe('lib/utils formatPercent', () => {
   it('formats ratios with one decimal by default', () => {
     expect(formatPercent(0.1234)).toBe('12.3%')
   })
+
+  it('supports custom percentage precision', () => {
+    expect(formatPercent(0.1234, 2)).toBe('12.34%')
+  })
 })
