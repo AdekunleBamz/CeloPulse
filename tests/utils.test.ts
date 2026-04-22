@@ -71,4 +71,8 @@ describe('lib/utils isZeroAddress', () => {
   it('detects zero addresses with whitespace and casing', () => {
     expect(isZeroAddress('  0X0000000000000000000000000000000000000000  ')).toBe(true)
   })
+
+  it('rejects non-zero addresses', () => {
+    expect(isZeroAddress('0x1234567890abcdef1234567890abcdef12345678')).toBe(false)
+  })
 })
