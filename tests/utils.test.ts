@@ -259,4 +259,8 @@ describe('lib/utils subWeiSafe', () => {
   it('subtracts wei amounts when possible', () => {
     expect(subWeiSafe(5n, 3n)).toBe(2n)
   })
+
+  it('floors unsafe wei subtraction at zero', () => {
+    expect(subWeiSafe(3n, 5n)).toBe(0n)
+  })
 })
