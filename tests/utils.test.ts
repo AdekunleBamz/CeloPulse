@@ -242,3 +242,9 @@ describe('lib/utils safeDiv', () => {
     expect(safeDiv(10, 0)).toBe(0)
   })
 })
+
+describe('lib/utils isBigIntZero', () => {
+  it('detects zero bigint values', () => {
+    expect(isBigIntZero(0n)).toBe(true)
+  })
+})
