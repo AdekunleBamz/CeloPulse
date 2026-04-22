@@ -149,4 +149,8 @@ describe('lib/utils formatCompact', () => {
   it('formats million-scale values compactly', () => {
     expect(formatCompact(1_200_000)).toBe('1.2M')
   })
+
+  it('formats thousand-scale values compactly', () => {
+    expect(formatCompact(2_500)).toBe('2.5K')
+  })
 })
