@@ -90,3 +90,9 @@ describe('lib/utils clamp', () => {
     expect(clamp(5, 0, 10)).toBe(5)
   })
 })
+
+describe('lib/utils formatTimestamp', () => {
+  it('returns an empty string for invalid timestamps', () => {
+    expect(formatTimestamp(0)).toBe('')
+  })
+})
