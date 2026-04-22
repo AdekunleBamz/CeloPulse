@@ -303,4 +303,8 @@ describe('lib/utils formatCountdown', () => {
   it('returns ready for elapsed countdowns', () => {
     expect(formatCountdown(0)).toBe('Ready')
   })
+
+  it('formats countdowns in minutes and seconds', () => {
+    expect(formatCountdown(125_000)).toBe('2m 5s')
+  })
 })
