@@ -232,3 +232,9 @@ describe('lib/utils parseWei', () => {
     expect(parseWei('bad')).toBe(0n)
   })
 })
+
+describe('lib/utils safeDiv', () => {
+  it('divides normal numbers', () => {
+    expect(safeDiv(10, 2)).toBe(5)
+  })
+})
