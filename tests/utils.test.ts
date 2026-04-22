@@ -169,4 +169,8 @@ describe('lib/utils formatWei', () => {
   it('formats wei with four decimals by default', () => {
     expect(formatWei(1_234_567_000_000_000_000n)).toBe('1.2346')
   })
+
+  it('supports custom wei display precision', () => {
+    expect(formatWei(1_234_567_000_000_000_000n, 2)).toBe('1.23')
+  })
 })
