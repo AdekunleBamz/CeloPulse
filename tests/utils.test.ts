@@ -308,3 +308,9 @@ describe('lib/utils formatCountdown', () => {
     expect(formatCountdown(125_000)).toBe('2m 5s')
   })
 })
+
+describe('lib/utils isSameDay', () => {
+  it('matches timestamps from the same calendar day', () => {
+    expect(isSameDay(Date.UTC(2026, 0, 1, 1), Date.UTC(2026, 0, 1, 23))).toBe(true)
+  })
+})
