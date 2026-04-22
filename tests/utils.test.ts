@@ -282,3 +282,9 @@ describe('lib/utils capitalize', () => {
     expect(capitalize('pulse')).toBe('Pulse')
   })
 })
+
+describe('lib/utils computeStreakBonus', () => {
+  it('computes streak bonuses from basis points', () => {
+    expect(computeStreakBonus(20, 500)).toBe(1)
+  })
+})
