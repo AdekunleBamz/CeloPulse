@@ -288,3 +288,9 @@ describe('lib/utils computeStreakBonus', () => {
     expect(computeStreakBonus(20, 500)).toBe(1)
   })
 })
+
+describe('lib/utils getBadgeLabel', () => {
+  it('returns gold labels for high scores', () => {
+    expect(getBadgeLabel(8000)).toBe('Gold')
+  })
+})
