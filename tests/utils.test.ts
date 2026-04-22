@@ -254,3 +254,9 @@ describe('lib/utils addWei', () => {
     expect(addWei(2n, 3n)).toBe(5n)
   })
 })
+
+describe('lib/utils subWeiSafe', () => {
+  it('subtracts wei amounts when possible', () => {
+    expect(subWeiSafe(5n, 3n)).toBe(2n)
+  })
+})
