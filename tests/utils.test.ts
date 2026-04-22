@@ -227,4 +227,8 @@ describe('lib/utils parseWei', () => {
   it('parses leading decimal CELO strings to wei', () => {
     expect(parseWei('.5')).toBe(500_000_000_000_000_000n)
   })
+
+  it('returns zero for invalid CELO strings', () => {
+    expect(parseWei('bad')).toBe(0n)
+  })
 })
