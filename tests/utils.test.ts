@@ -96,3 +96,9 @@ describe('lib/utils formatTimestamp', () => {
     expect(formatTimestamp(0)).toBe('')
   })
 })
+
+describe('lib/utils isValidAddress', () => {
+  it('accepts valid non-zero EVM addresses', () => {
+    expect(isValidAddress('0x1234567890abcdef1234567890abcdef12345678')).toBe(true)
+  })
+})
