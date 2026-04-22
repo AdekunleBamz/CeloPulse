@@ -199,4 +199,8 @@ describe('lib/utils isPositiveNumber', () => {
   it('accepts finite positive numbers', () => {
     expect(isPositiveNumber(1)).toBe(true)
   })
+
+  it('rejects non-finite numbers', () => {
+    expect(isPositiveNumber(Number.POSITIVE_INFINITY)).toBe(false)
+  })
 })
