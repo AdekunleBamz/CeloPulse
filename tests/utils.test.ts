@@ -237,4 +237,8 @@ describe('lib/utils safeDiv', () => {
   it('divides normal numbers', () => {
     expect(safeDiv(10, 2)).toBe(5)
   })
+
+  it('returns zero when dividing by zero', () => {
+    expect(safeDiv(10, 0)).toBe(0)
+  })
 })
