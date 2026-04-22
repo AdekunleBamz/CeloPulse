@@ -134,3 +134,9 @@ describe('lib/utils celoToWei', () => {
     expect(celoToWei(1.5)).toBe(1_500_000_000_000_000_000n)
   })
 })
+
+describe('lib/utils formatPercent', () => {
+  it('formats ratios with one decimal by default', () => {
+    expect(formatPercent(0.1234)).toBe('12.3%')
+  })
+})
