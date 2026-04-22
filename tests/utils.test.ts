@@ -219,4 +219,8 @@ describe('lib/utils parseWei', () => {
   it('parses whole CELO strings to wei', () => {
     expect(parseWei('2')).toBe(2_000_000_000_000_000_000n)
   })
+
+  it('parses fractional CELO strings to wei', () => {
+    expect(parseWei('1.25')).toBe(1_250_000_000_000_000_000n)
+  })
 })
