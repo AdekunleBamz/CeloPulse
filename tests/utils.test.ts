@@ -144,3 +144,9 @@ describe('lib/utils formatPercent', () => {
     expect(formatPercent(0.1234, 2)).toBe('12.34%')
   })
 })
+
+describe('lib/utils formatCompact', () => {
+  it('formats million-scale values compactly', () => {
+    expect(formatCompact(1_200_000)).toBe('1.2M')
+  })
+})
