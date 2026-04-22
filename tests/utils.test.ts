@@ -110,3 +110,9 @@ describe('lib/utils isValidAddress', () => {
     expect(isValidAddress('0X1234567890abcdef1234567890abcdef12345678')).toBe(false)
   })
 })
+
+describe('lib/utils pluralize', () => {
+  it('uses singular labels for one item', () => {
+    expect(pluralize(1, 'quest')).toBe('quest')
+  })
+})
