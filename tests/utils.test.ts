@@ -56,3 +56,9 @@ describe('lib/utils formatCelo', () => {
     expect(formatCelo(1.23456)).toBe('1.2346')
   })
 })
+
+describe('lib/utils weiToCelo', () => {
+  it('converts whole CELO values from wei', () => {
+    expect(weiToCelo(2_000_000_000_000_000_000n)).toBe(2)
+  })
+})
