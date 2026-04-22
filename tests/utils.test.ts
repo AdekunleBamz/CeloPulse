@@ -76,3 +76,9 @@ describe('lib/utils isZeroAddress', () => {
     expect(isZeroAddress('0x1234567890abcdef1234567890abcdef12345678')).toBe(false)
   })
 })
+
+describe('lib/utils clamp', () => {
+  it('raises values below the lower bound', () => {
+    expect(clamp(-5, 0, 10)).toBe(0)
+  })
+})
