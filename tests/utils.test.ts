@@ -81,4 +81,8 @@ describe('lib/utils clamp', () => {
   it('raises values below the lower bound', () => {
     expect(clamp(-5, 0, 10)).toBe(0)
   })
+
+  it('lowers values above the upper bound', () => {
+    expect(clamp(15, 0, 10)).toBe(10)
+  })
 })
