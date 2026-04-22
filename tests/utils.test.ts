@@ -189,4 +189,8 @@ describe('lib/utils formatDuration', () => {
   it('formats minute durations with remaining seconds', () => {
     expect(formatDuration(125_000)).toBe('2m 5s')
   })
+
+  it('formats hour durations with remaining minutes', () => {
+    expect(formatDuration(7_500_000)).toBe('2h 5m')
+  })
 })
