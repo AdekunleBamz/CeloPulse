@@ -270,3 +270,9 @@ describe('lib/utils formatDate', () => {
     expect(formatDate(0)).toBe('')
   })
 })
+
+describe('lib/utils roundToDecimals', () => {
+  it('rounds numbers to requested decimals', () => {
+    expect(roundToDecimals(1.234, 2)).toBe(1.23)
+  })
+})
