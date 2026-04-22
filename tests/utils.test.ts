@@ -174,3 +174,9 @@ describe('lib/utils formatWei', () => {
     expect(formatWei(1_234_567_000_000_000_000n, 2)).toBe('1.23')
   })
 })
+
+describe('lib/utils formatScore', () => {
+  it('adds locale separators to scores', () => {
+    expect(formatScore(1234567)).toBe('1,234,567')
+  })
+})
