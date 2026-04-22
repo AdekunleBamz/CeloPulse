@@ -105,4 +105,8 @@ describe('lib/utils isValidAddress', () => {
   it('rejects the zero address', () => {
     expect(isValidAddress('0x0000000000000000000000000000000000000000')).toBe(false)
   })
+
+  it('rejects uppercase address prefixes', () => {
+    expect(isValidAddress('0X1234567890abcdef1234567890abcdef12345678')).toBe(false)
+  })
 })
