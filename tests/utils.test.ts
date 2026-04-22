@@ -248,3 +248,9 @@ describe('lib/utils isBigIntZero', () => {
     expect(isBigIntZero(0n)).toBe(true)
   })
 })
+
+describe('lib/utils addWei', () => {
+  it('adds wei amounts', () => {
+    expect(addWei(2n, 3n)).toBe(5n)
+  })
+})
