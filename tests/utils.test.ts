@@ -101,4 +101,8 @@ describe('lib/utils isValidAddress', () => {
   it('accepts valid non-zero EVM addresses', () => {
     expect(isValidAddress('0x1234567890abcdef1234567890abcdef12345678')).toBe(true)
   })
+
+  it('rejects the zero address', () => {
+    expect(isValidAddress('0x0000000000000000000000000000000000000000')).toBe(false)
+  })
 })
