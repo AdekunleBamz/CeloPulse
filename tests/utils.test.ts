@@ -324,3 +324,9 @@ describe('lib/utils truncateMiddle', () => {
     expect(truncateMiddle('abcdef', 3)).toBe('abc')
   })
 })
+
+describe('lib/utils clampBigInt', () => {
+  it('raises bigint values below the lower bound', () => {
+    expect(clampBigInt(-1n, 0n, 10n)).toBe(0n)
+  })
+})
