@@ -346,3 +346,9 @@ describe('lib/utils minBigInt', () => {
     expect(minBigInt(3n, 5n)).toBe(3n)
   })
 })
+
+describe('lib/utils parseChainId', () => {
+  it('parses positive integer chain ids from strings', () => {
+    expect(parseChainId('42220')).toBe(42220)
+  })
+})
