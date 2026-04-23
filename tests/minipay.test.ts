@@ -102,3 +102,9 @@ describe('lib/minipay explorer links', () => {
     expect(getTxExplorerUrl('  0xabc  ')).toBe('https://celoscan.io/tx/0xabc')
   })
 })
+
+describe('lib/minipay getNetworkType', () => {
+  it('labels the default network as mainnet', () => {
+    expect(getNetworkType()).toBe('mainnet')
+  })
+})
