@@ -5,6 +5,7 @@ const nextConfig = {
   images: {
     domains: ['celopulse-v2.vercel.app'],
     unoptimized: false,
+    formats: ["image/avif", "image/webp"],
   },
 }
 
