@@ -85,3 +85,10 @@ describe('lib/minipay isMiniPayProvider', () => {
     expect(isMiniPayProvider({ isMiniPay: true })).toBe(true)
   })
 })
+
+describe('lib/minipay isMiniPayWallet', () => {
+  it('returns false when no window is available', () => {
+    vi.stubGlobal('window', undefined)
+    expect(isMiniPayWallet()).toBe(false)
+  })
+})
