@@ -66,6 +66,10 @@ describe('lib/minipay getCUSDAddress', () => {
   it('returns the mainnet USD stable token by default', () => {
     expect(getCUSDAddress()).toBe(USD_M_MAINNET_ADDRESS)
   })
+
+  it('keeps the Sepolia stable token configured as an EVM address', () => {
+    expect(isValidEvmAddress(CUSD_SEPOLIA_ADDRESS)).toBe(true)
+  })
 })
 
 describe('lib/minipay getCUSDSymbol', () => {
