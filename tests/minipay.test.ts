@@ -67,3 +67,9 @@ describe('lib/minipay getCUSDAddress', () => {
     expect(getCUSDAddress()).toBe(USD_M_MAINNET_ADDRESS)
   })
 })
+
+describe('lib/minipay getCUSDSymbol', () => {
+  it('returns the mainnet cUSD symbol by default', () => {
+    expect(getCUSDSymbol()).toBe('cUSD')
+  })
+})
