@@ -361,4 +361,8 @@ describe('lib/utils isEmptyAddress', () => {
   it('treats blank addresses as empty', () => {
     expect(isEmptyAddress('')).toBe(true)
   })
+
+  it('treats zero addresses as empty', () => {
+    expect(isEmptyAddress('0x0000000000000000000000000000000000000000')).toBe(true)
+  })
 })
