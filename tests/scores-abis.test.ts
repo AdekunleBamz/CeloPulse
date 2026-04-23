@@ -58,3 +58,13 @@ describe('lib/abis isWriteFunction', () => {
     expect(isWriteFunction('claimRewards')).toBe(true)
   })
 })
+
+describe('lib/abis isReadFunction', () => {
+  it('recognizes configured read functions', () => {
+    expect(isReadFunction('getLeaderboard')).toBe(true)
+  })
+
+  it('lists contract ABI function names', () => {
+    expect(ABI_FUNCTION_NAMES).toContain('getUser')
+  })
+})
