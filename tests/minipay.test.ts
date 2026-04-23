@@ -79,3 +79,9 @@ describe('lib/minipay formatAddress', () => {
     expect(formatAddress('0x1234567890abcdef1234567890abcdef12345678')).toBe('0x1234...5678')
   })
 })
+
+describe('lib/minipay isMiniPayProvider', () => {
+  it('detects MiniPay provider flags', () => {
+    expect(isMiniPayProvider({ isMiniPay: true })).toBe(true)
+  })
+})
