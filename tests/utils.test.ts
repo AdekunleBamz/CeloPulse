@@ -334,3 +334,9 @@ describe('lib/utils clampBigInt', () => {
     expect(clampBigInt(11n, 0n, 10n)).toBe(10n)
   })
 })
+
+describe('lib/utils maxBigInt', () => {
+  it('returns the larger bigint value', () => {
+    expect(maxBigInt(3n, 5n)).toBe(5n)
+  })
+})
