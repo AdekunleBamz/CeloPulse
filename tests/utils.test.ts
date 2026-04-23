@@ -311,7 +311,7 @@ describe('lib/utils formatCountdown', () => {
 
 describe('lib/utils isSameDay', () => {
   it('matches timestamps from the same calendar day', () => {
-    expect(isSameDay(Date.UTC(2026, 0, 1, 1), Date.UTC(2026, 0, 1, 23))).toBe(true)
+    expect(isSameDay(new Date(2026, 0, 1, 1).getTime(), new Date(2026, 0, 1, 23).getTime())).toBe(true)
   })
 })
 
