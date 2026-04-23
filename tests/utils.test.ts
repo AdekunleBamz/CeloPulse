@@ -340,3 +340,9 @@ describe('lib/utils maxBigInt', () => {
     expect(maxBigInt(3n, 5n)).toBe(5n)
   })
 })
+
+describe('lib/utils minBigInt', () => {
+  it('returns the smaller bigint value', () => {
+    expect(minBigInt(3n, 5n)).toBe(3n)
+  })
+})
