@@ -61,3 +61,9 @@ describe('lib/minipay isSameAddress', () => {
     ).toBe(true)
   })
 })
+
+describe('lib/minipay getCUSDAddress', () => {
+  it('returns the mainnet USD stable token by default', () => {
+    expect(getCUSDAddress()).toBe(USD_M_MAINNET_ADDRESS)
+  })
+})
