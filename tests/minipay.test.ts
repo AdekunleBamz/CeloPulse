@@ -73,3 +73,9 @@ describe('lib/minipay getCUSDSymbol', () => {
     expect(getCUSDSymbol()).toBe('cUSD')
   })
 })
+
+describe('lib/minipay formatAddress', () => {
+  it('truncates MiniPay addresses for display', () => {
+    expect(formatAddress('0x1234567890abcdef1234567890abcdef12345678')).toBe('0x1234...5678')
+  })
+})
