@@ -50,3 +50,14 @@ describe('lib/minipay normalizeAddress', () => {
     )
   })
 })
+
+describe('lib/minipay isSameAddress', () => {
+  it('matches addresses regardless of casing', () => {
+    expect(
+      isSameAddress(
+        '0x1234567890abcdef1234567890abcdef12345678',
+        '0x1234567890ABCDEF1234567890ABCDEF12345678',
+      ),
+    ).toBe(true)
+  })
+})
