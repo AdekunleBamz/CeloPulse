@@ -314,3 +314,9 @@ describe('lib/utils isSameDay', () => {
     expect(isSameDay(Date.UTC(2026, 0, 1, 1), Date.UTC(2026, 0, 1, 23))).toBe(true)
   })
 })
+
+describe('lib/utils truncateMiddle', () => {
+  it('truncates long strings through the middle', () => {
+    expect(truncateMiddle('abcdefghijklmnopqrstuvwxyz', 10)).toBe('abcde...vwxyz')
+  })
+})
