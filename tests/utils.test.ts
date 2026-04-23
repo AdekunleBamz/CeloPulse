@@ -351,4 +351,8 @@ describe('lib/utils parseChainId', () => {
   it('parses positive integer chain ids from strings', () => {
     expect(parseChainId('42220')).toBe(42220)
   })
+
+  it('returns null for invalid chain ids', () => {
+    expect(parseChainId('bad')).toBeNull()
+  })
 })
