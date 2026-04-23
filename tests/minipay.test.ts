@@ -25,4 +25,8 @@ describe('lib/minipay isValidEvmAddress', () => {
   it('accepts valid EVM addresses', () => {
     expect(isValidEvmAddress('0x1234567890abcdef1234567890abcdef12345678')).toBe(true)
   })
+
+  it('rejects malformed EVM addresses', () => {
+    expect(isValidEvmAddress('0x1234')).toBe(false)
+  })
 })
