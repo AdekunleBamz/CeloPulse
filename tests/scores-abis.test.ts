@@ -22,3 +22,9 @@ describe('lib/scores getScoreTier', () => {
     expect(getScoreTier(999)).toBe('Newcomer')
   })
 })
+
+describe('lib/scores formatRank', () => {
+  it('formats first place ranks', () => {
+    expect(formatRank(1)).toBe('#1')
+  })
+})
