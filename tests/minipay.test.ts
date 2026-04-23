@@ -42,3 +42,11 @@ describe('lib/minipay isZeroAddress', () => {
     expect(isZeroAddress('  0X0000000000000000000000000000000000000000  ')).toBe(true)
   })
 })
+
+describe('lib/minipay normalizeAddress', () => {
+  it('trims and lowercases addresses', () => {
+    expect(normalizeAddress('  0xABCDEFabcdefABCDEFabcdefABCDEFabcdefabcd  ')).toBe(
+      '0xabcdefabcdefabcdefabcdefabcdefabcdefabcd',
+    )
+  })
+})
