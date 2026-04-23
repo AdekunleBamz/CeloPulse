@@ -34,3 +34,9 @@ describe('lib/scores computeActivityRank', () => {
     expect(computeActivityRank(500, 0)).toBe(0)
   })
 })
+
+describe('lib/scores scoreToPercent', () => {
+  it('caps score percentages at one hundred', () => {
+    expect(scoreToPercent(20, 10)).toBe(100)
+  })
+})
