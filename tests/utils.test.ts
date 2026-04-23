@@ -319,4 +319,8 @@ describe('lib/utils truncateMiddle', () => {
   it('truncates long strings through the middle', () => {
     expect(truncateMiddle('abcdefghijklmnopqrstuvwxyz', 10)).toBe('abcde...vwxyz')
   })
+
+  it('respects very small maximum lengths', () => {
+    expect(truncateMiddle('abcdef', 3)).toBe('abc')
+  })
 })
