@@ -356,3 +356,9 @@ describe('lib/utils parseChainId', () => {
     expect(parseChainId('bad')).toBeNull()
   })
 })
+
+describe('lib/utils isEmptyAddress', () => {
+  it('treats blank addresses as empty', () => {
+    expect(isEmptyAddress('')).toBe(true)
+  })
+})
