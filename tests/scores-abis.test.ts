@@ -52,3 +52,9 @@ describe('lib/scores isMaxScore', () => {
     expect(isMaxScore(10_000)).toBe(true)
   })
 })
+
+describe('lib/abis isWriteFunction', () => {
+  it('recognizes configured write functions', () => {
+    expect(isWriteFunction('claimRewards')).toBe(true)
+  })
+})
