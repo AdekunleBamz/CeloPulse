@@ -28,3 +28,9 @@ describe('lib/scores formatRank', () => {
     expect(formatRank(1)).toBe('#1')
   })
 })
+
+describe('lib/scores computeActivityRank', () => {
+  it('returns zero when max score is unavailable', () => {
+    expect(computeActivityRank(500, 0)).toBe(0)
+  })
+})
