@@ -97,4 +97,8 @@ describe('lib/minipay explorer links', () => {
   it('trims addresses in explorer links', () => {
     expect(getAddressExplorerUrl('  0x123  ')).toBe('https://celoscan.io/address/0x123')
   })
+
+  it('trims transaction hashes in explorer links', () => {
+    expect(getTxExplorerUrl('  0xabc  ')).toBe('https://celoscan.io/tx/0xabc')
+  })
 })
