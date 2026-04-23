@@ -36,3 +36,9 @@ describe('lib/minipay isSupportedChain', () => {
     expect(isSupportedChain(42220)).toBe(true)
   })
 })
+
+describe('lib/minipay isZeroAddress', () => {
+  it('detects zero addresses with whitespace and casing', () => {
+    expect(isZeroAddress('  0X0000000000000000000000000000000000000000  ')).toBe(true)
+  })
+})
