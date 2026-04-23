@@ -46,3 +46,9 @@ describe('lib/scores nextTierThreshold', () => {
     expect(nextTierThreshold(8_000)).toBeNull()
   })
 })
+
+describe('lib/scores isMaxScore', () => {
+  it('detects maxed activity scores', () => {
+    expect(isMaxScore(10_000)).toBe(true)
+  })
+})
