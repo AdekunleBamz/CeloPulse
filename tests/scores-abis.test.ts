@@ -40,3 +40,9 @@ describe('lib/scores scoreToPercent', () => {
     expect(scoreToPercent(20, 10)).toBe(100)
   })
 })
+
+describe('lib/scores nextTierThreshold', () => {
+  it('returns null after the top score tier', () => {
+    expect(nextTierThreshold(8_000)).toBeNull()
+  })
+})
