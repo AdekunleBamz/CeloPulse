@@ -30,3 +30,9 @@ describe('lib/minipay isValidEvmAddress', () => {
     expect(isValidEvmAddress('0x1234')).toBe(false)
   })
 })
+
+describe('lib/minipay isSupportedChain', () => {
+  it('accepts the active Celo chain', () => {
+    expect(isSupportedChain(42220)).toBe(true)
+  })
+})
