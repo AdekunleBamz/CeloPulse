@@ -4,7 +4,7 @@ import '@rainbow-me/rainbowkit/styles.css'
 import { RainbowKitProvider } from '@rainbow-me/rainbowkit'
 import { WagmiProvider, type State } from 'wagmi'
 import { QueryClientProvider, QueryClient } from '@tanstack/react-query'
-import { useState, useEffect, useRef } from 'react'
+import { useState, useEffect } from 'react'
 import { getOrCreateConfig } from '@/lib/wagmi'
 import { isMiniPayWallet } from '@/lib/minipay'
 
@@ -28,13 +28,22 @@ export function Providers({
   initialState?: State
 }) {
   const config = getOrCreateConfig()
-  const detectedRef = useRef(false)
   const [isMiniPay, setIsMiniPay] = useState(false)
 
   useEffect(() => {
-    if (detectedRef.current) return
-    detectedRef.current = true
-    setIsMiniPay(isMiniPayWallet())
+    // MiniPay injects window.ethereum asynchronously — poll for up to 5s
+    // instead of a single synchronous check that often fires too early.
+    let attempts = 0
+    const timer = setInterval(() => {
+      attempts++
+      if (isMiniPayWallet()) {
+        clearInterval(timer)
+        setIsMiniPay(true)
+      } else if (attempts >= 20) {
+        clearInterval(timer)
+      }
+    }, 250)
+    return () => clearInterval(timer)
   }, [])
 
   return (

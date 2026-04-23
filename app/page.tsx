@@ -90,18 +90,20 @@ export default function Home() {
   }, [connect, isConnected])
 
   useEffect(() => {
-    const detectedMiniPay = isMiniPayWallet()
-    setIsMiniPay(detectedMiniPay)
-
-    if (!detectedMiniPay) return
-
-    // MiniPay auto-connect: attempt immediately, then retry once
-    // after a short delay in case the provider isn't ready yet.
-    attemptMiniPayConnect()
-    const retryTimer = setTimeout(() => {
-      attemptMiniPayConnect(true)
-    }, MINIPAY_RETRY_DELAY_MS)
-    return () => clearTimeout(retryTimer)
+    // Poll every 250ms for up to 5s — MiniPay provider may inject late.
+    let attempts = 0
+    const timer = setInterval(() => {
+      attempts++
+      const detected = isMiniPayWallet()
+      if (detected || attempts >= 20) {
+        clearInterval(timer)
+        if (detected) {
+          setIsMiniPay(true)
+          attemptMiniPayConnect()
+        }
+      }
+    }, 250)
+    return () => clearInterval(timer)
   }, [attemptMiniPayConnect])
 
   // Read user data
@@ -243,13 +245,15 @@ export default function Home() {
     }
     try {
       setTxNotice(null)
+      // Use live detection as safety net — state may lag on first render
+      const _isMiniPay = isMiniPay || isMiniPayWallet()
       const contractCall: Parameters<typeof writeContract>[0] = {
         address: contractAddress,
         abi: celoPulseABI,
         functionName: action as any,
         ...(args && args.length > 0 ? { args: args as any } : {}),
-        ...(isMiniPay ? { type: 'legacy' } : {}),
-        ...(isMiniPay && miniPayFeeCurrency ? { feeCurrency: miniPayFeeCurrency } : {}),
+        ...(_isMiniPay ? { type: 'legacy' } : {}),
+        ...(_isMiniPay && miniPayFeeCurrency ? { feeCurrency: miniPayFeeCurrency } : {}),
       } as any
       writeContract(contractCall)
     } catch (error) {
@@ -267,13 +271,14 @@ export default function Home() {
     if (parseFloat(formattedCUSD) < amount) { setTxNotice('Insufficient cUSD balance.'); return }
     try {
       setTxNotice(null)
+      const _isMiniPay = isMiniPay || isMiniPayWallet()
       writeContract({
         address: cusdAddress,
         abi: erc20ABI,
         functionName: 'transfer',
         args: [trimmedTo as `0x${string}`, parseUnits(sendAmount, 18)],
-        ...(isMiniPay ? { type: 'legacy' } : {}),
-        ...(isMiniPay && miniPayFeeCurrency ? { feeCurrency: miniPayFeeCurrency } : {}),
+        ...(_isMiniPay ? { type: 'legacy' } : {}),
+        ...(_isMiniPay && miniPayFeeCurrency ? { feeCurrency: miniPayFeeCurrency } : {}),
       } as any)
     } catch {
       setTxNotice('Failed to send cUSD. Please try again.')
