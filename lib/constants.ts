@@ -114,3 +114,6 @@ export const NATIVE_TOKEN_SYMBOL = 'CELO'
 
 /** Minimum transfer amount in CELO (floating-point). */
 export const MIN_TRANSFER_CELO = 0.001
+
+/** How often (ms) to refresh the leaderboard data. */
+export const LEADERBOARD_REFRESH_INTERVAL_MS = 60_000
