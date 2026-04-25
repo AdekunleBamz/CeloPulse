@@ -1,3 +1,5 @@
+import { MAX_ACTIVITY_SCORE } from './constants'
+
 export const SCORE_TIERS = [
   { label: 'Newcomer', min: 0 },
   { label: 'Bronze', min: 1_000 },
@@ -23,7 +25,7 @@ export function computeActivityRank(score: number, max: number): number {
 }
 
 export function isMaxScore(score: number): boolean {
-  return score >= 10_000
+  return score >= MAX_ACTIVITY_SCORE
 }
 
 export function scoreToPercent(score: number, max: number): number {
