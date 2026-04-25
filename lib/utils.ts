@@ -1,3 +1,5 @@
+import { WEI_PER_CELO } from './constants'
+
 /**
  * Utility helpers for CeloPulse UI formatting and validation.
  */
@@ -26,7 +28,7 @@ export function formatCelo(amount: number): string {
  * @param wei - Amount in wei.
  */
 export function weiToCelo(wei: bigint): number {
-  return Number(wei) / 1e18
+  return Number(wei) / Number(WEI_PER_CELO)
 }
 
 /**
@@ -92,7 +94,7 @@ export function debounce<T extends (...args: unknown[]) => void>(fn: T, delay: n
  * @param celo - Amount in CELO.
  */
 export function celoToWei(celo: number): bigint {
-  return BigInt(Math.round(celo * 1e18))
+  return BigInt(Math.round(celo * Number(WEI_PER_CELO)))
 }
 
 /**
@@ -166,7 +168,7 @@ export function parseWei(amount: string): bigint {
   if (!/^(?:\d+\.?\d*|\.\d+)$/.test(normalized)) return 0n
   const n = parseFloat(normalized)
   if (!Number.isFinite(n) || n < 0) return 0n
-  return BigInt(Math.round(n * 1e18))
+  return BigInt(Math.round(n * Number(WEI_PER_CELO)))
 }
 
 export function safeDiv(a: number, b: number): number {

@@ -91,6 +91,9 @@ export const QUEST_COUNT = 10
 /** Default EVM token decimals (18 for CELO and cUSD). */
 export const DEFAULT_CHAIN_DECIMALS = 18
 
+/** Number of wei units in one CELO token. */
+export const WEI_PER_CELO = 1_000_000_000_000_000_000n
+
 /** Current application version string. */
 export const APP_VERSION = '1.0.0'
 
