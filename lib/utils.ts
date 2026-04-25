@@ -46,7 +46,9 @@ export function isZeroAddress(addr: string): boolean {
  * @param max - Upper bound.
  */
 export function clamp(value: number, min: number, max: number): number {
-  return Math.min(max, Math.max(min, value))
+  const lower = Math.min(min, max)
+  const upper = Math.max(min, max)
+  return Math.min(upper, Math.max(lower, value))
 }
 
 /**
