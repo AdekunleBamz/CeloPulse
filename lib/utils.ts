@@ -308,3 +308,9 @@ export function last<T>(arr: T[]): T | undefined {
 export function sum(arr: number[]): number {
   return arr.reduce((acc, v) => acc + v, 0)
 }
+
+/** Returns the average of an array; returns 0 if array is empty. */
+export function average(arr: number[]): number {
+  if (arr.length === 0) return 0
+  return sum(arr) / arr.length
+}
