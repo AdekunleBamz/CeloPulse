@@ -210,3 +210,8 @@ export function isCeloNetwork(chainId: number): boolean {
 export function isValidAddress(address: unknown): address is string {
   return typeof address === "string" && address.trim().length > 0
 }
+
+/** Truncates a wallet address to a short display form (e.g. 0x1234...abcd). */
+export function truncateAddress(address: string, chars = 4): string {
+  return address.slice(0, chars + 2) + "..." + address.slice(-chars)
+}
