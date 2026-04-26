@@ -88,6 +88,10 @@ describe('lib/minipay isMiniPayProvider', () => {
   it('detects MiniPay provider flags', () => {
     expect(isMiniPayProvider({ isMiniPay: true })).toBe(true)
   })
+
+  it('returns false for providers without the MiniPay flag', () => {
+    expect(isMiniPayProvider({})).toBe(false)
+  })
 })
 
 describe('lib/minipay isMiniPayWallet', () => {
