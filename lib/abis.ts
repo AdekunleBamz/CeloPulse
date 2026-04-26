@@ -94,3 +94,8 @@ export function isReadFunction(name: string): boolean {
 export function hasAbiFunction(abi: {name?: string}[], name: string): boolean {
   return abi.some(item => item.name === name)
 }
+
+/** Returns all ABI items of a given type (e.g. "function", "event"). */
+export function filterAbiByType(abi: {type: string}[], type: string): {type: string}[] {
+  return abi.filter(item => item.type === type)
+}
