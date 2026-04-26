@@ -9,6 +9,7 @@ import {
   getNetworkType,
   getTxExplorerUrl,
   getWalletEnvLabel,
+  isMiniPayAvailable,
   isMiniPayProvider,
   isMiniPayWallet,
   isSameAddress,
@@ -127,5 +128,12 @@ describe('lib/minipay getWalletEnvLabel', () => {
   it('defaults to browser wallet when MiniPay is unavailable', () => {
     vi.stubGlobal('window', undefined)
     expect(getWalletEnvLabel()).toBe('Browser Wallet')
+  })
+})
+
+describe('lib/minipay isMiniPayAvailable', () => {
+  it('returns false when no MiniPay provider is injected', () => {
+    vi.stubGlobal('window', undefined)
+    expect(isMiniPayAvailable()).toBe(false)
   })
 })
