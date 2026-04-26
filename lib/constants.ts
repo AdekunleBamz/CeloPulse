@@ -126,3 +126,6 @@ export const ONE_DAY_MS = 86_400_000
 
 /** Number of milliseconds in one hour. */
 export const ONE_HOUR_MS = 3_600_000
+
+/** Maximum number of consecutive daily streaks tracked in the UI. */
+export const MAX_STREAK_DAYS = 30
