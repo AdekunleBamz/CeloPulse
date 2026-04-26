@@ -45,3 +45,8 @@ export function pointsUntilNextTier(score: number): number {
   const next = nextTierThreshold(score)
   return next !== null ? Math.max(0, next - score) : 0
 }
+
+/** Returns true when the score qualifies for at least Bronze tier. */
+export function isRanked(score: number): boolean {
+  return score >= 1_000
+}
