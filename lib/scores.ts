@@ -71,3 +71,8 @@ export function tierProgress(score: number): number {
 export function getTopScore(scores: number[]): number {
   return scores.length > 0 ? Math.max(...scores) : 0
 }
+
+/** Returns scores above a given threshold. */
+export function filterAboveThreshold(scores: number[], threshold: number): number[] {
+  return scores.filter(s => s > threshold)
+}
