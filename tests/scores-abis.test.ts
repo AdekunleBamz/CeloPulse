@@ -2,6 +2,7 @@ import { describe, expect, it } from 'vitest'
 import {
   computeActivityRank,
   formatRank,
+  getTierIndex,
   getScoreTier,
   isRanked,
   isMaxScore,
@@ -64,6 +65,12 @@ describe('lib/scores isMaxScore', () => {
 describe('lib/scores isRanked', () => {
   it('returns false below the bronze threshold', () => {
     expect(isRanked(999)).toBe(false)
+  })
+})
+
+describe('lib/scores getTierIndex', () => {
+  it('maps silver-tier scores to index 2', () => {
+    expect(getTierIndex(5_000)).toBe(2)
   })
 })
 
