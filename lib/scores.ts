@@ -67,3 +67,65 @@ export function tierProgress(score: number): number {
   if (score < 8_000) return Math.round(((score - 4_000) / 4_000) * 100)
   return 100
 }
+
+/** Returns the highest score from a list of score records. */
+export function getTopScore(scores: number[]): number {
+  return scores.length > 0 ? Math.max(...scores) : 0
+}
+
+/** Returns scores above a given threshold. */
+export function filterAboveThreshold(scores: number[], threshold: number): number[] {
+  return scores.filter(s => s > threshold)
+}
+
+/** Returns the average of a list of scores (0 for empty). */
+export function averageScore(scores: number[]): number {
+  if (scores.length === 0) return 0
+  return scores.reduce((a, b) => a + b, 0) / scores.length
+}
+
+/** Returns true if any score exceeds the given value. */
+export function hasHighScore(scores: number[], value: number): boolean {
+  return scores.some(s => s > value)
+}
+
+/** Returns scores sorted descending (best first). */
+export function rankScores(scores: number[]): number[] {
+  return [...scores].sort((a, b) => b - a)
+}
+
+/** Returns the lowest score from a list (Infinity for empty). */
+export function getMinScore(scores: number[]): number {
+  return scores.length > 0 ? Math.min(...scores) : Infinity
+}
+
+/** Returns the number of scores above zero. */
+export function countNonZero(scores: number[]): number {
+  return scores.filter(s => s > 0).length
+}
+
+/** Normalizes scores to a 0-100 range based on the max value. */
+export function normalizeScores(scores: number[]): number[] {
+  const max = Math.max(...scores)
+  if (max === 0) return scores.map(() => 0)
+  return scores.map(s => Math.round((s / max) * 100))
+}
+
+/** Returns the median value from a list of scores. */
+export function medianScore(scores: number[]): number {
+  if (scores.length === 0) return 0
+  const sorted = [...scores].sort((a, b) => a - b)
+  const mid = Math.floor(sorted.length / 2)
+  return sorted.length 
+/** Returns the median value from a list of scores. */
+export function medianScore(scores: number[]): number {
+  if (scores.length === 0) return 0
+  const sorted = [...scores].sort((a, b) => a - b)
+  const mid = Math.floor(sorted.length / 2)
+  return sorted.length % 2 !== 0 ? sorted[mid] : (sorted[mid - 1] + sorted[mid]) / 2
+}
+
+/** Returns a slice of the top N scores. */
+export function topN(scores: number[], n: number): number[] {
+  return [...scores].sort((a, b) => b - a).slice(0, n)
+}
