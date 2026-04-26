@@ -386,3 +386,8 @@ export function isEmptyArray(arr: unknown[]): boolean {
 export function dedup<T>(arr: T[]): T[] {
   return [...new Set(arr)]
 }
+
+/** Returns the last element of an array, or undefined if empty. */
+export function tail<T>(arr: T[]): T | undefined {
+  return arr[arr.length - 1]
+}
