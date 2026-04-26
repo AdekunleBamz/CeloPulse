@@ -344,3 +344,8 @@ export function sortByAsc<T>(arr: T[], key: (item: T) => number): T[] {
 export function clamp(value: number, min: number, max: number): number {
   return Math.min(Math.max(value, min), max)
 }
+
+/** Returns the last element of an array or undefined if empty. */
+export function lastItem<T>(arr: T[]): T | undefined {
+  return arr.length > 0 ? arr[arr.length - 1] : undefined
+}
