@@ -349,3 +349,8 @@ export function clamp(value: number, min: number, max: number): number {
 export function lastItem<T>(arr: T[]): T | undefined {
   return arr.length > 0 ? arr[arr.length - 1] : undefined
 }
+
+/** Returns true if all elements in the array satisfy the predicate. */
+export function allMatch<T>(arr: T[], predicate: (item: T) => boolean): boolean {
+  return arr.every(predicate)
+}
