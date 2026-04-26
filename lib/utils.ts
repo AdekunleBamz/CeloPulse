@@ -359,3 +359,13 @@ export function allMatch<T>(arr: T[], predicate: (item: T) => boolean): boolean 
 export function unique<T>(arr: T[]): T[] {
   return [...new Set(arr)]
 }
+
+/** Groups array elements by the result of a key function. */
+export function groupBy<T>(arr: T[], key: (item: T) => string): Record<string, T[]> {
+  return arr.reduce((acc, item) => {
+    const k = key(item)
+    if (!acc[k]) acc[k] = []
+    acc[k].push(item)
+    return acc
+  }, {} as Record<string, T[]>)
+}
