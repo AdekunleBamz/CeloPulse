@@ -384,3 +384,10 @@ export function formatTimestamp(ts: number): string {
 export function formatPercent(value: number): string {
   return (value * 100).toFixed(2) + "%"
 }
+
+/** Formats a duration in seconds to mm:ss display. */
+export function formatDuration(seconds: number): string {
+  const m = Math.floor(seconds / 60).toString().padStart(2, "0")
+  const s = (seconds % 60).toString().padStart(2, "0")
+  return `${m}:${s}`
+}
