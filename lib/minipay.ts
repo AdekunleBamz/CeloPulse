@@ -240,3 +240,8 @@ export function formatCelo(amount: number): string {
 export function isCeloMainnet(chainId: number): boolean {
   return chainId === 42220
 }
+
+/** Returns true if the chain ID is the Alfajores testnet. */
+export function isAlfajores(chainId: number): boolean {
+  return chainId === 44787
+}
