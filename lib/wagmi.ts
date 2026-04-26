@@ -121,3 +121,8 @@ export function isConnected(account: string | undefined): account is string {
 export function shortAddress(address: string): string {
   return address.slice(0, 6) + "..." + address.slice(-4)
 }
+
+/** Returns a Celo-specific RPC URL for the given chain ID. */
+export function getCeloRpcUrl(chainId: number): string {
+  return chainId === 44787 ? "https://alfajores-forno.celo-testnet.org" : "https://forno.celo.org"
+}
