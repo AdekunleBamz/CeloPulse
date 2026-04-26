@@ -245,3 +245,8 @@ export function isCeloMainnet(chainId: number): boolean {
 export function isAlfajores(chainId: number): boolean {
   return chainId === 44787
 }
+
+/** Returns a Celo block explorer URL for a given transaction hash. */
+export function getTxExplorerUrl(txHash: string): string {
+  return "https://explorer.celo.org/mainnet/tx/" + txHash
+}
