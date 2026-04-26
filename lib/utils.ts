@@ -423,3 +423,10 @@ export function formatBlockNumber(n: number): string {
 export function formatGasPrice(wei: bigint): string {
   return (Number(wei) / 1e9).toFixed(2) + " Gwei"
 }
+
+/** Formats a byte count as KB or MB string. */
+export function formatBytes(bytes: number): string {
+  if (bytes < 1024) return bytes + " B"
+  if (bytes < 1024 * 1024) return (bytes / 1024).toFixed(1) + " KB"
+  return (bytes / (1024 * 1024)).toFixed(1) + " MB"
+}
