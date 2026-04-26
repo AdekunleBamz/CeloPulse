@@ -133,3 +133,5 @@ export const MAX_STREAK_DAYS = 30
 export const MAX_LEADERBOARD_ENTRIES = 100
 
 export const MIN_SCORE_TO_RANK = 10
+
+export const SCORE_MULTIPLIER_BASE = 1.5
