@@ -8,6 +8,7 @@ import {
   getCUSDSymbol,
   getNetworkType,
   getTxExplorerUrl,
+  getWalletEnvLabel,
   isMiniPayProvider,
   isMiniPayWallet,
   isSameAddress,
@@ -119,5 +120,12 @@ describe('lib/minipay explorer links', () => {
 describe('lib/minipay getNetworkType', () => {
   it('labels the default network as mainnet', () => {
     expect(getNetworkType()).toBe('mainnet')
+  })
+})
+
+describe('lib/minipay getWalletEnvLabel', () => {
+  it('defaults to browser wallet when MiniPay is unavailable', () => {
+    vi.stubGlobal('window', undefined)
+    expect(getWalletEnvLabel()).toBe('Browser Wallet')
   })
 })
