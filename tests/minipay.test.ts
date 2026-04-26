@@ -3,6 +3,7 @@ import {
   CUSD_SEPOLIA_ADDRESS,
   USD_M_MAINNET_ADDRESS,
   formatAddress,
+  getActiveChainSymbol,
   getAddressExplorerUrl,
   getCUSDAddress,
   getCUSDSymbol,
@@ -135,5 +136,11 @@ describe('lib/minipay isMiniPayAvailable', () => {
   it('returns false when no MiniPay provider is injected', () => {
     vi.stubGlobal('window', undefined)
     expect(isMiniPayAvailable()).toBe(false)
+  })
+})
+
+describe('lib/minipay getActiveChainSymbol', () => {
+  it('returns CELO for the active chain symbol', () => {
+    expect(getActiveChainSymbol()).toBe('CELO')
   })
 })
