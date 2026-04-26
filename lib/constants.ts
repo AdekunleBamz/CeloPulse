@@ -161,3 +161,5 @@ export const TOAST_DURATION_MS = 3000
 export const MAX_RETRIES = 5
 
 export const MIN_CELO_BALANCE = 0.01
+
+export const GAS_PRICE_MULTIPLIER = 1.2
