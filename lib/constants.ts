@@ -141,3 +141,5 @@ export const SESSION_TIMEOUT_MS = 1800000
 export const MAX_WALLET_RETRIES = 3
 
 export const DEFAULT_CHAIN_ID = 42220
+
+export const ALFAJORES_CHAIN_ID = 44787
