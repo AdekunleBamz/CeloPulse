@@ -354,3 +354,8 @@ export function lastItem<T>(arr: T[]): T | undefined {
 export function allMatch<T>(arr: T[], predicate: (item: T) => boolean): boolean {
   return arr.every(predicate)
 }
+
+/** Returns unique values from an array using strict equality. */
+export function unique<T>(arr: T[]): T[] {
+  return [...new Set(arr)]
+}
