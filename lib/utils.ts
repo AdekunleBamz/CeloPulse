@@ -298,3 +298,8 @@ export function difference<T>(arr: T[], exclude: T[]): T[] {
 export function unique<T>(arr: T[]): T[] {
   return [...new Set(arr)]
 }
+
+/** Returns the last element of an array, or undefined if empty. */
+export function last<T>(arr: T[]): T | undefined {
+  return arr.length > 0 ? arr[arr.length - 1] : undefined
+}
