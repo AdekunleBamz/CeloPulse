@@ -397,3 +397,8 @@ export function truncateHash(hash: string, chars = 6): string {
   if (hash.length <= chars * 2 + 2) return hash
   return hash.slice(0, chars + 2) + "..." + hash.slice(-chars)
 }
+
+/** Formats a number with locale-based comma separators. */
+export function formatWithCommas(value: number): string {
+  return value.toLocaleString()
+}
