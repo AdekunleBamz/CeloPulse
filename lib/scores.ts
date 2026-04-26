@@ -87,3 +87,8 @@ export function averageScore(scores: number[]): number {
 export function hasHighScore(scores: number[], value: number): boolean {
   return scores.some(s => s > value)
 }
+
+/** Returns scores sorted descending (best first). */
+export function rankScores(scores: number[]): number[] {
+  return [...scores].sort((a, b) => b - a)
+}
