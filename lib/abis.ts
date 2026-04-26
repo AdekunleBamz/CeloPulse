@@ -109,3 +109,8 @@ export function getAbiFunctionNames(abi: {name?: string; type: string}[]): strin
 export function getAbiEventNames(abi: {name?: string; type: string}[]): string[] {
   return abi.filter(item => item.type === "event" && item.name).map(item => item.name as string)
 }
+
+/** Returns true if the ABI contains at least one event. */
+export function hasAbiEvents(abi: {type: string}[]): boolean {
+  return abi.some(item => item.type === "event")
+}
