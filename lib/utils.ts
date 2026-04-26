@@ -374,3 +374,59 @@ export function dedup<T>(arr: T[]): T[] {
 export function tail<T>(arr: T[]): T | undefined {
   return arr[arr.length - 1]
 }
+
+/** Formats a Unix timestamp (seconds) to a readable date string. */
+export function formatTimestamp(ts: number): string {
+  return new Date(ts * 1000).toLocaleDateString()
+}
+
+/** Formats a decimal as a percentage string, e.g. 0.75 => "75.00%". */
+export function formatPercent(value: number): string {
+  return (value * 100).toFixed(2) + "%"
+}
+
+/** Formats a duration in seconds to mm:ss display. */
+export function formatDuration(seconds: number): string {
+  const m = Math.floor(seconds / 60).toString().padStart(2, "0")
+  const s = (seconds % 60).toString().padStart(2, "0")
+  return `${m}:${s}`
+}
+
+/** Truncates a tx hash to a compact form, e.g. 0x1234...5678. */
+export function truncateHash(hash: string, chars = 6): string {
+  if (hash.length <= chars * 2 + 2) return hash
+  return hash.slice(0, chars + 2) + "..." + hash.slice(-chars)
+}
+
+/** Formats a number with locale-based comma separators. */
+export function formatWithCommas(value: number): string {
+  return value.toLocaleString()
+}
+
+/** Formats a 0x address for display: 0x1234...5678. */
+export function formatAddress(addr: string): string {
+  if (addr.length < 12) return addr
+  return addr.slice(0, 6) + "..." + addr.slice(-4)
+}
+
+/** Formats a game score with commas for display. */
+export function formatScore(n: number): string {
+  return n.toLocaleString() + " pts"
+}
+
+/** Formats a block number with # prefix for display. */
+export function formatBlockNumber(n: number): string {
+  return "#" + n.toLocaleString()
+}
+
+/** Formats a gas price in wei as Gwei string. */
+export function formatGasPrice(wei: bigint): string {
+  return (Number(wei) / 1e9).toFixed(2) + " Gwei"
+}
+
+/** Formats a byte count as KB or MB string. */
+export function formatBytes(bytes: number): string {
+  if (bytes < 1024) return bytes + " B"
+  if (bytes < 1024 * 1024) return (bytes / 1024).toFixed(1) + " KB"
+  return (bytes / (1024 * 1024)).toFixed(1) + " MB"
+}
