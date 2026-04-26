@@ -334,3 +334,8 @@ export function chunk<T>(arr: T[], size: number): T[][] {
   }
   return result
 }
+
+/** Returns a copy of the array sorted by a numeric key in ascending order. */
+export function sortByAsc<T>(arr: T[], key: (item: T) => number): T[] {
+  return [...arr].sort((a, b) => key(a) - key(b))
+}
