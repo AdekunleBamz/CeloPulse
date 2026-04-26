@@ -120,3 +120,6 @@ export const LEADERBOARD_REFRESH_INTERVAL_MS = 60_000
 
 /** Minimum score required to appear on the leaderboard. */
 export const LEADERBOARD_MIN_SCORE = 1
+
+/** Number of milliseconds in one day, used for cooldown calculations. */
+export const ONE_DAY_MS = 86_400_000
