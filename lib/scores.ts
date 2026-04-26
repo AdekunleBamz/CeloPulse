@@ -39,3 +39,9 @@ export function nextTierThreshold(score: number): number | null {
   if (score < 8_000) return 8_000
   return null
 }
+
+/** Returns points remaining until the next tier, or 0 if already at max. */
+export function pointsUntilNextTier(score: number): number {
+  const next = nextTierThreshold(score)
+  return next !== null ? Math.max(0, next - score) : 0
+}
