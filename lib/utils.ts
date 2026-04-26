@@ -390,3 +390,8 @@ export function zip<A, B>(a: A[], b: B[]): [A, B][] {
 export function sumArray(arr: number[]): number {
   return arr.reduce((total, n) => total + n, 0)
 }
+
+/** Returns true if the string is non-empty after trimming whitespace. */
+export function isNonEmptyString(value: unknown): value is string {
+  return typeof value === "string" && value.trim().length > 0
+}
