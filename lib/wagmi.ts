@@ -131,3 +131,8 @@ export function getCeloRpcUrl(chainId: number): string {
 export function isSupportedNetwork(chainId: number): boolean {
   return [42220, 44787].includes(chainId)
 }
+
+/** Returns a block explorer base URL for the given chain. */
+export function getExplorerBase(chainId: number): string {
+  return chainId === 44787 ? "https://alfajores.celoscan.io" : "https://celoscan.io"
+}
