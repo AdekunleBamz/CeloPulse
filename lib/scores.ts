@@ -149,3 +149,10 @@ export function percentile(scores: number[], score: number): number {
 export function clampScore(score: number, min: number, max: number): number {
   return Math.min(Math.max(score, min), max)
 }
+
+/** Computes variance of a score array. */
+export function scoreVariance(scores: number[]): number {
+  if (scores.length === 0) return 0
+  const mean = scores.reduce((a, b) => a + b, 0) / scores.length
+  return scores.reduce((acc, s) => acc + (s - mean) ** 2, 0) / scores.length
+}
