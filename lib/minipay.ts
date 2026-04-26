@@ -215,3 +215,8 @@ export function isValidAddress(address: unknown): address is string {
 export function truncateAddress(address: string, chars = 4): string {
   return address.slice(0, chars + 2) + "..." + address.slice(-chars)
 }
+
+/** Returns true if the amount is a positive finite number. */
+export function isPositiveAmount(amount: unknown): amount is number {
+  return typeof amount === "number" && isFinite(amount) && amount > 0
+}
