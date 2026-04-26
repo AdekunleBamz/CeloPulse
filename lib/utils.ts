@@ -303,3 +303,8 @@ export function unique<T>(arr: T[]): T[] {
 export function last<T>(arr: T[]): T | undefined {
   return arr.length > 0 ? arr[arr.length - 1] : undefined
 }
+
+/** Sums an array of numbers; returns 0 for an empty array. */
+export function sum(arr: number[]): number {
+  return arr.reduce((acc, v) => acc + v, 0)
+}
