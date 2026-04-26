@@ -322,3 +322,55 @@ export function sumArray(arr: number[]): number {
 export function isNonEmptyString(value: unknown): value is string {
   return typeof value === "string" && value.trim().length > 0
 }
+
+/** Clamps a value between min and max (inclusive). */
+export function clampValue(value: number, min: number, max: number): number {
+  return Math.min(Math.max(value, min), max)
+}
+
+/** Returns true if the string is non-empty after trimming whitespace. */
+export function isNonBlank(value: string): boolean {
+  return value.trim().length > 0
+}
+
+/** Capitalizes the first character of a string. */
+export function capitalize(str: string): string {
+  return str.charAt(0).toUpperCase() + str.slice(1)
+}
+
+/** Converts a string to a URL-friendly slug. */
+export function slugify(str: string): string {
+  return str.toLowerCase().replace(/\s+/g, "-").replace(/[^a-z0-9-]/g, "")
+}
+
+/** Picks a subset of keys from an object. */
+export function pick<T extends object, K extends keyof T>(obj: T, keys: K[]): Pick<T, K> {
+  return keys.reduce((acc, k) => ({ ...acc, [k]: obj[k] }), {} as Pick<T, K>)
+}
+
+/** Omits specified keys from an object. */
+export function omit<T extends object, K extends keyof T>(obj: T, keys: K[]): Omit<T, K> {
+  const result = { ...obj }
+  keys.forEach(k => delete (result as Record<string, unknown>)[k as string])
+  return result as Omit<T, K>
+}
+
+/** Parses a value to a float, returning NaN if not parseable. */
+export function parseNumber(value: unknown): number {
+  return parseFloat(String(value))
+}
+
+/** Returns true if the value is an empty array. */
+export function isEmptyArray(arr: unknown[]): boolean {
+  return Array.isArray(arr) && arr.length === 0
+}
+
+/** Returns a new array with duplicate values removed (deep equality not supported). */
+export function dedup<T>(arr: T[]): T[] {
+  return [...new Set(arr)]
+}
+
+/** Returns the last element of an array, or undefined if empty. */
+export function tail<T>(arr: T[]): T | undefined {
+  return arr[arr.length - 1]
+}
