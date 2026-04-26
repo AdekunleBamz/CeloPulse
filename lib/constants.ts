@@ -149,3 +149,23 @@ export const SCORE_PAGE_SIZE = 20
 export const MAX_USERNAME_LENGTH = 32
 
 export const POLLING_INTERVAL_MS = 5000
+
+export const RETRY_DELAY_MS = 2000
+
+export const MAX_TX_GAS = 500000
+
+export const BLOCK_TIME_MS = 5000
+
+export const TOAST_DURATION_MS = 3000
+
+export const MAX_RETRIES = 5
+
+export const MIN_CELO_BALANCE = 0.01
+
+export const GAS_PRICE_MULTIPLIER = 1.2
+
+export const LEADERBOARD_REFRESH_MS = 30000
+
+export const MAX_PENDING_TXS = 5
+
+export const DEFAULT_GAS_LIMIT = 21000
