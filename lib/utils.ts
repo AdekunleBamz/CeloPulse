@@ -413,3 +413,8 @@ export function formatAddress(addr: string): string {
 export function formatScore(n: number): string {
   return n.toLocaleString() + " pts"
 }
+
+/** Formats a block number with # prefix for display. */
+export function formatBlockNumber(n: number): string {
+  return "#" + n.toLocaleString()
+}
