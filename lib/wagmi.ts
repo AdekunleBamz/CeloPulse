@@ -100,3 +100,8 @@ export function isMainnetConfig(chainId: number): boolean {
 export function getChainBlockTime(chainId: number): number {
   return chainId === 42220 || chainId === 44787 ? 5_000 : 12_000
 }
+
+/** Returns true if the provided chain ID matches expected value. */
+export function isExpectedChain(chainId: number | undefined, expected: number): boolean {
+  return chainId === expected
+}
