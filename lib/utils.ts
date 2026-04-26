@@ -275,3 +275,9 @@ export function isNonEmptyString(s: unknown): s is string {
 export function clampInt(v: number, lo: number, hi: number): number {
   return Math.min(hi, Math.max(lo, Math.trunc(v)))
 }
+
+/** Returns an array of numbers from start (inclusive) to end (exclusive). */
+export function range(start: number, end: number): number[] {
+  if (end <= start) return []
+  return Array.from({ length: end - start }, (_, i) => start + i)
+}
