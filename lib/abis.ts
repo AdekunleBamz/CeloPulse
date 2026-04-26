@@ -129,3 +129,8 @@ export function hasAbiConstructor(abi: {type: string}[]): boolean {
 export function findAbiItem(abi: {name?: string; type: string}[], name: string, type: string): {name?: string; type: string} | undefined {
   return abi.find(item => item.name === name && item.type === type)
 }
+
+/** Returns true if the ABI is non-empty. */
+export function isNonEmptyAbi(abi: unknown[]): boolean {
+  return Array.isArray(abi) && abi.length > 0
+}
