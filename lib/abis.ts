@@ -124,3 +124,8 @@ export function countAbiFunctions(abi: {type: string}[]): number {
 export function hasAbiConstructor(abi: {type: string}[]): boolean {
   return abi.some(item => item.type === "constructor")
 }
+
+/** Returns the first ABI item matching the name and type, or undefined. */
+export function findAbiItem(abi: {name?: string; type: string}[], name: string, type: string): {name?: string; type: string} | undefined {
+  return abi.find(item => item.name === name && item.type === type)
+}
