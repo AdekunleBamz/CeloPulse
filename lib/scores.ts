@@ -173,3 +173,8 @@ export function topNPercent(scores: number[], pct: number): number[] {
   const sorted = [...scores].sort((a, b) => b - a)
   return sorted.slice(0, Math.ceil((sorted.length * pct) / 100))
 }
+
+/** Filters scores below a threshold. */
+export function belowThreshold(scores: number[], min: number): number[] {
+  return scores.filter((s) => s < min)
+}
