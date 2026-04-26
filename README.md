@@ -76,3 +76,4 @@ CeloPulse utilizes a custom Activity Engine that handles:
 ## 📜 Licensing & Terms
 
 CeloPulse is open-source. Please refer to the `/privacy` and `/terms` routes within the application for standard decentralized usage policies.
+Credential helper test note.
