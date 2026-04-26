@@ -144,3 +144,8 @@ export function percentile(scores: number[], score: number): number {
   const below = scores.filter(s => s < score).length
   return Math.round((below / scores.length) * 100)
 }
+
+/** Clamps a score to [min, max] range. */
+export function clampScore(score: number, min: number, max: number): number {
+  return Math.min(Math.max(score, min), max)
+}
