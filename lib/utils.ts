@@ -293,3 +293,8 @@ export function difference<T>(arr: T[], exclude: T[]): T[] {
   const s = new Set(exclude)
   return arr.filter((v) => !s.has(v))
 }
+
+/** Returns a deduplicated copy of the array preserving insertion order. */
+export function unique<T>(arr: T[]): T[] {
+  return [...new Set(arr)]
+}
