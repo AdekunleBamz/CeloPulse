@@ -99,3 +99,8 @@ export function hasAbiFunction(abi: {name?: string}[], name: string): boolean {
 export function filterAbiByType(abi: {type: string}[], type: string): {type: string}[] {
   return abi.filter(item => item.type === type)
 }
+
+/** Returns the names of all functions in the ABI. */
+export function getAbiFunctionNames(abi: {name?: string; type: string}[]): string[] {
+  return abi.filter(item => item.type === "function" && item.name).map(item => item.name as string)
+}
