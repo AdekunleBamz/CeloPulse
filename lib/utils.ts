@@ -379,3 +379,9 @@ export function flattenOnce<T>(arr: T[][]): T[] {
 export function removeAt<T>(arr: T[], index: number): T[] {
   return arr.filter((_, i) => i !== index)
 }
+
+/** Zips two arrays into an array of [a, b] tuples, stopping at the shorter length. */
+export function zip<A, B>(a: A[], b: B[]): [A, B][] {
+  const len = Math.min(a.length, b.length)
+  return Array.from({ length: len }, (_, i) => [a[i], b[i]] as [A, B])
+}
