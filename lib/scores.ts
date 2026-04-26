@@ -76,3 +76,9 @@ export function getTopScore(scores: number[]): number {
 export function filterAboveThreshold(scores: number[], threshold: number): number[] {
   return scores.filter(s => s > threshold)
 }
+
+/** Returns the average of a list of scores (0 for empty). */
+export function averageScore(scores: number[]): number {
+  if (scores.length === 0) return 0
+  return scores.reduce((a, b) => a + b, 0) / scores.length
+}
