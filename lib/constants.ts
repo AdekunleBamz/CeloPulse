@@ -157,3 +157,5 @@ export const MAX_TX_GAS = 500000
 export const BLOCK_TIME_MS = 5000
 
 export const TOAST_DURATION_MS = 3000
+
+export const MAX_RETRIES = 5
