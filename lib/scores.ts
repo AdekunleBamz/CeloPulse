@@ -156,3 +156,8 @@ export function scoreVariance(scores: number[]): number {
   const mean = scores.reduce((a, b) => a + b, 0) / scores.length
   return scores.reduce((acc, s) => acc + (s - mean) ** 2, 0) / scores.length
 }
+
+/** Computes standard deviation of a score array. */
+export function standardDeviation(scores: number[]): number {
+  return Math.sqrt(scoreVariance(scores))
+}
