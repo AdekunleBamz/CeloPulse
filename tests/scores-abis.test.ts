@@ -9,6 +9,7 @@ import {
   pointsUntilNextTier,
   nextTierThreshold,
   scoreToPercent,
+  tierProgress,
 } from '../lib/scores'
 import {
   ABI_FUNCTION_NAMES,
@@ -71,6 +72,12 @@ describe('lib/scores isRanked', () => {
 describe('lib/scores getTierIndex', () => {
   it('maps silver-tier scores to index 2', () => {
     expect(getTierIndex(5_000)).toBe(2)
+  })
+})
+
+describe('lib/scores tierProgress', () => {
+  it('computes progress inside the bronze tier window', () => {
+    expect(tierProgress(2_500)).toBe(50)
   })
 })
 
