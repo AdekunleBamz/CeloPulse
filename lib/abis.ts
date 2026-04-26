@@ -134,3 +134,8 @@ export function findAbiItem(abi: {name?: string; type: string}[], name: string, 
 export function isNonEmptyAbi(abi: unknown[]): boolean {
   return Array.isArray(abi) && abi.length > 0
 }
+
+/** Returns the count of events in the ABI. */
+export function countAbiEvents(abi: {type: string}[]): number {
+  return abi.filter(item => item.type === "event").length
+}
