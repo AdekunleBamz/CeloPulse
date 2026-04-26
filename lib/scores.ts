@@ -137,3 +137,10 @@ export function scoreToTier(score: number): string {
   if (score >= 1000) return "silver"
   return "bronze"
 }
+
+/** Calculates percentile rank of a score within an array. */
+export function percentile(scores: number[], score: number): number {
+  if (scores.length === 0) return 0
+  const below = scores.filter(s => s < score).length
+  return Math.round((below / scores.length) * 100)
+}
