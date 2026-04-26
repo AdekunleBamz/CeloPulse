@@ -116,3 +116,8 @@ export function getChainLabel(chainId: number): string {
 export function isConnected(account: string | undefined): account is string {
   return typeof account === "string" && account.length > 0
 }
+
+/** Returns an abbreviated address for display in the UI. */
+export function shortAddress(address: string): string {
+  return address.slice(0, 6) + "..." + address.slice(-4)
+}
