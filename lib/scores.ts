@@ -129,3 +129,11 @@ export function medianScore(scores: number[]): number {
 export function topN(scores: number[], n: number): number[] {
   return [...scores].sort((a, b) => b - a).slice(0, n)
 }
+
+/** Maps a score to a tier label: bronze, silver, gold, platinum. */
+export function scoreToTier(score: number): string {
+  if (score >= 10000) return "platinum"
+  if (score >= 5000) return "gold"
+  if (score >= 1000) return "silver"
+  return "bronze"
+}
