@@ -374,3 +374,8 @@ export function groupBy<T>(arr: T[], key: (item: T) => string): Record<string, T
 export function flattenOnce<T>(arr: T[][]): T[] {
   return ([] as T[]).concat(...arr)
 }
+
+/** Returns a copy of the array without the element at the given index. */
+export function removeAt<T>(arr: T[], index: number): T[] {
+  return arr.filter((_, i) => i !== index)
+}
