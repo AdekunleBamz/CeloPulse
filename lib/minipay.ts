@@ -230,3 +230,8 @@ export function weiToCelo(wei: bigint): string {
 export function celoToWei(celo: number): bigint {
   return BigInt(Math.round(celo * 1e18))
 }
+
+/** Formats a CELO amount with up to 4 decimal places for display. */
+export function formatCelo(amount: number): string {
+  return amount.toFixed(4) + " CELO"
+}
