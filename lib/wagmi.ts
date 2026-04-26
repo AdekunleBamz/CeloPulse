@@ -100,3 +100,54 @@ export function isMainnetConfig(chainId: number): boolean {
 export function getChainBlockTime(chainId: number): number {
   return chainId === 42220 || chainId === 44787 ? 5_000 : 12_000
 }
+
+/** Returns true if the provided chain ID matches expected value. */
+export function isExpectedChain(chainId: number | undefined, expected: number): boolean {
+  return chainId === expected
+}
+
+/** Returns a short human-readable label for a given chain ID. */
+export function getChainLabel(chainId: number): string {
+  const labels: Record<number, string> = { 42220: "Celo", 44787: "Alfajores", 1: "Ethereum" }
+  return labels[chainId] ?? "Unknown"
+}
+
+/** Returns true if the given account string is defined and non-empty. */
+export function isConnected(account: string | undefined): account is string {
+  return typeof account === "string" && account.length > 0
+}
+
+/** Returns an abbreviated address for display in the UI. */
+export function shortAddress(address: string): string {
+  return address.slice(0, 6) + "..." + address.slice(-4)
+}
+
+/** Returns a Celo-specific RPC URL for the given chain ID. */
+export function getCeloRpcUrl(chainId: number): string {
+  return chainId === 44787 ? "https://alfajores-forno.celo-testnet.org" : "https://forno.celo.org"
+}
+
+/** Returns true if the wallet is on a supported network. */
+export function isSupportedNetwork(chainId: number): boolean {
+  return [42220, 44787].includes(chainId)
+}
+
+/** Returns a block explorer base URL for the given chain. */
+export function getExplorerBase(chainId: number): string {
+  return chainId === 44787 ? "https://alfajores.celoscan.io" : "https://celoscan.io"
+}
+
+/** Returns a native token symbol for the given chain ID. */
+export function getNativeSymbol(chainId: number): string {
+  return chainId === 44787 ? "CELO (testnet)" : "CELO"
+}
+
+/** Returns true if the address looks like a valid 0x address. */
+export function looksLikeAddress(value: string): boolean {
+  return /^0x[0-9a-fA-F]{40}$/.test(value)
+}
+
+/** Returns the network name used in Celo Forno URLs. */
+export function getFornoNetworkName(chainId: number): string {
+  return chainId === 44787 ? "alfajores" : "mainnet"
+}
