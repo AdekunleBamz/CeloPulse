@@ -58,3 +58,11 @@ export function getTierIndex(score: number): number {
   if (score >= 1_000) return 1
   return 0
 }
+
+/** Returns how far along (0-100) the user is within their current tier. */
+export function tierProgress(score: number): number {
+  if (score < 1_000) return Math.round((score / 1_000) * 100)
+  if (score < 4_000) return Math.round(((score - 1_000) / 3_000) * 100)
+  if (score < 8_000) return Math.round(((score - 4_000) / 4_000) * 100)
+  return 100
+}
