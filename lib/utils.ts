@@ -369,3 +369,8 @@ export function groupBy<T>(arr: T[], key: (item: T) => string): Record<string, T
     return acc
   }, {} as Record<string, T[]>)
 }
+
+/** Flattens a one-level nested array into a single array. */
+export function flattenOnce<T>(arr: T[][]): T[] {
+  return ([] as T[]).concat(...arr)
+}
