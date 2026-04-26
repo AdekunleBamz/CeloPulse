@@ -344,3 +344,8 @@ export function sortByAsc<T>(arr: T[], key: (item: T) => number): T[] {
 export function clampValue(value: number, min: number, max: number): number {
   return Math.min(Math.max(value, min), max)
 }
+
+/** Returns true if the string is non-empty after trimming whitespace. */
+export function isNonBlank(value: string): boolean {
+  return value.trim().length > 0
+}
