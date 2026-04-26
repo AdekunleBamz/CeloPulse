@@ -385,3 +385,8 @@ export function zip<A, B>(a: A[], b: B[]): [A, B][] {
   const len = Math.min(a.length, b.length)
   return Array.from({ length: len }, (_, i) => [a[i], b[i]] as [A, B])
 }
+
+/** Returns the sum of all numbers in an array (0 for empty array). */
+export function sumArray(arr: number[]): number {
+  return arr.reduce((total, n) => total + n, 0)
+}
