@@ -307,6 +307,10 @@ describe('lib/utils formatCountdown', () => {
   it('formats countdowns in minutes and seconds', () => {
     expect(formatCountdown(125_000)).toBe('2m 5s')
   })
+
+  it('formats long countdowns in hours and minutes', () => {
+    expect(formatCountdown(3_900_000)).toBe('1h 5m')
+  })
 })
 
 describe('lib/utils isSameDay', () => {
