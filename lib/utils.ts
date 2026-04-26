@@ -324,3 +324,13 @@ export function pick<T extends object, K extends keyof T>(obj: T, keys: K[]): Pi
 export function isDefined<T>(value: T | null | undefined): value is T {
   return value !== null && value !== undefined
 }
+
+/** Splits an array into chunks of the given size. */
+export function chunk<T>(arr: T[], size: number): T[][] {
+  if (size <= 0) return []
+  const result: T[][] = []
+  for (let i = 0; i < arr.length; i += size) {
+    result.push(arr.slice(i, i + size))
+  }
+  return result
+}
