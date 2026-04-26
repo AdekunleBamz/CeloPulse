@@ -281,3 +281,9 @@ export function range(start: number, end: number): number[] {
   if (end <= start) return []
   return Array.from({ length: end - start }, (_, i) => start + i)
 }
+
+/** Safely parses a decimal string to float; returns fallback if invalid. */
+export function safeParseFloat(value: string, fallback = 0): number {
+  const n = parseFloat(value.trim())
+  return Number.isFinite(n) ? n : fallback
+}
