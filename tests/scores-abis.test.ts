@@ -3,6 +3,7 @@ import {
   computeActivityRank,
   formatRank,
   getScoreTier,
+  isRanked,
   isMaxScore,
   pointsUntilNextTier,
   nextTierThreshold,
@@ -57,6 +58,12 @@ describe('lib/scores pointsUntilNextTier', () => {
 describe('lib/scores isMaxScore', () => {
   it('detects maxed activity scores', () => {
     expect(isMaxScore(10_000)).toBe(true)
+  })
+})
+
+describe('lib/scores isRanked', () => {
+  it('returns false below the bronze threshold', () => {
+    expect(isRanked(999)).toBe(false)
   })
 })
 
