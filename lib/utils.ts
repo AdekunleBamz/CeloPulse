@@ -339,3 +339,8 @@ export function chunk<T>(arr: T[], size: number): T[][] {
 export function sortByAsc<T>(arr: T[], key: (item: T) => number): T[] {
   return [...arr].sort((a, b) => key(a) - key(b))
 }
+
+/** Clamps a value between min and max (inclusive). */
+export function clampValue(value: number, min: number, max: number): number {
+  return Math.min(Math.max(value, min), max)
+}
