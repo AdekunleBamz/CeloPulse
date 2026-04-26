@@ -195,3 +195,8 @@ export function getChainShortName(chainId: number): string {
 export function getTokenExplorerUrl(tokenAddress: string): string {
   return `${getExplorerUrl()}/token/${tokenAddress.trim()}`
 }
+
+/** Returns a block explorer block URL for a given block number. */
+export function getBlockExplorerUrl(blockNumber: number): string {
+  return `${getExplorerUrl()}/block/${blockNumber}`
+}
