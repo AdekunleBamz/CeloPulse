@@ -408,3 +408,8 @@ export function formatAddress(addr: string): string {
   if (addr.length < 12) return addr
   return addr.slice(0, 6) + "..." + addr.slice(-4)
 }
+
+/** Formats a game score with commas for display. */
+export function formatScore(n: number): string {
+  return n.toLocaleString() + " pts"
+}
