@@ -200,3 +200,8 @@ export function getTokenExplorerUrl(tokenAddress: string): string {
 export function getBlockExplorerUrl(blockNumber: number): string {
   return `${getExplorerUrl()}/block/${blockNumber}`
 }
+
+/** Returns true when the chainId corresponds to a supported Celo network. */
+export function isCeloNetwork(chainId: number): boolean {
+  return chainId === 42220 || chainId === 44787
+}
