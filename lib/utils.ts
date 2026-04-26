@@ -265,3 +265,8 @@ export function formatShortDate(ts: number): string {
 export function isEmptyAddress(addr: string): boolean {
   return !addr || addr.trim().toLowerCase() === '0x0000000000000000000000000000000000000000'
 }
+
+/** Returns true when a string is non-empty after trimming whitespace. */
+export function isNonEmptyString(s: unknown): s is string {
+  return typeof s === 'string' && s.trim().length > 0
+}
