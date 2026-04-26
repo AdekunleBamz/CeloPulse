@@ -359,6 +359,10 @@ describe('lib/utils parseChainId', () => {
   it('returns null for invalid chain ids', () => {
     expect(parseChainId('bad')).toBeNull()
   })
+
+  it('returns null for zero chain ids', () => {
+    expect(parseChainId(0)).toBeNull()
+  })
 })
 
 describe('lib/utils isEmptyAddress', () => {
