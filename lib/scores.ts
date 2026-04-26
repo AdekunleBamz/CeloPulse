@@ -123,3 +123,8 @@ export function medianScore(scores: number[]): number {
   const mid = Math.floor(sorted.length / 2)
   return sorted.length % 2 !== 0 ? sorted[mid] : (sorted[mid - 1] + sorted[mid]) / 2
 }
+
+/** Returns a slice of the top N scores. */
+export function topN(scores: number[], n: number): number[] {
+  return [...scores].sort((a, b) => b - a).slice(0, n)
+}
