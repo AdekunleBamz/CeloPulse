@@ -205,3 +205,8 @@ export function getBlockExplorerUrl(blockNumber: number): string {
 export function isCeloNetwork(chainId: number): boolean {
   return chainId === 42220 || chainId === 44787
 }
+
+/** Returns true if the given address is a non-empty string. */
+export function isValidAddress(address: unknown): address is string {
+  return typeof address === "string" && address.trim().length > 0
+}
