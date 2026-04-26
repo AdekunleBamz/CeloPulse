@@ -220,3 +220,8 @@ export function truncateAddress(address: string, chars = 4): string {
 export function isPositiveAmount(amount: unknown): amount is number {
   return typeof amount === "number" && isFinite(amount) && amount > 0
 }
+
+/** Converts a BigInt wei value to a human-readable CELO string. */
+export function weiToCelo(wei: bigint): string {
+  return (Number(wei) / 1e18).toFixed(4)
+}
