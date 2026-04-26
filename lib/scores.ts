@@ -178,3 +178,8 @@ export function topNPercent(scores: number[], pct: number): number[] {
 export function belowThreshold(scores: number[], min: number): number[] {
   return scores.filter((s) => s < min)
 }
+
+/** Scales a score by a multiplier. */
+export function scaleScore(score: number, multiplier: number): number {
+  return score * multiplier
+}
