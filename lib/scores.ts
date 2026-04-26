@@ -97,3 +97,8 @@ export function rankScores(scores: number[]): number[] {
 export function getMinScore(scores: number[]): number {
   return scores.length > 0 ? Math.min(...scores) : Infinity
 }
+
+/** Returns the number of scores above zero. */
+export function countNonZero(scores: number[]): number {
+  return scores.filter(s => s > 0).length
+}
