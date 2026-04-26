@@ -145,3 +145,5 @@ export const DEFAULT_CHAIN_ID = 42220
 export const ALFAJORES_CHAIN_ID = 44787
 
 export const SCORE_PAGE_SIZE = 20
+
+export const MAX_USERNAME_LENGTH = 32
