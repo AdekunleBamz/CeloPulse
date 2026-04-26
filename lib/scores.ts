@@ -82,3 +82,8 @@ export function averageScore(scores: number[]): number {
   if (scores.length === 0) return 0
   return scores.reduce((a, b) => a + b, 0) / scores.length
 }
+
+/** Returns true if any score exceeds the given value. */
+export function hasHighScore(scores: number[], value: number): boolean {
+  return scores.some(s => s > value)
+}
