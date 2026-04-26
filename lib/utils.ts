@@ -270,3 +270,8 @@ export function isEmptyAddress(addr: string): boolean {
 export function isNonEmptyString(s: unknown): s is string {
   return typeof s === 'string' && s.trim().length > 0
 }
+
+/** Clamps an integer between lo and hi (inclusive). */
+export function clampInt(v: number, lo: number, hi: number): number {
+  return Math.min(hi, Math.max(lo, Math.trunc(v)))
+}
