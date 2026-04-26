@@ -235,3 +235,8 @@ export function celoToWei(celo: number): bigint {
 export function formatCelo(amount: number): string {
   return amount.toFixed(4) + " CELO"
 }
+
+/** Returns true if the chain ID is the Celo mainnet. */
+export function isCeloMainnet(chainId: number): boolean {
+  return chainId === 42220
+}
