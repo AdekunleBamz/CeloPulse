@@ -205,3 +205,53 @@ export function getBlockExplorerUrl(blockNumber: number): string {
 export function isCeloNetwork(chainId: number): boolean {
   return chainId === 42220 || chainId === 44787
 }
+
+/** Returns true if the given address is a non-empty string. */
+export function isValidAddress(address: unknown): address is string {
+  return typeof address === "string" && address.trim().length > 0
+}
+
+/** Truncates a wallet address to a short display form (e.g. 0x1234...abcd). */
+export function truncateAddress(address: string, chars = 4): string {
+  return address.slice(0, chars + 2) + "..." + address.slice(-chars)
+}
+
+/** Returns true if the amount is a positive finite number. */
+export function isPositiveAmount(amount: unknown): amount is number {
+  return typeof amount === "number" && isFinite(amount) && amount > 0
+}
+
+/** Converts a BigInt wei value to a human-readable CELO string. */
+export function weiToCelo(wei: bigint): string {
+  return (Number(wei) / 1e18).toFixed(4)
+}
+
+/** Converts a CELO float to a BigInt wei value. */
+export function celoToWei(celo: number): bigint {
+  return BigInt(Math.round(celo * 1e18))
+}
+
+/** Formats a CELO amount with up to 4 decimal places for display. */
+export function formatCelo(amount: number): string {
+  return amount.toFixed(4) + " CELO"
+}
+
+/** Returns true if the chain ID is the Celo mainnet. */
+export function isCeloMainnet(chainId: number): boolean {
+  return chainId === 42220
+}
+
+/** Returns true if the chain ID is the Alfajores testnet. */
+export function isAlfajores(chainId: number): boolean {
+  return chainId === 44787
+}
+
+/** Returns a Celo block explorer URL for a given transaction hash. */
+export function getTxExplorerUrl(txHash: string): string {
+  return "https://explorer.celo.org/mainnet/tx/" + txHash
+}
+
+/** Pads a short address with zeros if needed for display. */
+export function padAddress(address: string): string {
+  return address.startsWith("0x") ? address : "0x" + address
+}
