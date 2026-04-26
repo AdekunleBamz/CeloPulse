@@ -266,3 +266,59 @@ export function isEmptyAddress(addr: string): boolean {
   if (!addr) return true
   return addr.trim().toLowerCase() === '0x0000000000000000000000000000000000000000'
 }
+
+/** Clamps a number between min and max (inclusive). */
+export function clamp(value: number, min: number, max: number): number {
+  return Math.min(Math.max(value, min), max)
+}
+
+/** Returns the last element of an array or undefined if empty. */
+export function lastItem<T>(arr: T[]): T | undefined {
+  return arr.length > 0 ? arr[arr.length - 1] : undefined
+}
+
+/** Returns true if all elements in the array satisfy the predicate. */
+export function allMatch<T>(arr: T[], predicate: (item: T) => boolean): boolean {
+  return arr.every(predicate)
+}
+
+/** Returns unique values from an array using strict equality. */
+export function unique<T>(arr: T[]): T[] {
+  return [...new Set(arr)]
+}
+
+/** Groups array elements by the result of a key function. */
+export function groupBy<T>(arr: T[], key: (item: T) => string): Record<string, T[]> {
+  return arr.reduce((acc, item) => {
+    const k = key(item)
+    if (!acc[k]) acc[k] = []
+    acc[k].push(item)
+    return acc
+  }, {} as Record<string, T[]>)
+}
+
+/** Flattens a one-level nested array into a single array. */
+export function flattenOnce<T>(arr: T[][]): T[] {
+  return ([] as T[]).concat(...arr)
+}
+
+/** Returns a copy of the array without the element at the given index. */
+export function removeAt<T>(arr: T[], index: number): T[] {
+  return arr.filter((_, i) => i !== index)
+}
+
+/** Zips two arrays into an array of [a, b] tuples, stopping at the shorter length. */
+export function zip<A, B>(a: A[], b: B[]): [A, B][] {
+  const len = Math.min(a.length, b.length)
+  return Array.from({ length: len }, (_, i) => [a[i], b[i]] as [A, B])
+}
+
+/** Returns the sum of all numbers in an array (0 for empty array). */
+export function sumArray(arr: number[]): number {
+  return arr.reduce((total, n) => total + n, 0)
+}
+
+/** Returns true if the string is non-empty after trimming whitespace. */
+export function isNonEmptyString(value: unknown): value is string {
+  return typeof value === "string" && value.trim().length > 0
+}
