@@ -381,3 +381,8 @@ export function parseNumber(value: unknown): number {
 export function isEmptyArray(arr: unknown[]): boolean {
   return Array.isArray(arr) && arr.length === 0
 }
+
+/** Returns a new array with duplicate values removed (deep equality not supported). */
+export function dedup<T>(arr: T[]): T[] {
+  return [...new Set(arr)]
+}
