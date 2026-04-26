@@ -129,3 +129,5 @@ export const ONE_HOUR_MS = 3_600_000
 
 /** Maximum number of consecutive daily streaks tracked in the UI. */
 export const MAX_STREAK_DAYS = 30
+
+export const MAX_LEADERBOARD_ENTRIES = 100
