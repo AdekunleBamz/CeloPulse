@@ -119,3 +119,8 @@ export function hasAbiEvents(abi: {type: string}[]): boolean {
 export function countAbiFunctions(abi: {type: string}[]): number {
   return abi.filter(item => item.type === "function").length
 }
+
+/** Returns true if the ABI has a constructor entry. */
+export function hasAbiConstructor(abi: {type: string}[]): boolean {
+  return abi.some(item => item.type === "constructor")
+}
