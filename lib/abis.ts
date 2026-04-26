@@ -89,3 +89,53 @@ export function isWriteFunction(name: string): boolean {
 export function isReadFunction(name: string): boolean {
   return (READ_FUNCTION_NAMES as readonly string[]).includes(name)
 }
+
+/** Returns true if the given ABI item has the specified name. */
+export function hasAbiFunction(abi: {name?: string}[], name: string): boolean {
+  return abi.some(item => item.name === name)
+}
+
+/** Returns all ABI items of a given type (e.g. "function", "event"). */
+export function filterAbiByType(abi: {type: string}[], type: string): {type: string}[] {
+  return abi.filter(item => item.type === type)
+}
+
+/** Returns the names of all functions in the ABI. */
+export function getAbiFunctionNames(abi: {name?: string; type: string}[]): string[] {
+  return abi.filter(item => item.type === "function" && item.name).map(item => item.name as string)
+}
+
+/** Returns the names of all events in the ABI. */
+export function getAbiEventNames(abi: {name?: string; type: string}[]): string[] {
+  return abi.filter(item => item.type === "event" && item.name).map(item => item.name as string)
+}
+
+/** Returns true if the ABI contains at least one event. */
+export function hasAbiEvents(abi: {type: string}[]): boolean {
+  return abi.some(item => item.type === "event")
+}
+
+/** Returns the count of functions in the ABI. */
+export function countAbiFunctions(abi: {type: string}[]): number {
+  return abi.filter(item => item.type === "function").length
+}
+
+/** Returns true if the ABI has a constructor entry. */
+export function hasAbiConstructor(abi: {type: string}[]): boolean {
+  return abi.some(item => item.type === "constructor")
+}
+
+/** Returns the first ABI item matching the name and type, or undefined. */
+export function findAbiItem(abi: {name?: string; type: string}[], name: string, type: string): {name?: string; type: string} | undefined {
+  return abi.find(item => item.name === name && item.type === type)
+}
+
+/** Returns true if the ABI is non-empty. */
+export function isNonEmptyAbi(abi: unknown[]): boolean {
+  return Array.isArray(abi) && abi.length > 0
+}
+
+/** Returns the count of events in the ABI. */
+export function countAbiEvents(abi: {type: string}[]): number {
+  return abi.filter(item => item.type === "event").length
+}
