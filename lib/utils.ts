@@ -402,3 +402,9 @@ export function truncateHash(hash: string, chars = 6): string {
 export function formatWithCommas(value: number): string {
   return value.toLocaleString()
 }
+
+/** Formats a 0x address for display: 0x1234...5678. */
+export function formatAddress(addr: string): string {
+  if (addr.length < 12) return addr
+  return addr.slice(0, 6) + "..." + addr.slice(-4)
+}
