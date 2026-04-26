@@ -105,3 +105,9 @@ export function getChainBlockTime(chainId: number): number {
 export function isExpectedChain(chainId: number | undefined, expected: number): boolean {
   return chainId === expected
 }
+
+/** Returns a short human-readable label for a given chain ID. */
+export function getChainLabel(chainId: number): string {
+  const labels: Record<number, string> = { 42220: "Celo", 44787: "Alfajores", 1: "Ethereum" }
+  return labels[chainId] ?? "Unknown"
+}
