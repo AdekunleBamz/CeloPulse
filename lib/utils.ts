@@ -287,3 +287,9 @@ export function safeParseFloat(value: string, fallback = 0): number {
   const n = parseFloat(value.trim())
   return Number.isFinite(n) ? n : fallback
 }
+
+/** Returns items from arr that are not in the exclude set. */
+export function difference<T>(arr: T[], exclude: T[]): T[] {
+  const s = new Set(exclude)
+  return arr.filter((v) => !s.has(v))
+}
