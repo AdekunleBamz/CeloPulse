@@ -374,3 +374,8 @@ export function dedup<T>(arr: T[]): T[] {
 export function tail<T>(arr: T[]): T | undefined {
   return arr[arr.length - 1]
 }
+
+/** Formats a Unix timestamp (seconds) to a readable date string. */
+export function formatTimestamp(ts: number): string {
+  return new Date(ts * 1000).toLocaleDateString()
+}
