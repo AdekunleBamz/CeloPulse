@@ -371,3 +371,8 @@ export function omit<T extends object, K extends keyof T>(obj: T, keys: K[]): Om
   keys.forEach(k => delete (result as Record<string, unknown>)[k as string])
   return result as Omit<T, K>
 }
+
+/** Parses a value to a float, returning NaN if not parseable. */
+export function parseNumber(value: unknown): number {
+  return parseFloat(String(value))
+}
