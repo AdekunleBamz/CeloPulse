@@ -114,3 +114,8 @@ export function getAbiEventNames(abi: {name?: string; type: string}[]): string[]
 export function hasAbiEvents(abi: {type: string}[]): boolean {
   return abi.some(item => item.type === "event")
 }
+
+/** Returns the count of functions in the ABI. */
+export function countAbiFunctions(abi: {type: string}[]): number {
+  return abi.filter(item => item.type === "function").length
+}
