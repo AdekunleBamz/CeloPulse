@@ -4,6 +4,7 @@ import {
   formatRank,
   getScoreTier,
   isMaxScore,
+  pointsUntilNextTier,
   nextTierThreshold,
   scoreToPercent,
 } from '../lib/scores'
@@ -44,6 +45,12 @@ describe('lib/scores scoreToPercent', () => {
 describe('lib/scores nextTierThreshold', () => {
   it('returns null after the top score tier', () => {
     expect(nextTierThreshold(8_000)).toBeNull()
+  })
+})
+
+describe('lib/scores pointsUntilNextTier', () => {
+  it('returns the gap to the next tier threshold', () => {
+    expect(pointsUntilNextTier(3_600)).toBe(400)
   })
 })
 
