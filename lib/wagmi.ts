@@ -141,3 +141,8 @@ export function getExplorerBase(chainId: number): string {
 export function getNativeSymbol(chainId: number): string {
   return chainId === 44787 ? "CELO (testnet)" : "CELO"
 }
+
+/** Returns true if the address looks like a valid 0x address. */
+export function looksLikeAddress(value: string): boolean {
+  return /^0x[0-9a-fA-F]{40}$/.test(value)
+}
