@@ -250,3 +250,8 @@ export function isAlfajores(chainId: number): boolean {
 export function getTxExplorerUrl(txHash: string): string {
   return "https://explorer.celo.org/mainnet/tx/" + txHash
 }
+
+/** Pads a short address with zeros if needed for display. */
+export function padAddress(address: string): string {
+  return address.startsWith("0x") ? address : "0x" + address
+}
