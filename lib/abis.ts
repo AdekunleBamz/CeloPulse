@@ -104,3 +104,8 @@ export function filterAbiByType(abi: {type: string}[], type: string): {type: str
 export function getAbiFunctionNames(abi: {name?: string; type: string}[]): string[] {
   return abi.filter(item => item.type === "function" && item.name).map(item => item.name as string)
 }
+
+/** Returns the names of all events in the ABI. */
+export function getAbiEventNames(abi: {name?: string; type: string}[]): string[] {
+  return abi.filter(item => item.type === "event" && item.name).map(item => item.name as string)
+}
