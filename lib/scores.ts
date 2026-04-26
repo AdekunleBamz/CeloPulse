@@ -183,3 +183,11 @@ export function belowThreshold(scores: number[], min: number): number[] {
 export function scaleScore(score: number, multiplier: number): number {
   return score * multiplier
 }
+
+/** Normalizes scores to a 0-1 range. */
+export function normalizeToRange(scores: number[]): number[] {
+  const min = Math.min(...scores)
+  const max = Math.max(...scores)
+  if (max === min) return scores.map(() => 0)
+  return scores.map((s) => (s - min) / (max - min))
+}
