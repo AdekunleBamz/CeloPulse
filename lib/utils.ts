@@ -418,3 +418,8 @@ export function formatScore(n: number): string {
 export function formatBlockNumber(n: number): string {
   return "#" + n.toLocaleString()
 }
+
+/** Formats a gas price in wei as Gwei string. */
+export function formatGasPrice(wei: bigint): string {
+  return (Number(wei) / 1e9).toFixed(2) + " Gwei"
+}
