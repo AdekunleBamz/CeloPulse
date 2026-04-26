@@ -314,3 +314,8 @@ export function average(arr: number[]): number {
   if (arr.length === 0) return 0
   return sum(arr) / arr.length
 }
+
+/** Picks a subset of keys from an object. */
+export function pick<T extends object, K extends keyof T>(obj: T, keys: K[]): Pick<T, K> {
+  return keys.reduce((acc, k) => ({ ...acc, [k]: obj[k] }), {} as Pick<T, K>)
+}
