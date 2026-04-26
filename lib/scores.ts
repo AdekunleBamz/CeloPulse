@@ -102,3 +102,10 @@ export function getMinScore(scores: number[]): number {
 export function countNonZero(scores: number[]): number {
   return scores.filter(s => s > 0).length
 }
+
+/** Normalizes scores to a 0-100 range based on the max value. */
+export function normalizeScores(scores: number[]): number[] {
+  const max = Math.max(...scores)
+  if (max === 0) return scores.map(() => 0)
+  return scores.map(s => Math.round((s / max) * 100))
+}
