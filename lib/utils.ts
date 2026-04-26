@@ -391,3 +391,9 @@ export function formatDuration(seconds: number): string {
   const s = (seconds % 60).toString().padStart(2, "0")
   return `${m}:${s}`
 }
+
+/** Truncates a tx hash to a compact form, e.g. 0x1234...5678. */
+export function truncateHash(hash: string, chars = 6): string {
+  if (hash.length <= chars * 2 + 2) return hash
+  return hash.slice(0, chars + 2) + "..." + hash.slice(-chars)
+}
