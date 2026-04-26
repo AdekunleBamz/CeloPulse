@@ -109,3 +109,17 @@ export function normalizeScores(scores: number[]): number[] {
   if (max === 0) return scores.map(() => 0)
   return scores.map(s => Math.round((s / max) * 100))
 }
+
+/** Returns the median value from a list of scores. */
+export function medianScore(scores: number[]): number {
+  if (scores.length === 0) return 0
+  const sorted = [...scores].sort((a, b) => a - b)
+  const mid = Math.floor(sorted.length / 2)
+  return sorted.length 
+/** Returns the median value from a list of scores. */
+export function medianScore(scores: number[]): number {
+  if (scores.length === 0) return 0
+  const sorted = [...scores].sort((a, b) => a - b)
+  const mid = Math.floor(sorted.length / 2)
+  return sorted.length % 2 !== 0 ? sorted[mid] : (sorted[mid - 1] + sorted[mid]) / 2
+}
