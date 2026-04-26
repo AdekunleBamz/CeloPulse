@@ -99,6 +99,11 @@ describe('lib/minipay isMiniPayWallet', () => {
     vi.stubGlobal('window', undefined)
     expect(isMiniPayWallet()).toBe(false)
   })
+
+  it('returns true when window ethereum is flagged as MiniPay', () => {
+    vi.stubGlobal('window', { ethereum: { isMiniPay: true } })
+    expect(isMiniPayWallet()).toBe(true)
+  })
 })
 
 describe('lib/minipay explorer links', () => {
