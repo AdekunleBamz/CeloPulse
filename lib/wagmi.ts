@@ -146,3 +146,8 @@ export function getNativeSymbol(chainId: number): string {
 export function looksLikeAddress(value: string): boolean {
   return /^0x[0-9a-fA-F]{40}$/.test(value)
 }
+
+/** Returns the network name used in Celo Forno URLs. */
+export function getFornoNetworkName(chainId: number): string {
+  return chainId === 44787 ? "alfajores" : "mainnet"
+}
