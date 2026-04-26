@@ -89,3 +89,8 @@ export function isWriteFunction(name: string): boolean {
 export function isReadFunction(name: string): boolean {
   return (READ_FUNCTION_NAMES as readonly string[]).includes(name)
 }
+
+/** Returns true if the given ABI item has the specified name. */
+export function hasAbiFunction(abi: {name?: string}[], name: string): boolean {
+  return abi.some(item => item.name === name)
+}
