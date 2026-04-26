@@ -155,3 +155,5 @@ export const RETRY_DELAY_MS = 2000
 export const MAX_TX_GAS = 500000
 
 export const BLOCK_TIME_MS = 5000
+
+export const TOAST_DURATION_MS = 3000
