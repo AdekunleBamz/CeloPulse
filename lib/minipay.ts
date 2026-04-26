@@ -190,3 +190,8 @@ export function getChainShortName(chainId: number): string {
   if (chainId === 44787) return 'ALF'
   return '???'
 }
+
+/** Returns a block explorer token URL for a given address on the active chain. */
+export function getTokenExplorerUrl(tokenAddress: string): string {
+  return `${getExplorerUrl()}/token/${tokenAddress.trim()}`
+}
