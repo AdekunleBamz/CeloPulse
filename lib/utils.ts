@@ -379,3 +379,8 @@ export function tail<T>(arr: T[]): T | undefined {
 export function formatTimestamp(ts: number): string {
   return new Date(ts * 1000).toLocaleDateString()
 }
+
+/** Formats a decimal as a percentage string, e.g. 0.75 => "75.00%". */
+export function formatPercent(value: number): string {
+  return (value * 100).toFixed(2) + "%"
+}
