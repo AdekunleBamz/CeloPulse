@@ -376,3 +376,8 @@ export function omit<T extends object, K extends keyof T>(obj: T, keys: K[]): Om
 export function parseNumber(value: unknown): number {
   return parseFloat(String(value))
 }
+
+/** Returns true if the value is an empty array. */
+export function isEmptyArray(arr: unknown[]): boolean {
+  return Array.isArray(arr) && arr.length === 0
+}
