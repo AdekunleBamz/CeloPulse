@@ -66,3 +66,8 @@ export function tierProgress(score: number): number {
   if (score < 8_000) return Math.round(((score - 4_000) / 4_000) * 100)
   return 100
 }
+
+/** Returns the highest score from a list of score records. */
+export function getTopScore(scores: number[]): number {
+  return scores.length > 0 ? Math.max(...scores) : 0
+}
