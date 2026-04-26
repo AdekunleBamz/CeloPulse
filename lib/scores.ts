@@ -167,3 +167,9 @@ export function bucketize(score: number, bucketSize: number): number {
   return Math.floor(score / bucketSize) * bucketSize
 }
 
+
+/** Returns the top N percent of scores. */
+export function topNPercent(scores: number[], pct: number): number[] {
+  const sorted = [...scores].sort((a, b) => b - a)
+  return sorted.slice(0, Math.ceil((sorted.length * pct) / 100))
+}
