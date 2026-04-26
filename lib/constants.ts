@@ -129,3 +129,23 @@ export const ONE_HOUR_MS = 3_600_000
 
 /** Maximum number of consecutive daily streaks tracked in the UI. */
 export const MAX_STREAK_DAYS = 30
+
+export const MAX_LEADERBOARD_ENTRIES = 100
+
+export const MIN_SCORE_TO_RANK = 10
+
+export const SCORE_MULTIPLIER_BASE = 1.5
+
+export const SESSION_TIMEOUT_MS = 1800000
+
+export const MAX_WALLET_RETRIES = 3
+
+export const DEFAULT_CHAIN_ID = 42220
+
+export const ALFAJORES_CHAIN_ID = 44787
+
+export const SCORE_PAGE_SIZE = 20
+
+export const MAX_USERNAME_LENGTH = 32
+
+export const POLLING_INTERVAL_MS = 5000
