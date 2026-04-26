@@ -92,3 +92,8 @@ export function hasHighScore(scores: number[], value: number): boolean {
 export function rankScores(scores: number[]): number[] {
   return [...scores].sort((a, b) => b - a)
 }
+
+/** Returns the lowest score from a list (Infinity for empty). */
+export function getMinScore(scores: number[]): number {
+  return scores.length > 0 ? Math.min(...scores) : Infinity
+}
