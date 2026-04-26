@@ -161,3 +161,9 @@ export function scoreVariance(scores: number[]): number {
 export function standardDeviation(scores: number[]): number {
   return Math.sqrt(scoreVariance(scores))
 }
+
+/** Bucketizes a score into ranges. */
+export function bucketize(score: number, bucketSize: number): number {
+  return Math.floor(score / bucketSize) * bucketSize
+}
+
