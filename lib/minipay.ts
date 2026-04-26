@@ -225,3 +225,8 @@ export function isPositiveAmount(amount: unknown): amount is number {
 export function weiToCelo(wei: bigint): string {
   return (Number(wei) / 1e18).toFixed(4)
 }
+
+/** Converts a CELO float to a BigInt wei value. */
+export function celoToWei(celo: number): bigint {
+  return BigInt(Math.round(celo * 1e18))
+}
