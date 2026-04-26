@@ -111,3 +111,8 @@ export function getChainLabel(chainId: number): string {
   const labels: Record<number, string> = { 42220: "Celo", 44787: "Alfajores", 1: "Ethereum" }
   return labels[chainId] ?? "Unknown"
 }
+
+/** Returns true if the given account string is defined and non-empty. */
+export function isConnected(account: string | undefined): account is string {
+  return typeof account === "string" && account.length > 0
+}
