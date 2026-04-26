@@ -10,6 +10,7 @@ import {
   getNetworkType,
   getTxExplorerUrl,
   getWalletEnvLabel,
+  isCeloNetwork,
   isMiniPayAvailable,
   isMiniPayProvider,
   isMiniPayWallet,
@@ -142,5 +143,12 @@ describe('lib/minipay isMiniPayAvailable', () => {
 describe('lib/minipay getActiveChainSymbol', () => {
   it('returns CELO for the active chain symbol', () => {
     expect(getActiveChainSymbol()).toBe('CELO')
+  })
+})
+
+describe('lib/minipay isCeloNetwork', () => {
+  it('returns true for both supported Celo chain ids', () => {
+    expect(isCeloNetwork(42220)).toBe(true)
+    expect(isCeloNetwork(44787)).toBe(true)
   })
 })
