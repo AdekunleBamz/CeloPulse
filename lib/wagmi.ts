@@ -136,3 +136,8 @@ export function isSupportedNetwork(chainId: number): boolean {
 export function getExplorerBase(chainId: number): string {
   return chainId === 44787 ? "https://alfajores.celoscan.io" : "https://celoscan.io"
 }
+
+/** Returns a native token symbol for the given chain ID. */
+export function getNativeSymbol(chainId: number): string {
+  return chainId === 44787 ? "CELO (testnet)" : "CELO"
+}
