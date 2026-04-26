@@ -117,3 +117,6 @@ export const MIN_TRANSFER_CELO = 0.001
 
 /** How often (ms) to refresh the leaderboard data. */
 export const LEADERBOARD_REFRESH_INTERVAL_MS = 60_000
+
+/** Minimum score required to appear on the leaderboard. */
+export const LEADERBOARD_MIN_SCORE = 1
