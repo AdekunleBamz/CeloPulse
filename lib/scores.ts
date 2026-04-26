@@ -50,3 +50,11 @@ export function pointsUntilNextTier(score: number): number {
 export function isRanked(score: number): boolean {
   return score >= 1_000
 }
+
+/** Returns the tier index (0=Newcomer, 1=Bronze, 2=Silver, 3=Gold). */
+export function getTierIndex(score: number): number {
+  if (score >= 8_000) return 3
+  if (score >= 4_000) return 2
+  if (score >= 1_000) return 1
+  return 0
+}
