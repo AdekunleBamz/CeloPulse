@@ -151,4 +151,8 @@ describe('lib/minipay isCeloNetwork', () => {
     expect(isCeloNetwork(42220)).toBe(true)
     expect(isCeloNetwork(44787)).toBe(true)
   })
+
+  it('returns false for unsupported networks', () => {
+    expect(isCeloNetwork(1)).toBe(false)
+  })
 })
