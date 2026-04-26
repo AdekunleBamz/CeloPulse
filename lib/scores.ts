@@ -129,3 +129,65 @@ export function medianScore(scores: number[]): number {
 export function topN(scores: number[], n: number): number[] {
   return [...scores].sort((a, b) => b - a).slice(0, n)
 }
+
+/** Maps a score to a tier label: bronze, silver, gold, platinum. */
+export function scoreToTier(score: number): string {
+  if (score >= 10000) return "platinum"
+  if (score >= 5000) return "gold"
+  if (score >= 1000) return "silver"
+  return "bronze"
+}
+
+/** Calculates percentile rank of a score within an array. */
+export function percentile(scores: number[], score: number): number {
+  if (scores.length === 0) return 0
+  const below = scores.filter(s => s < score).length
+  return Math.round((below / scores.length) * 100)
+}
+
+/** Clamps a score to [min, max] range. */
+export function clampScore(score: number, min: number, max: number): number {
+  return Math.min(Math.max(score, min), max)
+}
+
+/** Computes variance of a score array. */
+export function scoreVariance(scores: number[]): number {
+  if (scores.length === 0) return 0
+  const mean = scores.reduce((a, b) => a + b, 0) / scores.length
+  return scores.reduce((acc, s) => acc + (s - mean) ** 2, 0) / scores.length
+}
+
+/** Computes standard deviation of a score array. */
+export function standardDeviation(scores: number[]): number {
+  return Math.sqrt(scoreVariance(scores))
+}
+
+/** Bucketizes a score into ranges. */
+export function bucketize(score: number, bucketSize: number): number {
+  return Math.floor(score / bucketSize) * bucketSize
+}
+
+
+/** Returns the top N percent of scores. */
+export function topNPercent(scores: number[], pct: number): number[] {
+  const sorted = [...scores].sort((a, b) => b - a)
+  return sorted.slice(0, Math.ceil((sorted.length * pct) / 100))
+}
+
+/** Filters scores below a threshold. */
+export function belowThreshold(scores: number[], min: number): number[] {
+  return scores.filter((s) => s < min)
+}
+
+/** Scales a score by a multiplier. */
+export function scaleScore(score: number, multiplier: number): number {
+  return score * multiplier
+}
+
+/** Normalizes scores to a 0-1 range. */
+export function normalizeToRange(scores: number[]): number[] {
+  const min = Math.min(...scores)
+  const max = Math.max(...scores)
+  if (max === min) return scores.map(() => 0)
+  return scores.map((s) => (s - min) / (max - min))
+}
