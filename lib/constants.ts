@@ -167,3 +167,5 @@ export const GAS_PRICE_MULTIPLIER = 1.2
 export const LEADERBOARD_REFRESH_MS = 30000
 
 export const MAX_PENDING_TXS = 5
+
+export const DEFAULT_GAS_LIMIT = 21000
