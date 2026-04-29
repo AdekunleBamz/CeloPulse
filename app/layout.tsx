@@ -8,7 +8,7 @@ const appUrl = (
 ).replace(/\/+$/, '')
 const ogImageUrl = `${appUrl}/og-image.png`
 const talentVerificationToken =
-  'b113f0ed99e7b0f3f9530432b6ff2829ce72689754dfab84dcd44622a59fa000657b8808a7e08e94bcde17a8b2bfa4b044f092ffe55c9ddef08ba41b8543cd63'
+  '29cdaebe307898eb2932a2745b19c5c67ae77af9754be3bd11fe1842a6faf9c8d0a6f538cfefd478be5756f5ee857105fd3372e6a0428620966e0e297050593f'
 
 export const metadata: Metadata = {
   metadataBase: new URL(appUrl),
