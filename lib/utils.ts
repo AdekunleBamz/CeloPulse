@@ -267,11 +267,6 @@ export function isEmptyAddress(addr: string): boolean {
   return addr.trim().toLowerCase() === '0x0000000000000000000000000000000000000000'
 }
 
-/** Clamps a number between min and max (inclusive). */
-export function clamp(value: number, min: number, max: number): number {
-  return Math.min(Math.max(value, min), max)
-}
-
 /** Returns the last element of an array or undefined if empty. */
 export function lastItem<T>(arr: T[]): T | undefined {
   return arr.length > 0 ? arr[arr.length - 1] : undefined
@@ -333,11 +328,6 @@ export function isNonBlank(value: string): boolean {
   return value.trim().length > 0
 }
 
-/** Capitalizes the first character of a string. */
-export function capitalize(str: string): string {
-  return str.charAt(0).toUpperCase() + str.slice(1)
-}
-
 /** Converts a string to a URL-friendly slug. */
 export function slugify(str: string): string {
   return str.toLowerCase().replace(/\s+/g, "-").replace(/[^a-z0-9-]/g, "")
@@ -375,23 +365,6 @@ export function tail<T>(arr: T[]): T | undefined {
   return arr[arr.length - 1]
 }
 
-/** Formats a Unix timestamp (seconds) to a readable date string. */
-export function formatTimestamp(ts: number): string {
-  return new Date(ts * 1000).toLocaleDateString()
-}
-
-/** Formats a decimal as a percentage string, e.g. 0.75 => "75.00%". */
-export function formatPercent(value: number): string {
-  return (value * 100).toFixed(2) + "%"
-}
-
-/** Formats a duration in seconds to mm:ss display. */
-export function formatDuration(seconds: number): string {
-  const m = Math.floor(seconds / 60).toString().padStart(2, "0")
-  const s = (seconds % 60).toString().padStart(2, "0")
-  return `${m}:${s}`
-}
-
 /** Truncates a tx hash to a compact form, e.g. 0x1234...5678. */
 export function truncateHash(hash: string, chars = 6): string {
   if (hash.length <= chars * 2 + 2) return hash
@@ -407,11 +380,6 @@ export function formatWithCommas(value: number): string {
 export function formatAddress(addr: string): string {
   if (addr.length < 12) return addr
   return addr.slice(0, 6) + "..." + addr.slice(-4)
-}
-
-/** Formats a game score with commas for display. */
-export function formatScore(n: number): string {
-  return n.toLocaleString() + " pts"
 }
 
 /** Formats a block number with # prefix for display. */
