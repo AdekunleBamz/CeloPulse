@@ -122,11 +122,6 @@ export function shortAddress(address: string): string {
   return address.slice(0, 6) + "..." + address.slice(-4)
 }
 
-/** Returns a Celo-specific RPC URL for the given chain ID. */
-export function getCeloRpcUrl(chainId: number): string {
-  return chainId === 44787 ? "https://alfajores-forno.celo-testnet.org" : "https://forno.celo.org"
-}
-
 /** Returns true if the wallet is on a supported network. */
 export function isSupportedNetwork(chainId: number): boolean {
   return [42220, 44787].includes(chainId)

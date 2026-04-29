@@ -236,19 +236,9 @@ export function formatCelo(amount: number): string {
   return amount.toFixed(4) + " CELO"
 }
 
-/** Returns true if the chain ID is the Celo mainnet. */
-export function isCeloMainnet(chainId: number): boolean {
-  return chainId === 42220
-}
-
 /** Returns true if the chain ID is the Alfajores testnet. */
 export function isAlfajores(chainId: number): boolean {
   return chainId === 44787
-}
-
-/** Returns a Celo block explorer URL for a given transaction hash. */
-export function getTxExplorerUrl(txHash: string): string {
-  return "https://explorer.celo.org/mainnet/tx/" + txHash
 }
 
 /** Pads a short address with zeros if needed for display. */
