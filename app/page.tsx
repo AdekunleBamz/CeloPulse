@@ -180,13 +180,14 @@ export default function Home() {
   })
 
   // Read registered status
-  const { data: isRegistered } = useReadContract({
+  const { data: isRegistered, refetch: refetchIsRegistered } = useReadContract({
     address: contractAddress,
     abi: celoPulseABI,
     functionName: 'isRegistered',
     args: [address as `0x${string}`],
     query: {
       enabled: !!address && !!contractAddress,
+      refetchInterval: USER_REFETCH_INTERVAL,
     },
   })
 
@@ -210,6 +211,7 @@ export default function Home() {
     if (isSuccess) {
       refetchUser()
       refetchCUSD()
+      refetchIsRegistered()
       setTxNotice(null)
       setSendTo('')
       setSendAmount('')
@@ -217,7 +219,7 @@ export default function Home() {
       setSelectedStakeAmount('')
       setSelectedUnstakeAmount('')
     }
-  }, [isSuccess, refetchUser, refetchCUSD])
+  }, [isSuccess, refetchUser, refetchCUSD, refetchIsRegistered])
 
   useEffect(() => {
     const t = setTimeout(() => setIsLoadingApp(false), 1200)
