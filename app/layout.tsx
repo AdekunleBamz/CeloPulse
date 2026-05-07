@@ -1,5 +1,5 @@
 import './globals.css'
-import type { Metadata } from 'next'
+import type { Metadata, Viewport } from 'next'
 import { Providers } from './providers'
 
 const shortDescription = 'MiniPay-ready Celo activity tracker.'
@@ -22,12 +22,15 @@ const ogImageUrl = new URL('/og-image.png', metadataBase).toString()
 const talentVerificationToken =
   '29cdaebe307898eb2932a2745b19c5c67ae77af9754be3bd11fe1842a6faf9c8d0a6f538cfefd478be5756f5ee857105fd3372e6a0428620966e0e297050593f'
 
+export const viewport: Viewport = {
+  themeColor: '#020617',
+}
+
 export const metadata: Metadata = {
   metadataBase,
   applicationName: 'CeloPulse',
   title: 'CeloPulse | Activity Tracker & Auto-Rewards',
   description: shortDescription,
-  themeColor: '#020617',
   manifest: '/site.webmanifest',
   icons: {
     icon: [
@@ -60,7 +63,7 @@ export default function RootLayout({
   children: React.ReactNode
 }) {
   return (
-    <html lang="en">
+    <html lang="en" suppressHydrationWarning>
       <body>
         <Providers>{children}</Providers>
       </body>
