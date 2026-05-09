@@ -26,6 +26,8 @@ Use this checklist for safer releases and runtime checks.
 - [ ] Temporarily remove contract env var and verify the configuration warning is user-readable.
 - [ ] Trigger a rejected wallet connection request and ensure the app surfaces a helpful error state.
 - [ ] Check "Copied" wallet feedback resets after timeout and can be retriggered.
+- [ ] Confirm a malformed recipient address is blocked before wallet confirmation opens.
+- [ ] Confirm leaderboard and recent activity panels remain readable on a narrow mobile viewport.
 
 ## Post-Deploy
 
