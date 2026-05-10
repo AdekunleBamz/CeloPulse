@@ -14,4 +14,5 @@ Use this checklist before promoting a Vercel deployment.
 
 - Open the app in a normal browser and confirm the standard wallet path still connects.
 - Open the app in MiniPay and confirm automatic wallet detection completes.
+- Confirm the latest activity value changes after a successful check-in.
 - Confirm `/privacy` and `/terms` render from the production domain.
