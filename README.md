@@ -78,6 +78,7 @@ CeloPulse utilizes a custom Activity Engine that handles:
 ## 🧭 Operations
 
 -   Use [docs/environment.md](docs/environment.md) when preparing local, preview, or production configuration.
+-   Use [docs/activity-flow.md](docs/activity-flow.md) when validating dashboard reads, writes, and refreshes.
 -   Use [docs/farcaster-review.md](docs/farcaster-review.md) when changing Mini App metadata or shared previews.
 -   Use [docs/operations-checklist.md](docs/operations-checklist.md) for release validation.
 -   Use [docs/qa-notes.md](docs/qa-notes.md) for lightweight browser and transaction smoke checks.
