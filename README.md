@@ -81,6 +81,7 @@ CeloPulse utilizes a custom Activity Engine that handles:
 -   Use [docs/activity-flow.md](docs/activity-flow.md) when validating dashboard reads, writes, and refreshes.
 -   Use [docs/contract-operations.md](docs/contract-operations.md) when checking deployed contract addresses and reads.
 -   Use [docs/data-refresh.md](docs/data-refresh.md) when reviewing dashboard refresh behavior after writes.
+-   Use [docs/deployment-notes.md](docs/deployment-notes.md) before promoting preview builds.
 -   Use [docs/farcaster-review.md](docs/farcaster-review.md) when changing Mini App metadata or shared previews.
 -   Use [docs/mobile-qa.md](docs/mobile-qa.md) for narrow viewport and MiniPay webview checks.
 -   Use [docs/operations-checklist.md](docs/operations-checklist.md) for release validation.
