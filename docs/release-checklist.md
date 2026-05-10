@@ -8,6 +8,7 @@ Use this checklist before promoting a Vercel deployment.
 - Run `npm run lint`.
 - Run `npm run build`.
 - Confirm `NEXT_PUBLIC_CELOPULSE_CONTRACT` points to the intended chain deployment.
+- Confirm the release branch does not rely on local-only environment values.
 
 ## Runtime Checks
 
