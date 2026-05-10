@@ -77,6 +77,7 @@ CeloPulse utilizes a custom Activity Engine that handles:
 
 ## 🧭 Operations
 
+-   Use [docs/environment.md](docs/environment.md) when preparing local, preview, or production configuration.
 -   Use [docs/operations-checklist.md](docs/operations-checklist.md) for release validation.
 -   Use [docs/release-checklist.md](docs/release-checklist.md) before promoting a Vercel deployment.
 -   Use [docs/minipay-fee-currency.md](docs/minipay-fee-currency.md) when reviewing MiniPay fee settings.
