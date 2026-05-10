@@ -81,6 +81,7 @@ CeloPulse utilizes a custom Activity Engine that handles:
 -   Use [docs/activity-flow.md](docs/activity-flow.md) when validating dashboard reads, writes, and refreshes.
 -   Use [docs/contract-operations.md](docs/contract-operations.md) when checking deployed contract addresses and reads.
 -   Use [docs/farcaster-review.md](docs/farcaster-review.md) when changing Mini App metadata or shared previews.
+-   Use [docs/mobile-qa.md](docs/mobile-qa.md) for narrow viewport and MiniPay webview checks.
 -   Use [docs/operations-checklist.md](docs/operations-checklist.md) for release validation.
 -   Use [docs/qa-notes.md](docs/qa-notes.md) for lightweight browser and transaction smoke checks.
 -   Use [docs/release-checklist.md](docs/release-checklist.md) before promoting a Vercel deployment.
