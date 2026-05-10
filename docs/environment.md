@@ -12,3 +12,7 @@ Use this guide when preparing local, preview, or production environments.
 
 - `NEXT_PUBLIC_MINIPAY_FEE_CURRENCY` can stay blank when the app should use the built-in MiniPay fallback.
 - `NEXT_PUBLIC_APP_URL` should match the public URL used by metadata, sharing, and wallet surfaces.
+
+## Review Rhythm
+
+- Re-check environment values any time a preview branch is promoted or renamed.
