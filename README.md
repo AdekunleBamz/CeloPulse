@@ -86,6 +86,7 @@ CeloPulse utilizes a custom Activity Engine that handles:
 -   Use [docs/operations-checklist.md](docs/operations-checklist.md) for release validation.
 -   Use [docs/qa-notes.md](docs/qa-notes.md) for lightweight browser and transaction smoke checks.
 -   Use [docs/release-checklist.md](docs/release-checklist.md) before promoting a Vercel deployment.
+-   Use [docs/reward-flow.md](docs/reward-flow.md) when checking claim and compound behavior.
 -   Use [docs/security-notes.md](docs/security-notes.md) when reviewing secrets, wallets, and fee overrides.
 -   Use [docs/wallet-qa.md](docs/wallet-qa.md) when validating wallet detection and chain switching.
 -   Use [docs/minipay-fee-currency.md](docs/minipay-fee-currency.md) when reviewing MiniPay fee settings.
