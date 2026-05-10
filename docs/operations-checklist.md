@@ -11,6 +11,7 @@ Use this checklist for safer releases and runtime checks.
 - [ ] Ensure WalletConnect project id is not a placeholder value before shipping.
 - [ ] Run `npm run lint` and resolve all errors before deployment.
 - [ ] Run `npm run build` once in the target branch before deployment.
+- [ ] Check that the build output does not introduce unexpected static-generation warnings.
 
 ## Security
 
