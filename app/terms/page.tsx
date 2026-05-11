@@ -32,7 +32,7 @@ export default function TermsOfService() {
             <h2 className="text-xl font-bold text-gray-200 mb-3">1. Acceptance of Terms</h2>
             <p>
               By accessing CeloPulse, you agree to be bound by these Terms of Service. This is a decentralized 
-              software tool provided "as-is" without any warranties.
+              software tool provided &quot;as-is&quot; without any warranties.
             </p>
           </div>
 
