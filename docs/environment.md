@@ -16,3 +16,4 @@ Use this guide when preparing local, preview, or production environments.
 ## Review Rhythm
 
 - Re-check environment values any time a preview branch is promoted or renamed.
+- Record the reviewer and target environment whenever public variables change.
