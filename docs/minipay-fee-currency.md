@@ -13,3 +13,4 @@ CeloPulse can use a MiniPay fee-currency override when the active chain supports
 - Confirm MiniPay resolves the fee currency before sending a transaction.
 - Confirm invalid fee-currency values produce a readable configuration warning.
 - Confirm non-MiniPay browsers still use the standard wallet flow.
+- Record the MiniPay app version used for fee-currency review.
