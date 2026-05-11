@@ -12,3 +12,4 @@ Use these checks when validating a deployed CeloPulse activity contract.
 
 - Check `getUser` for a wallet with existing activity.
 - Check `getPendingRewards` for a wallet that should have a non-zero pending amount.
+- Store the read result beside the contract address and chain id.
