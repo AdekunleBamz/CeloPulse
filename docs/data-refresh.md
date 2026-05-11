@@ -12,3 +12,4 @@ Use these notes when checking dashboard freshness after chain reads and writes.
 
 - Confirm failed writes do not mutate the displayed score or streak.
 - Confirm manual page reload shows the same wallet state as the in-app refresh path.
+- Capture the refresh time and wallet address when stale data appears.
