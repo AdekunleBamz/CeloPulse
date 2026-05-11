@@ -12,3 +12,4 @@ Use these checks when changing metadata, preview cards, or deployment URLs.
 
 - Open a shared production URL and confirm the preview image matches the current brand assets.
 - Confirm Mini App entry points still open the dashboard rather than a static landing page.
+- Capture the Farcaster client and preview URL used for shell review.
