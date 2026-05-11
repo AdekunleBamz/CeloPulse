@@ -3,3 +3,4 @@
 - Compare dashboard data before and after a manual refresh.
 - Confirm stale data is labeled or refreshed before claim actions.
 - Record any mismatch in the data refresh notes.
+- Capture the last refreshed timestamp before retrying.
