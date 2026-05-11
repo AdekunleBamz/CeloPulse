@@ -12,3 +12,4 @@ Use these notes for focused checks that do not require a production deployment.
 
 - Run one successful read-only dashboard refresh before testing writes.
 - Capture one rejected transaction path to confirm the user-facing notice clears.
+- Save the wallet type and chain id used for each dashboard smoke test.
