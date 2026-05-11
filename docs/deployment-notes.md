@@ -12,3 +12,4 @@ Use these notes before promoting a CeloPulse preview to production.
 
 - Compare production environment values against the preview values before promoting.
 - Keep the previous production deployment URL available for rollback.
+- Record the Vercel commit sha for each promoted deployment.
