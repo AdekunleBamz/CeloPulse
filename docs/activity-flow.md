@@ -12,3 +12,4 @@ Use this guide when validating the dashboard activity lifecycle.
 
 - Test one check-in path with a small-value wallet.
 - Confirm transaction completion updates the recent activity feed and progress widgets.
+- Record the wallet, action, and transaction hash with activity-flow evidence.
