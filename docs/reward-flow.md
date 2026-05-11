@@ -12,3 +12,4 @@ Use this guide when checking claim and compound behavior.
 
 - Confirm compounding updates score-related widgets after the transaction settles.
 - Re-read contract state before reporting a reward total in release notes.
+- Keep the eligibility score, pending amount, and claim hash together in release evidence.
