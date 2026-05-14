@@ -1,5 +1,6 @@
 import { MAX_ACTIVITY_SCORE } from './constants'
 
+/** Ordered tier definitions with their minimum score thresholds. */
 export const SCORE_TIERS = [
   { label: 'Newcomer', min: 0 },
   { label: 'Bronze', min: 1_000 },
@@ -7,6 +8,10 @@ export const SCORE_TIERS = [
   { label: 'Gold', min: 8_000 },
 ] as const
 
+/**
+ * Returns the tier label for a given score.
+ * @param score - The player's current score.
+ */
 export function getScoreTier(score: number): string {
   if (score >= 8_000) return 'Gold'
   if (score >= 4_000) return 'Silver'
@@ -14,6 +19,10 @@ export function getScoreTier(score: number): string {
   return 'Newcomer'
 }
 
+/**
+ * Formats a rank number as a display string.
+ * @param rank - The rank value. Non-positive values render as '-'.
+ */
 export function formatRank(rank: number): string {
   if (rank <= 0) return '-'
   if (rank === 1) return '#1'
