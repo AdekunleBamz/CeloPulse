@@ -130,42 +130,62 @@ export const ONE_HOUR_MS = 3_600_000
 /** Maximum number of consecutive daily streaks tracked in the UI. */
 export const MAX_STREAK_DAYS = 30
 
+/** Maximum number of leaderboard entries fetched from the contract. */
 export const MAX_LEADERBOARD_ENTRIES = 100
 
+/** Minimum score a player must hold to appear on the leaderboard. */
 export const MIN_SCORE_TO_RANK = 10
 
+/** Base multiplier applied when computing score progression. */
 export const SCORE_MULTIPLIER_BASE = 1.5
 
+/** Inactivity timeout in milliseconds before a session is considered expired. */
 export const SESSION_TIMEOUT_MS = 1800000
 
+/** Maximum number of wallet connection retries before giving up. */
 export const MAX_WALLET_RETRIES = 3
 
+/** Default chain ID used when NEXT_PUBLIC_CHAIN_ID is not set. */
 export const DEFAULT_CHAIN_ID = 42220
 
+/** Celo Alfajores testnet chain ID. */
 export const ALFAJORES_CHAIN_ID = 44787
 
+/** Number of score entries per page in paginated views. */
 export const SCORE_PAGE_SIZE = 20
 
+/** Maximum allowed username length in characters. */
 export const MAX_USERNAME_LENGTH = 32
 
+/** General-purpose polling interval in milliseconds. */
 export const POLLING_INTERVAL_MS = 5000
 
+/** Delay in milliseconds between retry attempts. */
 export const RETRY_DELAY_MS = 2000
 
+/** Maximum gas units allowed for a single transaction. */
 export const MAX_TX_GAS = 500000
 
+/** Estimated block time in milliseconds on Celo. */
 export const BLOCK_TIME_MS = 5000
 
+/** Duration in milliseconds for toast notifications. */
 export const TOAST_DURATION_MS = 3000
 
+/** Maximum number of retry attempts for failed operations. */
 export const MAX_RETRIES = 5
 
+/** Minimum CELO balance required to execute transactions. */
 export const MIN_CELO_BALANCE = 0.01
 
+/** Gas price multiplier applied to estimated gas for safety margin. */
 export const GAS_PRICE_MULTIPLIER = 1.2
 
+/** Leaderboard refresh interval in milliseconds. */
 export const LEADERBOARD_REFRESH_MS = 30000
 
+/** Maximum number of pending transactions tracked in the UI. */
 export const MAX_PENDING_TXS = 5
 
+/** Default gas limit for simple ETH transfer transactions. */
 export const DEFAULT_GAS_LIMIT = 21000
