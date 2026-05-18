@@ -1,10 +1,22 @@
 {
   "name": "celopulse",
   "version": "1.0.0",
+  "description": "Celo activity dashboard with MiniPay-friendly rewards and engagement tracking.",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/AdekunleBamz/CeloPulse.git"
   },
+  "bugs": {
+    "url": "https://github.com/AdekunleBamz/CeloPulse/issues"
+  },
+  "homepage": "https://github.com/AdekunleBamz/CeloPulse#readme",
+  "keywords": [
+    "celopulse",
+    "celo",
+    "minipay",
+    "dashboard",
+    "rewards"
+  ],
   "private": true,
   "engines": {
     "node": ">=18"
